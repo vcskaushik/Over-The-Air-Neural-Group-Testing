@@ -1,0 +1,162 @@
+********************** No Noise **********************
+##################################
+[ Individual Testing K0 Baseline ]
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[48741    59]
+ [    1    49]]
+Recall(%): 98 FPR(%): 0.120902  Acc(%): 99.87717502558854
+ No of negatives  48800  No of positives  50
+version 2 Recall(%): 98.0 FPR(%): 0.120902  Acc(%): 99.87717502558854
+Number of Tests (1st Round):  48850
+Total Computation: 806.0 TMACs
+##################################
+K=3 + Design 2 (G2) + Algorithm 1 Two-Round
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[11812   351]
+ [    0    49]]
+version 2 Group Recall(%): 100.0 FPR(%): 2.885801  Acc(%): 97.12577792335408
+Number of Tests (1st Round):  12212 	 Computation: 246.2 TMACs
+Number Of Samples After the 1st round: 1600
+(48848,) (48848,)
+Recall(%): 98.0 FPR(%): 0.049182  Acc(%): 99.94882083196856
+version 2 Group Recall(%): 98.0 FPR(%): 0.049182  Acc(%): 99.94882083196856
+Number of Tests (2nd Round):  1600 	 Computation: 26.4 TMACs
+Total Computation: 272.6 TeraMACs Total Tests: 13812 Relative Cost 0.3385418777943368
+********************************************
+********************** SNR 0 **********************
+##################################
+[ Individual Testing K0 Baseline ]
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[48472   328]
+ [    0    50]]
+Recall(%): 100 FPR(%): 0.672131  Acc(%): 99.32855680655067
+ No of negatives  48800  No of positives  50
+version 2 Recall(%): 100.0 FPR(%): 0.672131  Acc(%): 99.32855680655067
+Number of Tests (1st Round):  48850
+Total Computation: 806.0 TMACs
+##################################
+K=3 + Design 2 (G2) + Algorithm 1 Two-Round
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[11484   679]
+ [    1    48]]
+version 2 Group Recall(%): 97.95918367346938 FPR(%): 5.582504  Acc(%): 94.43170651817884
+Number of Tests (1st Round):  12212 	 Computation: 246.2 TMACs
+Number Of Samples After the 1st round: 2908
+(48848,) (48848,)
+Recall(%): 98.0 FPR(%): 0.194680  Acc(%): 99.80347199475925
+version 2 Group Recall(%): 98.0 FPR(%): 0.194680  Acc(%): 99.80347199475925
+Number of Tests (2nd Round):  2908 	 Computation: 48.0 TMACs
+Total Computation: 294.2 TeraMACs Total Tests: 15120 Relative Cost 0.3653451564828614
+********************************************
+********************** SNR 1 **********************
+##################################
+[ Individual Testing K0 Baseline ]
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[48458   342]
+ [    1    49]]
+Recall(%): 98 FPR(%): 0.700820  Acc(%): 99.2978505629478
+ No of negatives  48800  No of positives  50
+version 2 Recall(%): 98.0 FPR(%): 0.700820  Acc(%): 99.2978505629478
+Number of Tests (1st Round):  48850
+Total Computation: 806.0 TMACs
+##################################
+K=3 + Design 2 (G2) + Algorithm 1 Two-Round
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[11624   539]
+ [    0    49]]
+version 2 Group Recall(%): 100.0 FPR(%): 4.431472  Acc(%): 95.58630854896822
+Number of Tests (1st Round):  12212 	 Computation: 246.2 TMACs
+Number Of Samples After the 1st round: 2352
+(48848,) (48848,)
+Recall(%): 98.0 FPR(%): 0.161892  Acc(%): 99.83622666229938
+version 2 Group Recall(%): 98.0 FPR(%): 0.161892  Acc(%): 99.83622666229938
+Number of Tests (2nd Round):  2352 	 Computation: 38.8 TMACs
+Total Computation: 285.0 TeraMACs Total Tests: 14564 Relative Cost 0.3539517138599106
+********************************************
+********************** SNR 2 **********************
+##################################
+[ Individual Testing K0 Baseline ]
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[48518   282]
+ [    0    50]]
+Recall(%): 100 FPR(%): 0.577869  Acc(%): 99.42272262026611
+ No of negatives  48800  No of positives  50
+version 2 Recall(%): 100.0 FPR(%): 0.577869  Acc(%): 99.42272262026613
+Number of Tests (1st Round):  48850
+Total Computation: 806.0 TMACs
+##################################
+K=3 + Design 2 (G2) + Algorithm 1 Two-Round
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[11668   495]
+ [    0    49]]
+version 2 Group Recall(%): 100.0 FPR(%): 4.069720  Acc(%): 95.94660989190959
+Number of Tests (1st Round):  12212 	 Computation: 246.2 TMACs
+Number Of Samples After the 1st round: 2176
+(48848,) (48848,)
+Recall(%): 100.0 FPR(%): 0.149596  Acc(%): 99.85055682934818
+version 2 Group Recall(%): 100.0 FPR(%): 0.149596  Acc(%): 99.85055682934818
+Number of Tests (2nd Round):  2176 	 Computation: 35.9 TMACs
+Total Computation: 282.1 TeraMACs Total Tests: 14388 Relative Cost 0.35034515648286146
+********************************************
+********************** SNR 3 **********************
+##################################
+[ Individual Testing K0 Baseline ]
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[48574   226]
+ [    0    50]]
+Recall(%): 100 FPR(%): 0.463115  Acc(%): 99.53735926305015
+ No of negatives  48800  No of positives  50
+version 2 Recall(%): 100.0 FPR(%): 0.463115  Acc(%): 99.53735926305015
+Number of Tests (1st Round):  48850
+Total Computation: 806.0 TMACs
+##################################
+K=3 + Design 2 (G2) + Algorithm 1 Two-Round
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[11652   511]
+ [    1    48]]
+version 2 Group Recall(%): 97.95918367346938 FPR(%): 4.201266  Acc(%): 95.80740255486407
+Number of Tests (1st Round):  12212 	 Computation: 246.2 TMACs
+Number Of Samples After the 1st round: 2236
+(48848,) (48848,)
+Recall(%): 98.0 FPR(%): 0.137301  Acc(%): 99.86079266295447
+version 2 Group Recall(%): 98.0 FPR(%): 0.137301  Acc(%): 99.86079266295447
+Number of Tests (2nd Round):  2236 	 Computation: 36.9 TMACs
+Total Computation: 283.1 TeraMACs Total Tests: 14448 Relative Cost 0.3515746646795827
+********************************************
+********************** SNR 5 **********************
+##################################
+[ Individual Testing K0 Baseline ]
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[48599   201]
+ [    0    50]]
+Recall(%): 100 FPR(%): 0.411885  Acc(%): 99.5885363357216
+ No of negatives  48800  No of positives  50
+version 2 Recall(%): 100.0 FPR(%): 0.411885  Acc(%): 99.5885363357216
+Number of Tests (1st Round):  48850
+Total Computation: 806.0 TMACs
+##################################
+K=3 + Design 2 (G2) + Algorithm 1 Two-Round
+Working On: model_validate_dump.pkl
+confusion_matrix
+[[11688   475]
+ [    0    49]]
+version 2 Group Recall(%): 100.0 FPR(%): 3.905287  Acc(%): 96.11038322961022
+Number of Tests (1st Round):  12212 	 Computation: 246.2 TMACs
+Number Of Samples After the 1st round: 2096
+(48848,) (48848,)
+Recall(%): 100.0 FPR(%): 0.125005  Acc(%): 99.87512283000328
+version 2 Group Recall(%): 100.0 FPR(%): 0.125005  Acc(%): 99.87512283000328
+Number of Tests (2nd Round):  2096 	 Computation: 34.6 TMACs
+Total Computation: 280.8 TeraMACs Total Tests: 14308 Relative Cost 0.3487058122205663
+********************************************

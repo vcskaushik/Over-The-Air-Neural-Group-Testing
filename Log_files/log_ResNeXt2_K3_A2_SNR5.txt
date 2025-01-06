@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "main.py", line 18, in <module>
+    import torchvision.transforms as transforms
+  File "/home/grads/v/vcskaushik9/.conda/envs/neuralgrouptesting/lib/python3.6/site-packages/torchvision/__init__.py", line 6, in <module>
+    from torchvision import models
+  File "/home/grads/v/vcskaushik9/.conda/envs/neuralgrouptesting/lib/python3.6/site-packages/torchvision/models/__init__.py", line 11, in <module>
+    from .efficientnet import *
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 779, in get_code
+  File "<frozen importlib._bootstrap_external>", line 487, in _compile_bytecode
+KeyboardInterrupt

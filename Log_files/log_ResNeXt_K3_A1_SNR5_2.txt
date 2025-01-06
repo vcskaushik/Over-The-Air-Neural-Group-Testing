@@ -1,0 +1,3966 @@
+Namespace(data='data/GroupTestingDataset', task_num=2, background_K=3, arch='resnext101_32x8d', workers=32, val_workers=8, epochs=200, start_epoch=0, batch_size=32, lr=0.001, momentum=0.9, SNR=5.0, weight_decay=0.0001, print_freq=50, resume='', evaluate=False, pretrained=True, world_size=2, rank=0, dist_url='tcp://127.0.0.1:7103', dist_backend='nccl', seed=None, gpu=0, multiprocessing_distributed=True, log_name='DEBUG.log', output_dir='Trained_Models/ResNeXt_K3_A2_SNR5_2', distributed=True)
+Use GPU: 0 for training
+No. 0, traindir data/GroupTestingDataset/0/train dataset len: 3900
+No. 0, val_dataset data/GroupTestingDataset/0/val dataset len: 150
+No. 1, traindir data/GroupTestingDataset/1/train dataset len: 1250746
+No. 1, val_dataset data/GroupTestingDataset/1/val dataset len: 48800
+=> using pre-trained model 'resnext101_32x8d'
+Namespace(data='data/GroupTestingDataset', task_num=2, background_K=3, arch='resnext101_32x8d', workers=32, val_workers=8, epochs=200, start_epoch=0, batch_size=32, lr=0.001, momentum=0.9, SNR=5.0, weight_decay=0.0001, print_freq=50, resume='', evaluate=False, pretrained=True, world_size=2, rank=0, dist_url='tcp://127.0.0.1:7103', dist_backend='nccl', seed=None, gpu=1, multiprocessing_distributed=True, log_name='DEBUG.log', output_dir='Trained_Models/ResNeXt_K3_A2_SNR5_2', distributed=True)
+Use GPU: 1 for training
+No. 0, traindir data/GroupTestingDataset/0/train dataset len: 3900
+No. 0, val_dataset data/GroupTestingDataset/0/val dataset len: 150
+No. 1, traindir data/GroupTestingDataset/1/train dataset len: 1250746
+No. 1, val_dataset data/GroupTestingDataset/1/val dataset len: 48800
+=> using pre-trained model 'resnext101_32x8d'
+len(train_dataset) 7800
+len(train_dataset) 7800
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+Epoch: [0][  0/243]	Time 108.818 (108.818)	Data 48.327 (48.327)	Loss 7.35e-01 (7.35e-01)	Acc@1  56.25 ( 56.25)
+Epoch: [0][  0/243]	Time 108.792 (108.792)	Data 48.711 (48.711)	Loss 7.70e-01 (7.70e-01)	Acc@1   6.25 (  6.25)
+Epoch: [0][ 50/243]	Time  0.281 ( 2.355)	Data  0.000 ( 0.956)	Loss 7.23e-01 (6.76e-01)	Acc@1  56.25 ( 56.99)
+Epoch: [0][ 50/243]	Time  0.289 ( 2.356)	Data  0.002 ( 0.948)	Loss 6.11e-01 (6.99e-01)	Acc@1  75.00 ( 53.68)
+Epoch: [0][100/243]	Time  0.205 ( 1.302)	Data  0.000 ( 0.479)	Loss 6.60e-01 (6.79e-01)	Acc@1  68.75 ( 57.55)
+Epoch: [0][100/243]	Time  0.210 ( 1.301)	Data  0.006 ( 0.483)	Loss 7.64e-01 (6.61e-01)	Acc@1  43.75 ( 59.78)
+Epoch: [0][150/243]	Time  0.219 ( 0.948)	Data  0.000 ( 0.321)	Loss 5.92e-01 (6.69e-01)	Acc@1  68.75 ( 59.69)
+Epoch: [0][150/243]	Time  0.204 ( 0.948)	Data  0.000 ( 0.324)	Loss 5.26e-01 (6.52e-01)	Acc@1  81.25 ( 61.59)
+Epoch: [0][200/243]	Time  0.212 ( 0.769)	Data  0.001 ( 0.241)	Loss 6.33e-01 (6.62e-01)	Acc@1  56.25 ( 60.73)
+Epoch: [0][200/243]	Time  0.216 ( 0.769)	Data  0.000 ( 0.243)	Loss 5.25e-01 (6.46e-01)	Acc@1  87.50 ( 62.62)
+Epoch: [0][242/243]	Time  0.197 ( 0.672)	Data  0.000 ( 0.201)	Loss 4.95e-01 (6.41e-01)	Acc@1  75.00 ( 63.32)
+Epoch: [0][242/243]	Time  0.197 ( 0.673)	Data  0.000 ( 0.200)	Loss 4.86e-01 (6.56e-01)	Acc@1  81.25 ( 61.47)
+accuracy 0.882
+roc_auc_score 0.773
+confusion_matrix
+[[10744  1419]
+ [   19    30]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.88      0.94     12163
+           1       0.02      0.61      0.04        49
+
+    accuracy                           0.88     12212
+   macro avg       0.51      0.75      0.49     12212
+weighted avg       0.99      0.88      0.93     12212
+
+VAL * Acc@1 88.225
+1 0.95283276 0 0
+accuracy 0.878
+roc_auc_score 0.751
+confusion_matrix
+[[10693  1470]
+ [   24    25]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.88      0.93     12163
+           1       0.02      0.51      0.03        49
+
+    accuracy                           0.88     12212
+   macro avg       0.51      0.69      0.48     12212
+weighted avg       0.99      0.88      0.93     12212
+
+VAL * Acc@1 87.766
+1 0.946154 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [1][  0/243]	Time 51.214 (51.214)	Data 47.008 (47.008)	Loss 6.60e-01 (6.60e-01)	Acc@1  62.50 ( 62.50)
+Epoch: [1][  0/243]	Time 49.399 (49.399)	Data 49.064 (49.064)	Loss 5.16e-01 (5.16e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [1][ 50/243]	Time  0.234 ( 1.198)	Data  0.000 ( 0.963)	Loss 5.31e-01 (6.08e-01)	Acc@1  81.25 ( 68.38)
+Epoch: [1][ 50/243]	Time  0.241 ( 1.233)	Data  0.000 ( 0.922)	Loss 8.75e-01 (6.00e-01)	Acc@1  56.25 ( 68.87)
+Epoch: [1][100/243]	Time  0.227 ( 0.737)	Data  0.002 ( 0.466)	Loss 6.45e-01 (6.17e-01)	Acc@1  62.50 ( 66.58)
+Epoch: [1][100/243]	Time  0.217 ( 0.719)	Data  0.003 ( 0.487)	Loss 4.93e-01 (6.23e-01)	Acc@1  75.00 ( 66.40)
+Epoch: [1][150/243]	Time  0.229 ( 0.569)	Data  0.003 ( 0.312)	Loss 5.97e-01 (6.12e-01)	Acc@1  68.75 ( 67.18)
+Epoch: [1][150/243]	Time  0.224 ( 0.557)	Data  0.000 ( 0.326)	Loss 6.04e-01 (6.16e-01)	Acc@1  62.50 ( 66.80)
+Epoch: [1][200/243]	Time  0.279 ( 0.475)	Data  0.000 ( 0.245)	Loss 5.69e-01 (6.03e-01)	Acc@1  62.50 ( 67.82)
+Epoch: [1][200/243]	Time  0.269 ( 0.484)	Data  0.000 ( 0.235)	Loss 4.20e-01 (6.10e-01)	Acc@1  81.25 ( 67.41)
+Epoch: [1][242/243]	Time  0.202 ( 0.428)	Data  0.000 ( 0.203)	Loss 5.01e-01 (6.00e-01)	Acc@1  75.00 ( 67.90)
+Epoch: [1][242/243]	Time  0.202 ( 0.436)	Data  0.000 ( 0.194)	Loss 5.42e-01 (6.07e-01)	Acc@1  68.75 ( 67.59)
+accuracy 0.762
+roc_auc_score 0.820
+confusion_matrix
+[[9270 2893]
+ [  14   35]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.76      0.86     12163
+           1       0.01      0.71      0.02        49
+
+    accuracy                           0.76     12212
+   macro avg       0.51      0.74      0.44     12212
+weighted avg       0.99      0.76      0.86     12212
+
+VAL * Acc@1 76.196
+1 0.99404573 0 0
+accuracy 0.760
+roc_auc_score 0.832
+confusion_matrix
+[[9241 2922]
+ [  10   39]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.76      0.86     12163
+           1       0.01      0.80      0.03        49
+
+    accuracy                           0.76     12212
+   macro avg       0.51      0.78      0.44     12212
+weighted avg       0.99      0.76      0.86     12212
+
+VAL * Acc@1 75.991
+1 0.9944807 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [2][  0/243]	Time 48.455 (48.455)	Data 47.601 (47.601)	Loss 6.22e-01 (6.22e-01)	Acc@1  56.25 ( 56.25)
+Epoch: [2][  0/243]	Time 48.176 (48.176)	Data 47.898 (47.898)	Loss 4.45e-01 (4.45e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [2][ 50/243]	Time  0.252 ( 1.196)	Data  0.001 ( 0.935)	Loss 7.30e-01 (5.61e-01)	Acc@1  43.75 ( 70.71)
+Epoch: [2][ 50/243]	Time  0.254 ( 1.191)	Data  0.002 ( 0.940)	Loss 4.49e-01 (5.59e-01)	Acc@1  75.00 ( 71.20)
+Epoch: [2][100/243]	Time  0.201 ( 0.717)	Data  0.000 ( 0.475)	Loss 4.86e-01 (5.80e-01)	Acc@1  81.25 ( 68.75)
+Epoch: [2][100/243]	Time  0.201 ( 0.719)	Data  0.000 ( 0.472)	Loss 5.69e-01 (5.74e-01)	Acc@1  75.00 ( 69.18)
+Epoch: [2][150/243]	Time  0.199 ( 0.558)	Data  0.000 ( 0.316)	Loss 4.81e-01 (5.83e-01)	Acc@1  75.00 ( 68.38)
+Epoch: [2][150/243]	Time  0.201 ( 0.556)	Data  0.000 ( 0.318)	Loss 6.02e-01 (5.74e-01)	Acc@1  62.50 ( 68.92)
+Epoch: [2][200/243]	Time  0.229 ( 0.477)	Data  0.000 ( 0.238)	Loss 7.67e-01 (5.82e-01)	Acc@1  43.75 ( 68.91)
+Epoch: [2][200/243]	Time  0.238 ( 0.475)	Data  0.000 ( 0.239)	Loss 6.10e-01 (5.67e-01)	Acc@1  68.75 ( 69.62)
+Epoch: [2][242/243]	Time  0.198 ( 0.430)	Data  0.000 ( 0.198)	Loss 5.36e-01 (5.71e-01)	Acc@1  75.00 ( 69.19)
+Epoch: [2][242/243]	Time  0.198 ( 0.431)	Data  0.000 ( 0.197)	Loss 5.42e-01 (5.78e-01)	Acc@1  56.25 ( 69.24)
+accuracy 0.877
+roc_auc_score 0.859
+confusion_matrix
+[[10666  1497]
+ [   11    38]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.88      0.93     12163
+           1       0.02      0.78      0.05        49
+
+    accuracy                           0.88     12212
+   macro avg       0.51      0.83      0.49     12212
+weighted avg       1.00      0.88      0.93     12212
+
+VAL * Acc@1 87.651
+1 0.98477215 0 0
+accuracy 0.871
+roc_auc_score 0.862
+confusion_matrix
+[[10606  1557]
+ [   16    33]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.87      0.93     12163
+           1       0.02      0.67      0.04        49
+
+    accuracy                           0.87     12212
+   macro avg       0.51      0.77      0.49     12212
+weighted avg       0.99      0.87      0.93     12212
+
+VAL * Acc@1 87.119
+1 0.9844363 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [3][  0/243]	Time 48.778 (48.778)	Data 48.468 (48.468)	Loss 5.52e-01 (5.52e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [3][  0/243]	Time 50.347 (50.347)	Data 47.261 (47.261)	Loss 6.46e-01 (6.46e-01)	Acc@1  50.00 ( 50.00)
+Epoch: [3][ 50/243]	Time  0.235 ( 1.190)	Data  0.000 ( 0.955)	Loss 5.62e-01 (5.62e-01)	Acc@1  75.00 ( 69.61)
+Epoch: [3][ 50/243]	Time  0.230 ( 1.221)	Data  0.005 ( 0.928)	Loss 6.80e-01 (5.58e-01)	Acc@1  50.00 ( 70.47)
+Epoch: [3][100/243]	Time  0.214 ( 0.732)	Data  0.000 ( 0.469)	Loss 6.24e-01 (5.67e-01)	Acc@1  68.75 ( 70.11)
+Epoch: [3][100/243]	Time  0.213 ( 0.717)	Data  0.002 ( 0.483)	Loss 5.45e-01 (5.61e-01)	Acc@1  68.75 ( 69.86)
+Epoch: [3][150/243]	Time  0.208 ( 0.566)	Data  0.000 ( 0.314)	Loss 7.10e-01 (5.60e-01)	Acc@1  56.25 ( 70.90)
+Epoch: [3][150/243]	Time  0.207 ( 0.556)	Data  0.000 ( 0.323)	Loss 6.29e-01 (5.52e-01)	Acc@1  68.75 ( 70.36)
+Epoch: [3][200/243]	Time  0.259 ( 0.475)	Data  0.003 ( 0.243)	Loss 6.13e-01 (5.49e-01)	Acc@1  62.50 ( 70.62)
+Epoch: [3][200/243]	Time  0.257 ( 0.483)	Data  0.001 ( 0.236)	Loss 6.75e-01 (5.59e-01)	Acc@1  56.25 ( 71.02)
+Epoch: [3][242/243]	Time  0.196 ( 0.429)	Data  0.000 ( 0.201)	Loss 6.95e-01 (5.44e-01)	Acc@1  75.00 ( 71.42)
+Epoch: [3][242/243]	Time  0.197 ( 0.435)	Data  0.000 ( 0.195)	Loss 8.22e-01 (5.62e-01)	Acc@1  50.00 ( 70.81)
+accuracy 0.927
+roc_auc_score 0.913
+confusion_matrix
+[[11283   880]
+ [   13    36]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.93      0.96     12163
+           1       0.04      0.73      0.07        49
+
+    accuracy                           0.93     12212
+   macro avg       0.52      0.83      0.52     12212
+weighted avg       0.99      0.93      0.96     12212
+
+VAL * Acc@1 92.688
+1 0.98797554 0 0
+accuracy 0.925
+roc_auc_score 0.884
+confusion_matrix
+[[11260   903]
+ [   17    32]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.93      0.96     12163
+           1       0.03      0.65      0.07        49
+
+    accuracy                           0.92     12212
+   macro avg       0.52      0.79      0.51     12212
+weighted avg       0.99      0.92      0.96     12212
+
+VAL * Acc@1 92.466
+1 0.99751544 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [4][  0/243]	Time 52.081 (52.081)	Data 46.974 (46.974)	Loss 4.87e-01 (4.87e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [4][  0/243]	Time 48.776 (48.776)	Data 48.541 (48.541)	Loss 6.67e-01 (6.67e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [4][ 50/243]	Time  0.226 ( 1.183)	Data  0.000 ( 0.953)	Loss 4.04e-01 (5.68e-01)	Acc@1  87.50 ( 70.71)
+Epoch: [4][ 50/243]	Time  0.226 ( 1.248)	Data  0.000 ( 0.922)	Loss 5.74e-01 (5.32e-01)	Acc@1  62.50 ( 73.41)
+Epoch: [4][100/243]	Time  0.230 ( 0.709)	Data  0.000 ( 0.482)	Loss 7.14e-01 (5.59e-01)	Acc@1  56.25 ( 71.66)
+Epoch: [4][100/243]	Time  0.238 ( 0.742)	Data  0.003 ( 0.466)	Loss 4.45e-01 (5.55e-01)	Acc@1  81.25 ( 71.84)
+Epoch: [4][150/243]	Time  0.210 ( 0.572)	Data  0.000 ( 0.312)	Loss 3.88e-01 (5.50e-01)	Acc@1  87.50 ( 71.81)
+Epoch: [4][150/243]	Time  0.217 ( 0.550)	Data  0.000 ( 0.322)	Loss 4.36e-01 (5.49e-01)	Acc@1  81.25 ( 72.64)
+Epoch: [4][200/243]	Time  0.265 ( 0.486)	Data  0.001 ( 0.235)	Loss 3.10e-01 (5.48e-01)	Acc@1  87.50 ( 72.11)
+Epoch: [4][200/243]	Time  0.260 ( 0.470)	Data  0.000 ( 0.242)	Loss 4.62e-01 (5.44e-01)	Acc@1  87.50 ( 72.51)
+Epoch: [4][242/243]	Time  0.195 ( 0.424)	Data  0.000 ( 0.201)	Loss 4.78e-01 (5.42e-01)	Acc@1  81.25 ( 72.33)
+Epoch: [4][242/243]	Time  0.195 ( 0.438)	Data  0.000 ( 0.194)	Loss 6.68e-01 (5.48e-01)	Acc@1  56.25 ( 72.17)
+accuracy 0.686
+roc_auc_score 0.909
+confusion_matrix
+[[8340 3823]
+ [   6   43]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.69      0.81     12163
+           1       0.01      0.88      0.02        49
+
+    accuracy                           0.69     12212
+   macro avg       0.51      0.78      0.42     12212
+weighted avg       1.00      0.69      0.81     12212
+
+VAL * Acc@1 68.646
+1 0.99788207 0 0
+accuracy 0.689
+roc_auc_score 0.917
+confusion_matrix
+[[8371 3792]
+ [   4   45]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.69      0.82     12163
+           1       0.01      0.92      0.02        49
+
+    accuracy                           0.69     12212
+   macro avg       0.51      0.80      0.42     12212
+weighted avg       1.00      0.69      0.81     12212
+
+VAL * Acc@1 68.916
+1 0.99899954 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [5][  0/243]	Time 48.462 (48.462)	Data 48.075 (48.075)	Loss 6.29e-01 (6.29e-01)	Acc@1  62.50 ( 62.50)
+Epoch: [5][  0/243]	Time 49.645 (49.645)	Data 48.190 (48.190)	Loss 3.06e-01 (3.06e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [5][ 50/243]	Time  0.222 ( 1.185)	Data  0.001 ( 0.943)	Loss 5.29e-01 (5.77e-01)	Acc@1  81.25 ( 69.73)
+Epoch: [5][ 50/243]	Time  0.223 ( 1.208)	Data  0.000 ( 0.946)	Loss 5.53e-01 (5.57e-01)	Acc@1  75.00 ( 72.30)
+Epoch: [5][100/243]	Time  0.241 ( 0.712)	Data  0.008 ( 0.477)	Loss 4.22e-01 (5.41e-01)	Acc@1  75.00 ( 72.52)
+Epoch: [5][100/243]	Time  0.244 ( 0.724)	Data  0.003 ( 0.478)	Loss 9.01e-01 (5.59e-01)	Acc@1  43.75 ( 72.34)
+Epoch: [5][150/243]	Time  0.215 ( 0.559)	Data  0.000 ( 0.320)	Loss 6.08e-01 (5.56e-01)	Acc@1  68.75 ( 72.52)
+Epoch: [5][150/243]	Time  0.222 ( 0.552)	Data  0.000 ( 0.319)	Loss 6.14e-01 (5.32e-01)	Acc@1  62.50 ( 72.56)
+Epoch: [5][200/243]	Time  0.236 ( 0.477)	Data  0.000 ( 0.241)	Loss 4.84e-01 (5.48e-01)	Acc@1  75.00 ( 72.92)
+Epoch: [5][200/243]	Time  0.236 ( 0.471)	Data  0.000 ( 0.240)	Loss 4.12e-01 (5.28e-01)	Acc@1  75.00 ( 72.76)
+Epoch: [5][242/243]	Time  0.195 ( 0.425)	Data  0.000 ( 0.199)	Loss 4.66e-01 (5.28e-01)	Acc@1  81.25 ( 72.87)
+Epoch: [5][242/243]	Time  0.195 ( 0.430)	Data  0.000 ( 0.199)	Loss 4.01e-01 (5.45e-01)	Acc@1  87.50 ( 72.76)
+accuracy 0.742
+roc_auc_score 0.931
+confusion_matrix
+[[9020 3143]
+ [   2   47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.74      0.85     12163
+           1       0.01      0.96      0.03        49
+
+    accuracy                           0.74     12212
+   macro avg       0.51      0.85      0.44     12212
+weighted avg       1.00      0.74      0.85     12212
+
+VAL * Acc@1 74.247
+1 0.99957794 0 0
+accuracy 0.747
+roc_auc_score 0.917
+confusion_matrix
+[[9077 3086]
+ [   5   44]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.75      0.85     12163
+           1       0.01      0.90      0.03        49
+
+    accuracy                           0.75     12212
+   macro avg       0.51      0.82      0.44     12212
+weighted avg       1.00      0.75      0.85     12212
+
+VAL * Acc@1 74.689
+1 0.9991553 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [6][  0/243]	Time 50.706 (50.706)	Data 46.563 (46.563)	Loss 5.42e-01 (5.42e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [6][  0/243]	Time 49.129 (49.129)	Data 48.874 (48.874)	Loss 4.10e-01 (4.10e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [6][ 50/243]	Time  0.220 ( 1.199)	Data  0.000 ( 0.959)	Loss 4.89e-01 (5.32e-01)	Acc@1  75.00 ( 72.06)
+Epoch: [6][ 50/243]	Time  0.220 ( 1.230)	Data  0.000 ( 0.914)	Loss 6.45e-01 (5.22e-01)	Acc@1  62.50 ( 73.65)
+Epoch: [6][100/243]	Time  0.234 ( 0.734)	Data  0.000 ( 0.462)	Loss 4.12e-01 (5.14e-01)	Acc@1  87.50 ( 74.50)
+Epoch: [6][100/243]	Time  0.238 ( 0.719)	Data  0.001 ( 0.485)	Loss 4.72e-01 (5.21e-01)	Acc@1  75.00 ( 74.07)
+Epoch: [6][150/243]	Time  0.255 ( 0.558)	Data  0.006 ( 0.325)	Loss 6.35e-01 (5.20e-01)	Acc@1  62.50 ( 73.63)
+Epoch: [6][150/243]	Time  0.258 ( 0.568)	Data  0.000 ( 0.309)	Loss 7.11e-01 (5.17e-01)	Acc@1  62.50 ( 74.46)
+Epoch: [6][200/243]	Time  0.222 ( 0.485)	Data  0.000 ( 0.233)	Loss 3.89e-01 (5.13e-01)	Acc@1  87.50 ( 74.56)
+Epoch: [6][200/243]	Time  0.221 ( 0.477)	Data  0.001 ( 0.244)	Loss 3.43e-01 (5.13e-01)	Acc@1  93.75 ( 74.10)
+Epoch: [6][242/243]	Time  0.196 ( 0.437)	Data  0.000 ( 0.193)	Loss 7.67e-01 (5.12e-01)	Acc@1  62.50 ( 74.51)
+Epoch: [6][242/243]	Time  0.199 ( 0.431)	Data  0.000 ( 0.202)	Loss 3.97e-01 (5.19e-01)	Acc@1  81.25 ( 73.71)
+accuracy 0.970
+roc_auc_score 0.909
+confusion_matrix
+[[11811   352]
+ [   16    33]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.98     12163
+           1       0.09      0.67      0.15        49
+
+    accuracy                           0.97     12212
+   macro avg       0.54      0.82      0.57     12212
+weighted avg       0.99      0.97      0.98     12212
+
+VAL * Acc@1 96.987
+1 0.9990742 0 0
+accuracy 0.969
+roc_auc_score 0.902
+confusion_matrix
+[[11795   368]
+ [   13    36]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.98     12163
+           1       0.09      0.73      0.16        49
+
+    accuracy                           0.97     12212
+   macro avg       0.54      0.85      0.57     12212
+weighted avg       1.00      0.97      0.98     12212
+
+VAL * Acc@1 96.880
+1 0.99942744 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [7][  0/243]	Time 49.324 (49.324)	Data 47.225 (47.225)	Loss 4.47e-01 (4.47e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [7][  0/243]	Time 47.927 (47.927)	Data 47.557 (47.557)	Loss 6.24e-01 (6.24e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [7][ 50/243]	Time  0.226 ( 1.209)	Data  0.001 ( 0.927)	Loss 5.82e-01 (5.22e-01)	Acc@1  75.00 ( 74.75)
+Epoch: [7][ 50/243]	Time  0.228 ( 1.181)	Data  0.000 ( 0.933)	Loss 7.07e-01 (5.01e-01)	Acc@1  62.50 ( 76.72)
+Epoch: [7][100/243]	Time  0.222 ( 0.710)	Data  0.001 ( 0.472)	Loss 4.37e-01 (5.11e-01)	Acc@1  81.25 ( 75.37)
+Epoch: [7][100/243]	Time  0.231 ( 0.724)	Data  0.000 ( 0.469)	Loss 5.50e-01 (5.11e-01)	Acc@1  68.75 ( 74.50)
+Epoch: [7][150/243]	Time  0.214 ( 0.553)	Data  0.000 ( 0.316)	Loss 3.22e-01 (5.03e-01)	Acc@1  93.75 ( 75.87)
+Epoch: [7][150/243]	Time  0.214 ( 0.562)	Data  0.001 ( 0.314)	Loss 4.24e-01 (5.04e-01)	Acc@1  81.25 ( 75.29)
+Epoch: [7][200/243]	Time  0.235 ( 0.473)	Data  0.000 ( 0.238)	Loss 5.24e-01 (5.10e-01)	Acc@1  75.00 ( 75.31)
+Epoch: [7][200/243]	Time  0.235 ( 0.480)	Data  0.009 ( 0.236)	Loss 4.59e-01 (5.07e-01)	Acc@1  81.25 ( 74.81)
+Epoch: [7][242/243]	Time  0.204 ( 0.434)	Data  0.000 ( 0.195)	Loss 6.87e-01 (5.01e-01)	Acc@1  56.25 ( 75.13)
+Epoch: [7][242/243]	Time  0.205 ( 0.428)	Data  0.000 ( 0.197)	Loss 4.18e-01 (5.12e-01)	Acc@1  81.25 ( 74.87)
+accuracy 0.788
+roc_auc_score 0.945
+confusion_matrix
+[[9576 2587]
+ [   4   45]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.79      0.88     12163
+           1       0.02      0.92      0.03        49
+
+    accuracy                           0.79     12212
+   macro avg       0.51      0.85      0.46     12212
+weighted avg       1.00      0.79      0.88     12212
+
+VAL * Acc@1 78.783
+1 0.9999784 0 0
+accuracy 0.788
+roc_auc_score 0.943
+confusion_matrix
+[[9579 2584]
+ [   4   45]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.79      0.88     12163
+           1       0.02      0.92      0.03        49
+
+    accuracy                           0.79     12212
+   macro avg       0.51      0.85      0.46     12212
+weighted avg       1.00      0.79      0.88     12212
+
+VAL * Acc@1 78.808
+1 0.9999207 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [8][  0/243]	Time 50.066 (50.066)	Data 46.363 (46.363)	Loss 3.52e-01 (3.52e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [8][  0/243]	Time 48.325 (48.325)	Data 48.046 (48.046)	Loss 5.48e-01 (5.48e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [8][ 50/243]	Time  0.258 ( 1.182)	Data  0.001 ( 0.948)	Loss 4.98e-01 (4.76e-01)	Acc@1  75.00 ( 76.47)
+Epoch: [8][ 50/243]	Time  0.259 ( 1.216)	Data  0.001 ( 0.910)	Loss 2.37e-01 (4.90e-01)	Acc@1  93.75 ( 76.84)
+Epoch: [8][100/243]	Time  0.231 ( 0.710)	Data  0.000 ( 0.479)	Loss 5.68e-01 (4.75e-01)	Acc@1  56.25 ( 76.79)
+Epoch: [8][100/243]	Time  0.231 ( 0.727)	Data  0.000 ( 0.460)	Loss 4.40e-01 (4.84e-01)	Acc@1  75.00 ( 77.41)
+Epoch: [8][150/243]	Time  0.207 ( 0.563)	Data  0.004 ( 0.308)	Loss 5.58e-01 (4.91e-01)	Acc@1  62.50 ( 76.99)
+Epoch: [8][150/243]	Time  0.206 ( 0.552)	Data  0.000 ( 0.321)	Loss 3.20e-01 (4.72e-01)	Acc@1  87.50 ( 77.44)
+Epoch: [8][200/243]	Time  0.213 ( 0.481)	Data  0.002 ( 0.232)	Loss 3.85e-01 (4.85e-01)	Acc@1  87.50 ( 76.96)
+Epoch: [8][200/243]	Time  0.224 ( 0.472)	Data  0.000 ( 0.241)	Loss 5.01e-01 (4.77e-01)	Acc@1  75.00 ( 77.43)
+Epoch: [8][242/243]	Time  0.197 ( 0.426)	Data  0.000 ( 0.200)	Loss 5.13e-01 (4.80e-01)	Acc@1  68.75 ( 76.90)
+Epoch: [8][242/243]	Time  0.197 ( 0.433)	Data  0.000 ( 0.192)	Loss 6.07e-01 (4.81e-01)	Acc@1  68.75 ( 77.13)
+accuracy 0.960
+roc_auc_score 0.939
+confusion_matrix
+[[11687   476]
+ [    9    40]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      0.82      0.14        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.89      0.56     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 96.028
+1 0.9998392 0 0
+accuracy 0.959
+roc_auc_score 0.936
+confusion_matrix
+[[11674   489]
+ [   10    39]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.07      0.80      0.14        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.88      0.56     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 95.914
+1 0.999782 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [9][  0/243]	Time 51.815 (51.815)	Data 47.111 (47.111)	Loss 3.96e-01 (3.96e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [9][  0/243]	Time 49.148 (49.148)	Data 48.878 (48.878)	Loss 4.47e-01 (4.47e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [9][ 50/243]	Time  0.240 ( 1.190)	Data  0.000 ( 0.959)	Loss 5.51e-01 (4.96e-01)	Acc@1  68.75 ( 76.10)
+Epoch: [9][ 50/243]	Time  0.235 ( 1.243)	Data  0.001 ( 0.925)	Loss 3.65e-01 (4.63e-01)	Acc@1  75.00 ( 76.23)
+Epoch: [9][100/243]	Time  0.249 ( 0.713)	Data  0.000 ( 0.485)	Loss 5.45e-01 (4.98e-01)	Acc@1  62.50 ( 75.31)
+Epoch: [9][100/243]	Time  0.243 ( 0.739)	Data  0.000 ( 0.467)	Loss 4.79e-01 (4.58e-01)	Acc@1  75.00 ( 76.92)
+Epoch: [9][150/243]	Time  0.245 ( 0.571)	Data  0.000 ( 0.313)	Loss 5.59e-01 (4.69e-01)	Acc@1  75.00 ( 75.95)
+Epoch: [9][150/243]	Time  0.230 ( 0.554)	Data  0.000 ( 0.325)	Loss 8.31e-01 (4.92e-01)	Acc@1  56.25 ( 75.41)
+Epoch: [9][200/243]	Time  0.228 ( 0.486)	Data  0.000 ( 0.235)	Loss 7.91e-01 (4.64e-01)	Acc@1  56.25 ( 76.37)
+Epoch: [9][200/243]	Time  0.225 ( 0.473)	Data  0.000 ( 0.244)	Loss 4.86e-01 (4.92e-01)	Acc@1  81.25 ( 75.62)
+Epoch: [9][242/243]	Time  0.202 ( 0.438)	Data  0.000 ( 0.195)	Loss 4.10e-01 (4.68e-01)	Acc@1  75.00 ( 76.34)
+Epoch: [9][242/243]	Time  0.202 ( 0.427)	Data  0.000 ( 0.202)	Loss 4.93e-01 (4.82e-01)	Acc@1  93.75 ( 76.39)
+accuracy 0.936
+roc_auc_score 0.957
+confusion_matrix
+[[11390   773]
+ [    5    44]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.05      0.90      0.10        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.92      0.53     12212
+weighted avg       1.00      0.94      0.96     12212
+
+VAL * Acc@1 93.629
+1 0.9992563 0 0
+accuracy 0.934
+roc_auc_score 0.954
+confusion_matrix
+[[11355   808]
+ [    4    45]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.93      0.97     12163
+           1       0.05      0.92      0.10        49
+
+    accuracy                           0.93     12212
+   macro avg       0.53      0.93      0.53     12212
+weighted avg       1.00      0.93      0.96     12212
+
+VAL * Acc@1 93.351
+1 0.9996331 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [10][  0/243]	Time 49.335 (49.335)	Data 46.405 (46.405)	Loss 4.89e-01 (4.89e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [10][  0/243]	Time 47.720 (47.720)	Data 47.433 (47.433)	Loss 2.88e-01 (2.88e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [10][ 50/243]	Time  0.199 ( 1.197)	Data  0.000 ( 0.911)	Loss 6.29e-01 (4.89e-01)	Acc@1  56.25 ( 75.98)
+Epoch: [10][ 50/243]	Time  0.198 ( 1.166)	Data  0.000 ( 0.931)	Loss 5.24e-01 (4.73e-01)	Acc@1  81.25 ( 77.57)
+Epoch: [10][100/243]	Time  0.218 ( 0.718)	Data  0.000 ( 0.460)	Loss 3.01e-01 (4.85e-01)	Acc@1  87.50 ( 76.30)
+Epoch: [10][100/243]	Time  0.226 ( 0.702)	Data  0.007 ( 0.470)	Loss 4.31e-01 (4.78e-01)	Acc@1  75.00 ( 76.79)
+Epoch: [10][150/243]	Time  0.197 ( 0.546)	Data  0.000 ( 0.315)	Loss 4.65e-01 (4.76e-01)	Acc@1  68.75 ( 77.03)
+Epoch: [10][150/243]	Time  0.202 ( 0.557)	Data  0.000 ( 0.308)	Loss 5.37e-01 (4.84e-01)	Acc@1  81.25 ( 76.32)
+Epoch: [10][200/243]	Time  0.230 ( 0.477)	Data  0.000 ( 0.232)	Loss 5.51e-01 (4.81e-01)	Acc@1  68.75 ( 76.09)
+Epoch: [10][200/243]	Time  0.226 ( 0.469)	Data  0.001 ( 0.237)	Loss 4.18e-01 (4.76e-01)	Acc@1  87.50 ( 77.18)
+Epoch: [10][242/243]	Time  0.198 ( 0.430)	Data  0.000 ( 0.192)	Loss 4.03e-01 (4.76e-01)	Acc@1  87.50 ( 76.08)
+Epoch: [10][242/243]	Time  0.198 ( 0.424)	Data  0.000 ( 0.196)	Loss 3.34e-01 (4.74e-01)	Acc@1  87.50 ( 76.90)
+accuracy 0.921
+roc_auc_score 0.960
+confusion_matrix
+[[11208   955]
+ [    4    45]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.92      0.96     12163
+           1       0.04      0.92      0.09        49
+
+    accuracy                           0.92     12212
+   macro avg       0.52      0.92      0.52     12212
+weighted avg       1.00      0.92      0.96     12212
+
+VAL * Acc@1 92.147
+1 0.9998264 0 0
+accuracy 0.925
+roc_auc_score 0.967
+confusion_matrix
+[[11249   914]
+ [    4    45]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.92      0.96     12163
+           1       0.05      0.92      0.09        49
+
+    accuracy                           0.92     12212
+   macro avg       0.52      0.92      0.53     12212
+weighted avg       1.00      0.92      0.96     12212
+
+VAL * Acc@1 92.483
+1 0.99987304 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [11][  0/243]	Time 48.670 (48.670)	Data 48.407 (48.407)	Loss 4.15e-01 (4.15e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [11][  0/243]	Time 50.348 (50.348)	Data 46.239 (46.239)	Loss 5.50e-01 (5.50e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [11][ 50/243]	Time  0.224 ( 1.185)	Data  0.001 ( 0.950)	Loss 4.59e-01 (4.56e-01)	Acc@1  81.25 ( 77.57)
+Epoch: [11][ 50/243]	Time  0.229 ( 1.217)	Data  0.000 ( 0.908)	Loss 3.26e-01 (4.65e-01)	Acc@1  93.75 ( 78.55)
+Epoch: [11][100/243]	Time  0.215 ( 0.729)	Data  0.000 ( 0.459)	Loss 5.67e-01 (4.69e-01)	Acc@1  62.50 ( 77.91)
+Epoch: [11][100/243]	Time  0.208 ( 0.712)	Data  0.001 ( 0.480)	Loss 2.50e-01 (4.49e-01)	Acc@1 100.00 ( 78.28)
+Epoch: [11][150/243]	Time  0.200 ( 0.552)	Data  0.000 ( 0.322)	Loss 4.48e-01 (4.60e-01)	Acc@1  75.00 ( 77.52)
+Epoch: [11][150/243]	Time  0.199 ( 0.563)	Data  0.000 ( 0.307)	Loss 5.19e-01 (4.73e-01)	Acc@1  75.00 ( 77.77)
+Epoch: [11][200/243]	Time  0.211 ( 0.478)	Data  0.000 ( 0.231)	Loss 5.21e-01 (4.60e-01)	Acc@1  81.25 ( 78.48)
+Epoch: [11][200/243]	Time  0.211 ( 0.470)	Data  0.000 ( 0.242)	Loss 3.81e-01 (4.60e-01)	Acc@1  81.25 ( 77.83)
+Epoch: [11][242/243]	Time  0.196 ( 0.450)	Data  0.000 ( 0.209)	Loss 3.24e-01 (4.57e-01)	Acc@1  87.50 ( 78.47)
+Epoch: [11][242/243]	Time  0.195 ( 0.444)	Data  0.000 ( 0.218)	Loss 3.07e-01 (4.56e-01)	Acc@1  93.75 ( 78.40)
+accuracy 0.926
+roc_auc_score 0.950
+confusion_matrix
+[[11268   895]
+ [    6    43]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.93      0.96     12163
+           1       0.05      0.88      0.09        49
+
+    accuracy                           0.93     12212
+   macro avg       0.52      0.90      0.52     12212
+weighted avg       1.00      0.93      0.96     12212
+
+VAL * Acc@1 92.622
+1 0.9999471 0 0
+accuracy 0.923
+roc_auc_score 0.979
+confusion_matrix
+[[11224   939]
+ [    3    46]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.92      0.96     12163
+           1       0.05      0.94      0.09        49
+
+    accuracy                           0.92     12212
+   macro avg       0.52      0.93      0.52     12212
+weighted avg       1.00      0.92      0.96     12212
+
+VAL * Acc@1 92.286
+1 0.9999728 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [12][  0/243]	Time 47.984 (47.984)	Data 47.734 (47.734)	Loss 6.17e-01 (6.17e-01)	Acc@1  62.50 ( 62.50)
+Epoch: [12][  0/243]	Time 49.304 (49.304)	Data 46.344 (46.344)	Loss 6.47e-01 (6.47e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [12][ 50/243]	Time  0.250 ( 1.175)	Data  0.000 ( 0.937)	Loss 4.23e-01 (4.13e-01)	Acc@1  81.25 ( 79.90)
+Epoch: [12][ 50/243]	Time  0.253 ( 1.201)	Data  0.000 ( 0.910)	Loss 3.21e-01 (4.38e-01)	Acc@1  81.25 ( 79.90)
+Epoch: [12][100/243]	Time  0.211 ( 0.720)	Data  0.000 ( 0.460)	Loss 4.35e-01 (4.46e-01)	Acc@1  75.00 ( 78.22)
+Epoch: [12][100/243]	Time  0.218 ( 0.707)	Data  0.000 ( 0.473)	Loss 4.15e-01 (4.41e-01)	Acc@1  81.25 ( 77.85)
+Epoch: [12][150/243]	Time  0.246 ( 0.549)	Data  0.000 ( 0.317)	Loss 2.92e-01 (4.37e-01)	Acc@1  93.75 ( 78.68)
+Epoch: [12][150/243]	Time  0.251 ( 0.558)	Data  0.001 ( 0.308)	Loss 3.20e-01 (4.46e-01)	Acc@1  81.25 ( 78.68)
+Epoch: [12][200/243]	Time  0.215 ( 0.476)	Data  0.000 ( 0.232)	Loss 2.82e-01 (4.45e-01)	Acc@1  87.50 ( 78.76)
+Epoch: [12][200/243]	Time  0.217 ( 0.469)	Data  0.000 ( 0.239)	Loss 7.12e-01 (4.43e-01)	Acc@1  62.50 ( 78.45)
+Epoch: [12][242/243]	Time  0.197 ( 0.424)	Data  0.000 ( 0.197)	Loss 4.13e-01 (4.45e-01)	Acc@1  75.00 ( 78.22)
+Epoch: [12][242/243]	Time  0.198 ( 0.429)	Data  0.000 ( 0.192)	Loss 3.75e-01 (4.49e-01)	Acc@1  87.50 ( 78.60)
+accuracy 0.948
+roc_auc_score 0.989
+confusion_matrix
+[[11530   633]
+ [    3    46]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.94      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.94      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.792
+1 0.99993956 0 0
+accuracy 0.946
+roc_auc_score 0.976
+confusion_matrix
+[[11512   651]
+ [    4    45]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.06      0.92      0.12        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.93      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.636
+1 0.9999821 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [13][  0/243]	Time 48.984 (48.984)	Data 46.430 (46.430)	Loss 3.75e-01 (3.75e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [13][  0/243]	Time 47.839 (47.839)	Data 47.582 (47.582)	Loss 3.26e-01 (3.26e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [13][ 50/243]	Time  0.268 ( 1.194)	Data  0.000 ( 0.911)	Loss 2.16e-01 (4.69e-01)	Acc@1 100.00 ( 78.55)
+Epoch: [13][ 50/243]	Time  0.263 ( 1.171)	Data  0.001 ( 0.934)	Loss 3.57e-01 (4.54e-01)	Acc@1  87.50 ( 76.47)
+Epoch: [13][100/243]	Time  0.233 ( 0.707)	Data  0.016 ( 0.472)	Loss 5.10e-01 (4.46e-01)	Acc@1  68.75 ( 78.34)
+Epoch: [13][100/243]	Time  0.245 ( 0.718)	Data  0.001 ( 0.461)	Loss 5.18e-01 (4.76e-01)	Acc@1  75.00 ( 77.85)
+Epoch: [13][150/243]	Time  0.226 ( 0.555)	Data  0.000 ( 0.308)	Loss 3.94e-01 (4.69e-01)	Acc@1  87.50 ( 78.39)
+Epoch: [13][150/243]	Time  0.216 ( 0.547)	Data  0.000 ( 0.316)	Loss 3.43e-01 (4.56e-01)	Acc@1  93.75 ( 77.73)
+Epoch: [13][200/243]	Time  0.282 ( 0.473)	Data  0.001 ( 0.232)	Loss 3.98e-01 (4.66e-01)	Acc@1  81.25 ( 78.30)
+Epoch: [13][200/243]	Time  0.269 ( 0.468)	Data  0.000 ( 0.238)	Loss 2.26e-01 (4.49e-01)	Acc@1  93.75 ( 77.80)
+Epoch: [13][242/243]	Time  0.209 ( 0.427)	Data  0.000 ( 0.192)	Loss 3.79e-01 (4.62e-01)	Acc@1  87.50 ( 78.58)
+Epoch: [13][242/243]	Time  0.209 ( 0.422)	Data  0.000 ( 0.197)	Loss 3.87e-01 (4.40e-01)	Acc@1  81.25 ( 78.40)
+accuracy 0.908
+roc_auc_score 0.982
+confusion_matrix
+[[11046  1117]
+ [    4    45]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.91      0.95     12163
+           1       0.04      0.92      0.07        49
+
+    accuracy                           0.91     12212
+   macro avg       0.52      0.91      0.51     12212
+weighted avg       1.00      0.91      0.95     12212
+
+VAL * Acc@1 90.821
+1 0.99997866 0 0
+accuracy 0.905
+roc_auc_score 0.976
+confusion_matrix
+[[11006  1157]
+ [    3    46]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.90      0.95     12163
+           1       0.04      0.94      0.07        49
+
+    accuracy                           0.91     12212
+   macro avg       0.52      0.92      0.51     12212
+weighted avg       1.00      0.91      0.95     12212
+
+VAL * Acc@1 90.501
+1 0.99997795 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [14][  0/243]	Time 50.224 (50.224)	Data 45.969 (45.969)	Loss 4.10e-01 (4.10e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [14][  0/243]	Time 48.298 (48.298)	Data 48.020 (48.020)	Loss 4.12e-01 (4.12e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [14][ 50/243]	Time  0.214 ( 1.215)	Data  0.000 ( 0.903)	Loss 4.18e-01 (4.79e-01)	Acc@1  81.25 ( 77.82)
+Epoch: [14][ 50/243]	Time  0.199 ( 1.177)	Data  0.000 ( 0.943)	Loss 6.08e-01 (4.57e-01)	Acc@1  75.00 ( 78.80)
+Epoch: [14][100/243]	Time  0.199 ( 0.789)	Data  0.000 ( 0.476)	Loss 7.68e-01 (4.45e-01)	Acc@1  50.00 ( 78.71)
+Epoch: [14][100/243]	Time  0.200 ( 0.808)	Data  0.000 ( 0.456)	Loss 2.71e-01 (4.71e-01)	Acc@1  93.75 ( 77.41)
+Epoch: [14][150/243]	Time  0.202 ( 0.603)	Data  0.000 ( 0.319)	Loss 3.33e-01 (4.46e-01)	Acc@1  93.75 ( 78.77)
+Epoch: [14][150/243]	Time  0.214 ( 0.616)	Data  0.003 ( 0.305)	Loss 4.88e-01 (4.61e-01)	Acc@1  75.00 ( 78.06)
+Epoch: [14][200/243]	Time  0.197 ( 0.511)	Data  0.000 ( 0.240)	Loss 5.15e-01 (4.42e-01)	Acc@1  68.75 ( 78.86)
+Epoch: [14][200/243]	Time  0.202 ( 0.520)	Data  0.000 ( 0.230)	Loss 6.47e-01 (4.53e-01)	Acc@1  68.75 ( 78.67)
+Epoch: [14][242/243]	Time  0.204 ( 0.467)	Data  0.000 ( 0.190)	Loss 4.07e-01 (4.59e-01)	Acc@1  81.25 ( 78.32)
+Epoch: [14][242/243]	Time  0.204 ( 0.459)	Data  0.000 ( 0.198)	Loss 4.81e-01 (4.40e-01)	Acc@1  87.50 ( 78.94)
+accuracy 0.949
+roc_auc_score 0.971
+confusion_matrix
+[[11545   618]
+ [    3    46]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.94      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.94      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.915
+1 0.99994886 0 0
+accuracy 0.950
+roc_auc_score 0.963
+confusion_matrix
+[[11558   605]
+ [    4    45]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.92      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.93      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.013
+1 0.99995077 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [15][  0/243]	Time 49.857 (49.857)	Data 45.987 (45.987)	Loss 4.63e-01 (4.63e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [15][  0/243]	Time 47.645 (47.645)	Data 47.398 (47.398)	Loss 5.67e-01 (5.67e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [15][ 50/243]	Time  0.232 ( 1.179)	Data  0.005 ( 0.936)	Loss 3.81e-01 (4.24e-01)	Acc@1  81.25 ( 79.90)
+Epoch: [15][ 50/243]	Time  0.233 ( 1.222)	Data  0.002 ( 0.903)	Loss 2.91e-01 (4.45e-01)	Acc@1  87.50 ( 76.84)
+Epoch: [15][100/243]	Time  0.257 ( 0.708)	Data  0.002 ( 0.473)	Loss 3.86e-01 (4.28e-01)	Acc@1  75.00 ( 80.20)
+Epoch: [15][100/243]	Time  0.253 ( 0.730)	Data  0.000 ( 0.456)	Loss 3.04e-01 (4.42e-01)	Acc@1  87.50 ( 76.92)
+Epoch: [15][150/243]	Time  0.202 ( 0.565)	Data  0.000 ( 0.306)	Loss 6.47e-01 (4.47e-01)	Acc@1  62.50 ( 77.28)
+Epoch: [15][150/243]	Time  0.197 ( 0.550)	Data  0.000 ( 0.317)	Loss 3.92e-01 (4.32e-01)	Acc@1  81.25 ( 79.76)
+Epoch: [15][200/243]	Time  0.206 ( 0.471)	Data  0.000 ( 0.238)	Loss 4.97e-01 (4.28e-01)	Acc@1  75.00 ( 80.53)
+Epoch: [15][200/243]	Time  0.209 ( 0.482)	Data  0.000 ( 0.230)	Loss 3.70e-01 (4.46e-01)	Acc@1  81.25 ( 78.02)
+Epoch: [15][242/243]	Time  0.195 ( 0.435)	Data  0.000 ( 0.190)	Loss 4.93e-01 (4.42e-01)	Acc@1  87.50 ( 78.52)
+Epoch: [15][242/243]	Time  0.195 ( 0.426)	Data  0.000 ( 0.197)	Loss 4.43e-01 (4.19e-01)	Acc@1  75.00 ( 80.74)
+accuracy 0.937
+roc_auc_score 0.994
+confusion_matrix
+[[11393   770]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      0.98      0.11        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.96      0.54     12212
+weighted avg       1.00      0.94      0.96     12212
+
+VAL * Acc@1 93.687
+1 0.9999924 0 0
+accuracy 0.934
+roc_auc_score 0.995
+confusion_matrix
+[[11353   810]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.93      0.97     12163
+           1       0.06      0.98      0.11        49
+
+    accuracy                           0.93     12212
+   macro avg       0.53      0.96      0.54     12212
+weighted avg       1.00      0.93      0.96     12212
+
+VAL * Acc@1 93.359
+1 0.9999659 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [16][  0/243]	Time 48.047 (48.047)	Data 46.502 (46.502)	Loss 3.53e-01 (3.53e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [16][  0/243]	Time 47.273 (47.273)	Data 46.966 (46.966)	Loss 2.86e-01 (2.86e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [16][ 50/243]	Time  0.233 ( 1.182)	Data  0.000 ( 0.913)	Loss 5.35e-01 (4.72e-01)	Acc@1  81.25 ( 79.04)
+Epoch: [16][ 50/243]	Time  0.235 ( 1.167)	Data  0.000 ( 0.922)	Loss 4.22e-01 (4.28e-01)	Acc@1  75.00 ( 80.64)
+Epoch: [16][100/243]	Time  0.208 ( 0.703)	Data  0.000 ( 0.466)	Loss 4.51e-01 (4.21e-01)	Acc@1  81.25 ( 81.06)
+Epoch: [16][100/243]	Time  0.210 ( 0.711)	Data  0.002 ( 0.461)	Loss 3.39e-01 (4.41e-01)	Acc@1  93.75 ( 79.89)
+Epoch: [16][150/243]	Time  0.223 ( 0.546)	Data  0.001 ( 0.312)	Loss 2.14e-01 (4.23e-01)	Acc@1  93.75 ( 80.71)
+Epoch: [16][150/243]	Time  0.213 ( 0.551)	Data  0.000 ( 0.309)	Loss 5.64e-01 (4.44e-01)	Acc@1  75.00 ( 79.39)
+Epoch: [16][200/243]	Time  0.233 ( 0.470)	Data  0.000 ( 0.232)	Loss 4.39e-01 (4.37e-01)	Acc@1  68.75 ( 79.57)
+Epoch: [16][200/243]	Time  0.238 ( 0.466)	Data  0.000 ( 0.235)	Loss 5.12e-01 (4.24e-01)	Acc@1  75.00 ( 80.47)
+Epoch: [16][242/243]	Time  0.195 ( 0.421)	Data  0.000 ( 0.194)	Loss 3.30e-01 (4.27e-01)	Acc@1  87.50 ( 80.25)
+Epoch: [16][242/243]	Time  0.195 ( 0.424)	Data  0.000 ( 0.192)	Loss 4.62e-01 (4.34e-01)	Acc@1  68.75 ( 79.50)
+accuracy 0.807
+roc_auc_score 0.981
+confusion_matrix
+[[9802 2361]
+ [   1   48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.81      0.89     12163
+           1       0.02      0.98      0.04        49
+
+    accuracy                           0.81     12212
+   macro avg       0.51      0.89      0.47     12212
+weighted avg       1.00      0.81      0.89     12212
+
+VAL * Acc@1 80.658
+1 0.9999851 0 0
+accuracy 0.807
+roc_auc_score 0.978
+confusion_matrix
+[[9814 2349]
+ [   3   46]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.81      0.89     12163
+           1       0.02      0.94      0.04        49
+
+    accuracy                           0.81     12212
+   macro avg       0.51      0.87      0.47     12212
+weighted avg       1.00      0.81      0.89     12212
+
+VAL * Acc@1 80.740
+1 0.9999869 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [17][  0/243]	Time 48.764 (48.764)	Data 46.223 (46.223)	Loss 3.98e-01 (3.98e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [17][  0/243]	Time 47.429 (47.429)	Data 47.138 (47.138)	Loss 2.92e-01 (2.92e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [17][ 50/243]	Time  0.210 ( 1.189)	Data  0.000 ( 0.907)	Loss 1.91e-01 (3.93e-01)	Acc@1  93.75 ( 82.97)
+Epoch: [17][ 50/243]	Time  0.212 ( 1.162)	Data  0.001 ( 0.926)	Loss 2.52e-01 (4.27e-01)	Acc@1  93.75 ( 79.90)
+Epoch: [17][100/243]	Time  0.229 ( 0.699)	Data  0.000 ( 0.468)	Loss 5.39e-01 (4.22e-01)	Acc@1  62.50 ( 80.26)
+Epoch: [17][100/243]	Time  0.227 ( 0.713)	Data  0.000 ( 0.458)	Loss 2.39e-01 (4.28e-01)	Acc@1  87.50 ( 80.75)
+Epoch: [17][150/243]	Time  0.264 ( 0.544)	Data  0.000 ( 0.313)	Loss 3.88e-01 (4.24e-01)	Acc@1  68.75 ( 80.42)
+Epoch: [17][150/243]	Time  0.263 ( 0.553)	Data  0.000 ( 0.307)	Loss 4.45e-01 (4.26e-01)	Acc@1  75.00 ( 80.63)
+Epoch: [17][200/243]	Time  0.240 ( 0.466)	Data  0.005 ( 0.235)	Loss 3.66e-01 (4.22e-01)	Acc@1  81.25 ( 80.60)
+Epoch: [17][200/243]	Time  0.245 ( 0.473)	Data  0.000 ( 0.231)	Loss 4.69e-01 (4.18e-01)	Acc@1  68.75 ( 81.00)
+Epoch: [17][242/243]	Time  0.203 ( 0.427)	Data  0.000 ( 0.191)	Loss 5.11e-01 (4.24e-01)	Acc@1  68.75 ( 80.66)
+Epoch: [17][242/243]	Time  0.203 ( 0.422)	Data  0.000 ( 0.195)	Loss 5.18e-01 (4.20e-01)	Acc@1  75.00 ( 80.40)
+accuracy 0.891
+roc_auc_score 0.995
+confusion_matrix
+[[10828  1335]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.89      0.94     12163
+           1       0.04      1.00      0.07        49
+
+    accuracy                           0.89     12212
+   macro avg       0.52      0.95      0.51     12212
+weighted avg       1.00      0.89      0.94     12212
+
+VAL * Acc@1 89.068
+1 0.99999785 0 0
+accuracy 0.887
+roc_auc_score 0.990
+confusion_matrix
+[[10790  1373]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.89      0.94     12163
+           1       0.03      0.96      0.06        49
+
+    accuracy                           0.89     12212
+   macro avg       0.52      0.92      0.50     12212
+weighted avg       1.00      0.89      0.94     12212
+
+VAL * Acc@1 88.741
+1 0.99995995 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [18][  0/243]	Time 49.148 (49.148)	Data 46.489 (46.489)	Loss 2.67e-01 (2.67e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [18][  0/243]	Time 47.944 (47.944)	Data 47.669 (47.669)	Loss 4.14e-01 (4.14e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [18][ 50/243]	Time  0.207 ( 1.206)	Data  0.000 ( 0.913)	Loss 3.73e-01 (3.99e-01)	Acc@1  81.25 ( 82.48)
+Epoch: [18][ 50/243]	Time  0.204 ( 1.182)	Data  0.000 ( 0.946)	Loss 4.94e-01 (4.12e-01)	Acc@1  81.25 ( 80.64)
+Epoch: [18][100/243]	Time  0.256 ( 0.711)	Data  0.000 ( 0.478)	Loss 3.44e-01 (4.18e-01)	Acc@1  81.25 ( 80.63)
+Epoch: [18][100/243]	Time  0.256 ( 0.723)	Data  0.001 ( 0.461)	Loss 2.77e-01 (4.06e-01)	Acc@1  93.75 ( 81.44)
+Epoch: [18][150/243]	Time  0.246 ( 0.560)	Data  0.000 ( 0.309)	Loss 2.13e-01 (4.11e-01)	Acc@1 100.00 ( 81.29)
+Epoch: [18][150/243]	Time  0.243 ( 0.552)	Data  0.000 ( 0.320)	Loss 3.34e-01 (4.07e-01)	Acc@1  93.75 ( 81.71)
+Epoch: [18][200/243]	Time  0.233 ( 0.472)	Data  0.000 ( 0.241)	Loss 5.31e-01 (4.11e-01)	Acc@1  62.50 ( 81.16)
+Epoch: [18][200/243]	Time  0.263 ( 0.478)	Data  0.000 ( 0.232)	Loss 3.92e-01 (4.14e-01)	Acc@1  81.25 ( 80.85)
+Epoch: [18][242/243]	Time  0.195 ( 0.425)	Data  0.000 ( 0.199)	Loss 1.93e-01 (4.12e-01)	Acc@1  93.75 ( 80.81)
+Epoch: [18][242/243]	Time  0.195 ( 0.430)	Data  0.000 ( 0.192)	Loss 2.84e-01 (4.05e-01)	Acc@1  81.25 ( 81.46)
+accuracy 0.862
+roc_auc_score 0.997
+confusion_matrix
+[[10475  1688]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.86      0.93     12163
+           1       0.03      1.00      0.05        49
+
+    accuracy                           0.86     12212
+   macro avg       0.51      0.93      0.49     12212
+weighted avg       1.00      0.86      0.92     12212
+
+VAL * Acc@1 86.178
+1 0.9999951 0 0
+accuracy 0.863
+roc_auc_score 0.995
+confusion_matrix
+[[10494  1669]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.86      0.93     12163
+           1       0.03      0.98      0.05        49
+
+    accuracy                           0.86     12212
+   macro avg       0.51      0.92      0.49     12212
+weighted avg       1.00      0.86      0.92     12212
+
+VAL * Acc@1 86.325
+1 0.99999726 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [19][  0/243]	Time 47.108 (47.108)	Data 46.824 (46.824)	Loss 4.93e-01 (4.93e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [19][  0/243]	Time 50.373 (50.373)	Data 46.376 (46.376)	Loss 5.72e-01 (5.72e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [19][ 50/243]	Time  0.204 ( 1.155)	Data  0.001 ( 0.919)	Loss 4.39e-01 (4.26e-01)	Acc@1  87.50 ( 80.39)
+Epoch: [19][ 50/243]	Time  0.200 ( 1.219)	Data  0.001 ( 0.910)	Loss 7.27e-01 (4.28e-01)	Acc@1  62.50 ( 79.04)
+Epoch: [19][100/243]	Time  0.249 ( 0.696)	Data  0.000 ( 0.464)	Loss 2.91e-01 (4.16e-01)	Acc@1  87.50 ( 80.69)
+Epoch: [19][100/243]	Time  0.224 ( 0.728)	Data  0.000 ( 0.460)	Loss 4.33e-01 (4.21e-01)	Acc@1  87.50 ( 79.58)
+Epoch: [19][150/243]	Time  0.266 ( 0.564)	Data  0.000 ( 0.308)	Loss 1.57e-01 (4.22e-01)	Acc@1 100.00 ( 80.05)
+Epoch: [19][150/243]	Time  0.270 ( 0.542)	Data  0.000 ( 0.311)	Loss 3.94e-01 (4.19e-01)	Acc@1  81.25 ( 80.59)
+Epoch: [19][200/243]	Time  0.200 ( 0.463)	Data  0.000 ( 0.234)	Loss 3.33e-01 (4.27e-01)	Acc@1  81.25 ( 80.19)
+Epoch: [19][200/243]	Time  0.200 ( 0.480)	Data  0.000 ( 0.232)	Loss 2.81e-01 (4.16e-01)	Acc@1  87.50 ( 80.63)
+Epoch: [19][242/243]	Time  0.193 ( 0.433)	Data  0.000 ( 0.192)	Loss 3.05e-01 (4.15e-01)	Acc@1  93.75 ( 80.79)
+Epoch: [19][242/243]	Time  0.196 ( 0.419)	Data  0.000 ( 0.194)	Loss 7.68e-01 (4.24e-01)	Acc@1  62.50 ( 80.48)
+accuracy 0.976
+roc_auc_score 0.974
+confusion_matrix
+[[11874   289]
+ [    6    43]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.98      0.99     12163
+           1       0.13      0.88      0.23        49
+
+    accuracy                           0.98     12212
+   macro avg       0.56      0.93      0.61     12212
+weighted avg       1.00      0.98      0.98     12212
+
+VAL * Acc@1 97.584
+1 0.99998796 0 0
+accuracy 0.976
+roc_auc_score 0.988
+confusion_matrix
+[[11872   291]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.98      0.99     12163
+           1       0.14      0.96      0.24        49
+
+    accuracy                           0.98     12212
+   macro avg       0.57      0.97      0.62     12212
+weighted avg       1.00      0.98      0.98     12212
+
+VAL * Acc@1 97.601
+1 0.9999833 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [20][  0/243]	Time 50.497 (50.497)	Data 45.363 (45.363)	Loss 2.03e-01 (2.03e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [20][  0/243]	Time 47.319 (47.319)	Data 47.081 (47.081)	Loss 6.21e-01 (6.21e-01)	Acc@1  56.25 ( 56.25)
+Epoch: [20][ 50/243]	Time  0.245 ( 1.160)	Data  0.000 ( 0.924)	Loss 5.82e-01 (4.01e-01)	Acc@1  75.00 ( 82.48)
+Epoch: [20][ 50/243]	Time  0.245 ( 1.222)	Data  0.000 ( 0.890)	Loss 4.38e-01 (4.09e-01)	Acc@1  81.25 ( 79.53)
+Epoch: [20][100/243]	Time  0.222 ( 0.697)	Data  0.003 ( 0.467)	Loss 3.11e-01 (3.92e-01)	Acc@1  87.50 ( 82.74)
+Epoch: [20][100/243]	Time  0.222 ( 0.728)	Data  0.001 ( 0.450)	Loss 3.99e-01 (3.97e-01)	Acc@1  81.25 ( 80.94)
+Epoch: [20][150/243]	Time  0.203 ( 0.562)	Data  0.000 ( 0.301)	Loss 4.11e-01 (4.02e-01)	Acc@1  75.00 ( 80.88)
+Epoch: [20][150/243]	Time  0.203 ( 0.541)	Data  0.000 ( 0.313)	Loss 2.71e-01 (3.96e-01)	Acc@1  93.75 ( 82.49)
+Epoch: [20][200/243]	Time  0.211 ( 0.463)	Data  0.000 ( 0.235)	Loss 2.49e-01 (3.99e-01)	Acc@1 100.00 ( 82.40)
+Epoch: [20][200/243]	Time  0.211 ( 0.479)	Data  0.000 ( 0.227)	Loss 4.65e-01 (3.98e-01)	Acc@1  75.00 ( 81.25)
+Epoch: [20][242/243]	Time  0.195 ( 0.431)	Data  0.000 ( 0.187)	Loss 5.17e-01 (3.97e-01)	Acc@1  68.75 ( 81.12)
+Epoch: [20][242/243]	Time  0.195 ( 0.418)	Data  0.000 ( 0.194)	Loss 5.16e-01 (4.06e-01)	Acc@1  68.75 ( 81.76)
+accuracy 0.939
+roc_auc_score 0.994
+confusion_matrix
+[[11414   749]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      0.98      0.11        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.96      0.54     12212
+weighted avg       1.00      0.94      0.96     12212
+
+VAL * Acc@1 93.858
+1 0.9999974 0 0
+accuracy 0.940
+roc_auc_score 0.996
+confusion_matrix
+[[11430   733]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      0.98      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.96      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 93.990
+1 0.9999875 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [21][  0/243]	Time 48.488 (48.488)	Data 45.216 (45.216)	Loss 8.18e-01 (8.18e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [21][  0/243]	Time 47.047 (47.047)	Data 46.743 (46.743)	Loss 2.65e-01 (2.65e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [21][ 50/243]	Time  0.206 ( 1.186)	Data  0.000 ( 0.888)	Loss 5.04e-01 (4.05e-01)	Acc@1  62.50 ( 82.11)
+Epoch: [21][ 50/243]	Time  0.206 ( 1.157)	Data  0.000 ( 0.918)	Loss 1.97e-01 (3.74e-01)	Acc@1 100.00 ( 83.95)
+Epoch: [21][100/243]	Time  0.239 ( 0.698)	Data  0.000 ( 0.464)	Loss 5.08e-01 (3.73e-01)	Acc@1  75.00 ( 83.54)
+Epoch: [21][100/243]	Time  0.241 ( 0.712)	Data  0.000 ( 0.449)	Loss 3.09e-01 (4.02e-01)	Acc@1  93.75 ( 81.93)
+Epoch: [21][150/243]	Time  0.239 ( 0.553)	Data  0.000 ( 0.300)	Loss 1.85e-01 (3.91e-01)	Acc@1  93.75 ( 82.20)
+Epoch: [21][150/243]	Time  0.244 ( 0.544)	Data  0.000 ( 0.310)	Loss 3.02e-01 (3.76e-01)	Acc@1  81.25 ( 83.11)
+Epoch: [21][200/243]	Time  0.210 ( 0.464)	Data  0.000 ( 0.233)	Loss 5.19e-01 (3.75e-01)	Acc@1  87.50 ( 83.55)
+Epoch: [21][200/243]	Time  0.216 ( 0.472)	Data  0.000 ( 0.226)	Loss 7.01e-01 (3.92e-01)	Acc@1  56.25 ( 82.03)
+Epoch: [21][242/243]	Time  0.201 ( 0.420)	Data  0.000 ( 0.193)	Loss 3.47e-01 (3.72e-01)	Acc@1  87.50 ( 83.64)
+Epoch: [21][242/243]	Time  0.201 ( 0.426)	Data  0.000 ( 0.187)	Loss 4.59e-01 (3.89e-01)	Acc@1  68.75 ( 82.20)
+accuracy 0.969
+roc_auc_score 0.998
+confusion_matrix
+[[11781   382]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.98     12163
+           1       0.11      1.00      0.20        49
+
+    accuracy                           0.97     12212
+   macro avg       0.56      0.98      0.59     12212
+weighted avg       1.00      0.97      0.98     12212
+
+VAL * Acc@1 96.872
+1 0.9999293 0 0
+accuracy 0.970
+roc_auc_score 0.997
+confusion_matrix
+[[11801   362]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.98     12163
+           1       0.11      0.96      0.21        49
+
+    accuracy                           0.97     12212
+   macro avg       0.56      0.96      0.60     12212
+weighted avg       1.00      0.97      0.98     12212
+
+VAL * Acc@1 97.019
+1 0.999959 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [22][  0/243]	Time 47.023 (47.023)	Data 46.162 (46.162)	Loss 3.67e-01 (3.67e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [22][  0/243]	Time 47.034 (47.034)	Data 46.647 (46.647)	Loss 3.02e-01 (3.02e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [22][ 50/243]	Time  0.253 ( 1.175)	Data  0.002 ( 0.906)	Loss 2.47e-01 (4.07e-01)	Acc@1  87.50 ( 80.64)
+Epoch: [22][ 50/243]	Time  0.251 ( 1.175)	Data  0.005 ( 0.918)	Loss 3.13e-01 (3.83e-01)	Acc@1  93.75 ( 82.35)
+Epoch: [22][100/243]	Time  0.237 ( 0.707)	Data  0.000 ( 0.464)	Loss 3.26e-01 (3.80e-01)	Acc@1  87.50 ( 81.62)
+Epoch: [22][100/243]	Time  0.223 ( 0.707)	Data  0.001 ( 0.458)	Loss 5.76e-01 (4.09e-01)	Acc@1  68.75 ( 80.45)
+Epoch: [22][150/243]	Time  0.215 ( 0.549)	Data  0.000 ( 0.311)	Loss 4.27e-01 (3.82e-01)	Acc@1  81.25 ( 82.16)
+Epoch: [22][150/243]	Time  0.212 ( 0.549)	Data  0.006 ( 0.307)	Loss 3.60e-01 (4.08e-01)	Acc@1  87.50 ( 80.55)
+Epoch: [22][200/243]	Time  0.230 ( 0.470)	Data  0.000 ( 0.231)	Loss 1.93e-01 (3.99e-01)	Acc@1  93.75 ( 81.09)
+Epoch: [22][200/243]	Time  0.232 ( 0.470)	Data  0.000 ( 0.234)	Loss 2.88e-01 (3.86e-01)	Acc@1  93.75 ( 82.09)
+Epoch: [22][242/243]	Time  0.201 ( 0.424)	Data  0.000 ( 0.191)	Loss 4.09e-01 (3.92e-01)	Acc@1  87.50 ( 81.48)
+Epoch: [22][242/243]	Time  0.201 ( 0.424)	Data  0.000 ( 0.193)	Loss 3.21e-01 (3.81e-01)	Acc@1  87.50 ( 82.28)
+accuracy 0.905
+roc_auc_score 0.998
+confusion_matrix
+[[11007  1156]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.90      0.95     12163
+           1       0.04      1.00      0.08        49
+
+    accuracy                           0.91     12212
+   macro avg       0.52      0.95      0.51     12212
+weighted avg       1.00      0.91      0.95     12212
+
+VAL * Acc@1 90.534
+1 0.99999964 0 0
+accuracy 0.904
+roc_auc_score 0.999
+confusion_matrix
+[[10994  1169]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.90      0.95     12163
+           1       0.04      1.00      0.08        49
+
+    accuracy                           0.90     12212
+   macro avg       0.52      0.95      0.51     12212
+weighted avg       1.00      0.90      0.95     12212
+
+VAL * Acc@1 90.427
+1 0.99999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [23][  0/243]	Time 48.537 (48.537)	Data 45.463 (45.463)	Loss 4.19e-01 (4.19e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [23][  0/243]	Time 47.215 (47.215)	Data 46.961 (46.961)	Loss 6.60e-01 (6.60e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [23][ 50/243]	Time  0.207 ( 1.154)	Data  0.000 ( 0.922)	Loss 3.48e-01 (4.30e-01)	Acc@1  87.50 ( 80.27)
+Epoch: [23][ 50/243]	Time  0.209 ( 1.180)	Data  0.000 ( 0.892)	Loss 4.22e-01 (4.08e-01)	Acc@1  81.25 ( 82.23)
+Epoch: [23][100/243]	Time  0.238 ( 0.696)	Data  0.000 ( 0.466)	Loss 3.48e-01 (4.01e-01)	Acc@1  81.25 ( 81.62)
+Epoch: [23][100/243]	Time  0.242 ( 0.710)	Data  0.000 ( 0.451)	Loss 3.14e-01 (4.07e-01)	Acc@1  81.25 ( 81.87)
+Epoch: [23][150/243]	Time  0.207 ( 0.541)	Data  0.000 ( 0.312)	Loss 2.52e-01 (4.06e-01)	Acc@1  81.25 ( 80.92)
+Epoch: [23][150/243]	Time  0.214 ( 0.550)	Data  0.009 ( 0.302)	Loss 2.53e-01 (4.05e-01)	Acc@1  93.75 ( 82.04)
+Epoch: [23][200/243]	Time  0.215 ( 0.463)	Data  0.000 ( 0.235)	Loss 3.67e-01 (3.99e-01)	Acc@1  87.50 ( 81.69)
+Epoch: [23][200/243]	Time  0.224 ( 0.469)	Data  0.000 ( 0.227)	Loss 8.53e-01 (3.98e-01)	Acc@1  68.75 ( 82.43)
+Epoch: [23][242/243]	Time  0.193 ( 0.418)	Data  0.000 ( 0.194)	Loss 3.15e-01 (3.93e-01)	Acc@1  87.50 ( 82.05)
+Epoch: [23][242/243]	Time  0.192 ( 0.424)	Data  0.000 ( 0.188)	Loss 3.82e-01 (3.99e-01)	Acc@1  81.25 ( 82.33)
+accuracy 0.953
+roc_auc_score 0.979
+confusion_matrix
+[[11591   572]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      0.96      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.96      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.300
+1 0.99997544 0 0
+accuracy 0.953
+roc_auc_score 0.993
+confusion_matrix
+[[11590   573]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      0.96      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.96      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.292
+1 0.99996984 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [24][  0/243]	Time 48.292 (48.292)	Data 45.799 (45.799)	Loss 3.13e-01 (3.13e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [24][  0/243]	Time 47.687 (47.687)	Data 47.333 (47.333)	Loss 4.35e-01 (4.35e-01)	Acc@1  62.50 ( 62.50)
+Epoch: [24][ 50/243]	Time  0.208 ( 1.185)	Data  0.000 ( 0.899)	Loss 2.39e-01 (3.73e-01)	Acc@1  87.50 ( 84.31)
+Epoch: [24][ 50/243]	Time  0.213 ( 1.173)	Data  0.000 ( 0.929)	Loss 6.26e-01 (3.97e-01)	Acc@1  75.00 ( 81.86)
+Epoch: [24][100/243]	Time  0.224 ( 0.704)	Data  0.002 ( 0.469)	Loss 4.00e-01 (4.10e-01)	Acc@1  81.25 ( 81.00)
+Epoch: [24][100/243]	Time  0.218 ( 0.710)	Data  0.000 ( 0.454)	Loss 2.68e-01 (3.61e-01)	Acc@1  87.50 ( 84.41)
+Epoch: [24][150/243]	Time  0.198 ( 0.550)	Data  0.000 ( 0.304)	Loss 3.01e-01 (3.71e-01)	Acc@1  81.25 ( 83.73)
+Epoch: [24][150/243]	Time  0.198 ( 0.546)	Data  0.000 ( 0.314)	Loss 2.24e-01 (4.03e-01)	Acc@1  93.75 ( 81.08)
+Epoch: [24][200/243]	Time  0.220 ( 0.466)	Data  0.000 ( 0.236)	Loss 3.41e-01 (3.97e-01)	Acc@1  87.50 ( 81.84)
+Epoch: [24][200/243]	Time  0.225 ( 0.469)	Data  0.000 ( 0.229)	Loss 2.91e-01 (3.70e-01)	Acc@1  93.75 ( 83.30)
+Epoch: [24][242/243]	Time  0.201 ( 0.422)	Data  0.000 ( 0.196)	Loss 3.35e-01 (3.93e-01)	Acc@1  87.50 ( 82.07)
+Epoch: [24][242/243]	Time  0.201 ( 0.424)	Data  0.000 ( 0.189)	Loss 3.91e-01 (3.70e-01)	Acc@1  81.25 ( 83.56)
+accuracy 0.951
+roc_auc_score 0.995
+confusion_matrix
+[[11572   591]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.07      0.96      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.96      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.144
+1 0.99999857 0 0
+accuracy 0.951
+roc_auc_score 0.994
+confusion_matrix
+[[11571   592]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.07      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.144
+1 0.9999982 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [25][  0/243]	Time 47.988 (47.988)	Data 47.397 (47.397)	Loss 4.79e-01 (4.79e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [25][  0/243]	Time 48.102 (48.102)	Data 47.752 (47.752)	Loss 7.50e-01 (7.50e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [25][ 50/243]	Time  0.227 ( 1.183)	Data  0.001 ( 0.930)	Loss 4.18e-01 (3.97e-01)	Acc@1  81.25 ( 81.74)
+Epoch: [25][ 50/243]	Time  0.222 ( 1.185)	Data  0.003 ( 0.938)	Loss 4.05e-01 (3.84e-01)	Acc@1  81.25 ( 82.35)
+Epoch: [25][100/243]	Time  0.201 ( 0.710)	Data  0.000 ( 0.474)	Loss 3.44e-01 (3.77e-01)	Acc@1  87.50 ( 83.42)
+Epoch: [25][100/243]	Time  0.208 ( 0.709)	Data  0.000 ( 0.470)	Loss 2.96e-01 (3.74e-01)	Acc@1  87.50 ( 83.23)
+Epoch: [25][150/243]	Time  0.203 ( 0.551)	Data  0.000 ( 0.317)	Loss 2.57e-01 (3.85e-01)	Acc@1  87.50 ( 82.45)
+Epoch: [25][150/243]	Time  0.209 ( 0.550)	Data  0.002 ( 0.315)	Loss 2.39e-01 (3.87e-01)	Acc@1  87.50 ( 82.20)
+Epoch: [25][200/243]	Time  0.203 ( 0.470)	Data  0.000 ( 0.239)	Loss 4.97e-01 (3.82e-01)	Acc@1  81.25 ( 82.49)
+Epoch: [25][200/243]	Time  0.202 ( 0.470)	Data  0.000 ( 0.237)	Loss 3.21e-01 (3.84e-01)	Acc@1  87.50 ( 82.49)
+Epoch: [25][242/243]	Time  0.193 ( 0.424)	Data  0.000 ( 0.197)	Loss 3.91e-01 (3.83e-01)	Acc@1  87.50 ( 82.59)
+Epoch: [25][242/243]	Time  0.193 ( 0.423)	Data  0.000 ( 0.196)	Loss 3.99e-01 (3.86e-01)	Acc@1  75.00 ( 82.10)
+accuracy 0.915
+roc_auc_score 0.999
+confusion_matrix
+[[11126  1037]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.91      0.96     12163
+           1       0.05      1.00      0.09        49
+
+    accuracy                           0.92     12212
+   macro avg       0.52      0.96      0.52     12212
+weighted avg       1.00      0.92      0.95     12212
+
+VAL * Acc@1 91.508
+1 0.99999475 0 0
+accuracy 0.918
+roc_auc_score 0.999
+confusion_matrix
+[[11160  1003]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.92      0.96     12163
+           1       0.05      1.00      0.09        49
+
+    accuracy                           0.92     12212
+   macro avg       0.52      0.96      0.52     12212
+weighted avg       1.00      0.92      0.95     12212
+
+VAL * Acc@1 91.787
+1 0.99999475 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [26][  0/243]	Time 49.603 (49.603)	Data 45.348 (45.348)	Loss 4.88e-01 (4.88e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [26][  0/243]	Time 47.160 (47.160)	Data 46.775 (46.775)	Loss 3.06e-01 (3.06e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [26][ 50/243]	Time  0.221 ( 1.152)	Data  0.001 ( 0.918)	Loss 3.88e-01 (3.68e-01)	Acc@1  81.25 ( 85.05)
+Epoch: [26][ 50/243]	Time  0.214 ( 1.201)	Data  0.000 ( 0.890)	Loss 6.16e-01 (4.00e-01)	Acc@1  75.00 ( 82.23)
+Epoch: [26][100/243]	Time  0.221 ( 0.718)	Data  0.001 ( 0.450)	Loss 4.45e-01 (3.96e-01)	Acc@1  81.25 ( 82.43)
+Epoch: [26][100/243]	Time  0.225 ( 0.693)	Data  0.001 ( 0.464)	Loss 5.57e-01 (3.72e-01)	Acc@1  62.50 ( 84.22)
+Epoch: [26][150/243]	Time  0.213 ( 0.555)	Data  0.000 ( 0.302)	Loss 1.84e-01 (3.83e-01)	Acc@1  93.75 ( 83.28)
+Epoch: [26][150/243]	Time  0.217 ( 0.539)	Data  0.000 ( 0.311)	Loss 3.92e-01 (3.81e-01)	Acc@1  75.00 ( 83.49)
+Epoch: [26][200/243]	Time  0.259 ( 0.474)	Data  0.000 ( 0.227)	Loss 5.47e-01 (3.82e-01)	Acc@1  75.00 ( 82.93)
+Epoch: [26][200/243]	Time  0.258 ( 0.461)	Data  0.000 ( 0.234)	Loss 4.41e-01 (3.78e-01)	Acc@1  81.25 ( 83.36)
+Epoch: [26][242/243]	Time  0.198 ( 0.417)	Data  0.000 ( 0.193)	Loss 3.68e-01 (3.82e-01)	Acc@1  81.25 ( 83.18)
+Epoch: [26][242/243]	Time  0.197 ( 0.428)	Data  0.000 ( 0.188)	Loss 4.35e-01 (3.84e-01)	Acc@1  75.00 ( 82.69)
+accuracy 0.971
+roc_auc_score 0.991
+confusion_matrix
+[[11810   353]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.99     12163
+           1       0.12      0.96      0.21        49
+
+    accuracy                           0.97     12212
+   macro avg       0.56      0.97      0.60     12212
+weighted avg       1.00      0.97      0.98     12212
+
+VAL * Acc@1 97.093
+1 0.99999976 0 0
+accuracy 0.971
+roc_auc_score 0.993
+confusion_matrix
+[[11816   347]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.99     12163
+           1       0.12      0.96      0.21        49
+
+    accuracy                           0.97     12212
+   macro avg       0.56      0.97      0.60     12212
+weighted avg       1.00      0.97      0.98     12212
+
+VAL * Acc@1 97.142
+1 0.99999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [27][  0/243]	Time 50.136 (50.136)	Data 46.011 (46.011)	Loss 3.72e-01 (3.72e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [27][  0/243]	Time 47.152 (47.152)	Data 46.861 (46.861)	Loss 3.43e-01 (3.43e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [27][ 50/243]	Time  0.230 ( 1.209)	Data  0.000 ( 0.903)	Loss 4.45e-01 (3.90e-01)	Acc@1  75.00 ( 81.50)
+Epoch: [27][ 50/243]	Time  0.234 ( 1.150)	Data  0.000 ( 0.920)	Loss 4.30e-01 (3.99e-01)	Acc@1  81.25 ( 82.23)
+Epoch: [27][100/243]	Time  0.206 ( 0.696)	Data  0.000 ( 0.465)	Loss 4.20e-01 (3.99e-01)	Acc@1  81.25 ( 82.05)
+Epoch: [27][100/243]	Time  0.206 ( 0.725)	Data  0.000 ( 0.456)	Loss 3.43e-01 (3.86e-01)	Acc@1  87.50 ( 81.31)
+Epoch: [27][150/243]	Time  0.202 ( 0.540)	Data  0.000 ( 0.311)	Loss 3.38e-01 (3.83e-01)	Acc@1  81.25 ( 82.78)
+Epoch: [27][150/243]	Time  0.203 ( 0.560)	Data  0.000 ( 0.306)	Loss 5.77e-01 (3.91e-01)	Acc@1  68.75 ( 81.62)
+Epoch: [27][200/243]	Time  0.205 ( 0.479)	Data  0.005 ( 0.230)	Loss 5.62e-01 (3.89e-01)	Acc@1  81.25 ( 81.93)
+Epoch: [27][200/243]	Time  0.224 ( 0.464)	Data  0.000 ( 0.234)	Loss 3.05e-01 (3.79e-01)	Acc@1  81.25 ( 82.80)
+Epoch: [27][242/243]	Time  0.221 ( 0.433)	Data  0.000 ( 0.190)	Loss 4.37e-01 (3.89e-01)	Acc@1  81.25 ( 82.15)
+Epoch: [27][242/243]	Time  0.208 ( 0.420)	Data  0.000 ( 0.194)	Loss 5.97e-01 (3.78e-01)	Acc@1  75.00 ( 82.97)
+accuracy 0.949
+roc_auc_score 0.993
+confusion_matrix
+[[11541   622]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.96      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.95      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.890
+1 1.0 0 0
+accuracy 0.949
+roc_auc_score 0.992
+confusion_matrix
+[[11537   626]
+ [    2    47]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.96      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.95      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.858
+1 1.0 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [28][  0/243]	Time 49.570 (49.570)	Data 45.887 (45.887)	Loss 1.53e-01 (1.53e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [28][  0/243]	Time 47.515 (47.515)	Data 47.243 (47.243)	Loss 3.89e-01 (3.89e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [28][ 50/243]	Time  0.240 ( 1.162)	Data  0.000 ( 0.927)	Loss 4.38e-01 (3.52e-01)	Acc@1  81.25 ( 83.33)
+Epoch: [28][ 50/243]	Time  0.245 ( 1.203)	Data  0.003 ( 0.901)	Loss 2.25e-01 (3.75e-01)	Acc@1  87.50 ( 83.46)
+Epoch: [28][100/243]	Time  0.232 ( 0.700)	Data  0.002 ( 0.469)	Loss 2.66e-01 (3.50e-01)	Acc@1  87.50 ( 83.66)
+Epoch: [28][100/243]	Time  0.225 ( 0.721)	Data  0.000 ( 0.455)	Loss 3.18e-01 (3.86e-01)	Acc@1  81.25 ( 82.05)
+Epoch: [28][150/243]	Time  0.202 ( 0.545)	Data  0.000 ( 0.314)	Loss 7.15e-01 (3.51e-01)	Acc@1  56.25 ( 83.94)
+Epoch: [28][150/243]	Time  0.207 ( 0.559)	Data  0.001 ( 0.305)	Loss 3.64e-01 (3.81e-01)	Acc@1  87.50 ( 82.49)
+Epoch: [28][200/243]	Time  0.227 ( 0.475)	Data  0.001 ( 0.229)	Loss 3.07e-01 (3.73e-01)	Acc@1  87.50 ( 82.80)
+Epoch: [28][200/243]	Time  0.226 ( 0.465)	Data  0.000 ( 0.236)	Loss 3.10e-01 (3.58e-01)	Acc@1  87.50 ( 83.43)
+Epoch: [28][242/243]	Time  0.204 ( 0.429)	Data  0.000 ( 0.190)	Loss 5.14e-01 (3.73e-01)	Acc@1  75.00 ( 82.61)
+Epoch: [28][242/243]	Time  0.206 ( 0.421)	Data  0.000 ( 0.195)	Loss 2.59e-01 (3.65e-01)	Acc@1  93.75 ( 83.23)
+accuracy 0.968
+roc_auc_score 0.998
+confusion_matrix
+[[11772   391]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.98     12163
+           1       0.11      0.98      0.20        49
+
+    accuracy                           0.97     12212
+   macro avg       0.55      0.97      0.59     12212
+weighted avg       1.00      0.97      0.98     12212
+
+VAL * Acc@1 96.790
+1 0.99999964 0 0
+accuracy 0.968
+roc_auc_score 0.999
+confusion_matrix
+[[11774   389]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.98     12163
+           1       0.11      1.00      0.20        49
+
+    accuracy                           0.97     12212
+   macro avg       0.56      0.98      0.59     12212
+weighted avg       1.00      0.97      0.98     12212
+
+VAL * Acc@1 96.815
+1 0.99999905 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [29][  0/243]	Time 48.949 (48.949)	Data 45.407 (45.407)	Loss 3.80e-01 (3.80e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [29][  0/243]	Time 47.755 (47.755)	Data 47.516 (47.516)	Loss 3.38e-01 (3.38e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [29][ 50/243]	Time  0.199 ( 1.165)	Data  0.000 ( 0.933)	Loss 2.73e-01 (3.83e-01)	Acc@1  81.25 ( 81.50)
+Epoch: [29][ 50/243]	Time  0.211 ( 1.189)	Data  0.000 ( 0.892)	Loss 3.19e-01 (3.84e-01)	Acc@1  87.50 ( 82.72)
+Epoch: [29][100/243]	Time  0.246 ( 0.704)	Data  0.001 ( 0.471)	Loss 2.36e-01 (3.90e-01)	Acc@1  93.75 ( 81.44)
+Epoch: [29][100/243]	Time  0.244 ( 0.715)	Data  0.000 ( 0.451)	Loss 1.96e-01 (3.58e-01)	Acc@1  87.50 ( 83.23)
+Epoch: [29][150/243]	Time  0.209 ( 0.554)	Data  0.000 ( 0.302)	Loss 6.84e-01 (3.60e-01)	Acc@1  68.75 ( 83.11)
+Epoch: [29][150/243]	Time  0.205 ( 0.546)	Data  0.003 ( 0.316)	Loss 4.31e-01 (3.80e-01)	Acc@1  75.00 ( 82.24)
+Epoch: [29][200/243]	Time  0.217 ( 0.471)	Data  0.000 ( 0.227)	Loss 2.97e-01 (3.65e-01)	Acc@1  87.50 ( 83.05)
+Epoch: [29][200/243]	Time  0.213 ( 0.465)	Data  0.003 ( 0.237)	Loss 6.40e-01 (3.76e-01)	Acc@1  68.75 ( 82.31)
+Epoch: [29][242/243]	Time  0.202 ( 0.421)	Data  0.000 ( 0.196)	Loss 3.58e-01 (3.79e-01)	Acc@1  81.25 ( 82.28)
+Epoch: [29][242/243]	Time  0.202 ( 0.426)	Data  0.000 ( 0.188)	Loss 1.94e-01 (3.73e-01)	Acc@1 100.00 ( 82.61)
+accuracy 0.978
+roc_auc_score 0.999
+confusion_matrix
+[[11892   271]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.98      0.99     12163
+           1       0.15      1.00      0.27        49
+
+    accuracy                           0.98     12212
+   macro avg       0.58      0.99      0.63     12212
+weighted avg       1.00      0.98      0.99     12212
+
+VAL * Acc@1 97.781
+1 0.9999962 0 0
+accuracy 0.980
+roc_auc_score 0.999
+confusion_matrix
+[[11918   245]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.98      0.99     12163
+           1       0.17      1.00      0.29        49
+
+    accuracy                           0.98     12212
+   macro avg       0.58      0.99      0.64     12212
+weighted avg       1.00      0.98      0.99     12212
+
+VAL * Acc@1 97.994
+1 0.99997675 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [30][  0/243]	Time 47.189 (47.189)	Data 46.943 (46.943)	Loss 4.47e-01 (4.47e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [30][  0/243]	Time 50.577 (50.577)	Data 45.847 (45.847)	Loss 2.37e-01 (2.37e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [30][ 50/243]	Time  0.198 ( 1.162)	Data  0.000 ( 0.921)	Loss 4.43e-01 (3.53e-01)	Acc@1  75.00 ( 84.07)
+Epoch: [30][ 50/243]	Time  0.203 ( 1.229)	Data  0.000 ( 0.900)	Loss 1.52e-01 (3.59e-01)	Acc@1 100.00 ( 85.05)
+Epoch: [30][100/243]	Time  0.208 ( 0.699)	Data  0.000 ( 0.466)	Loss 4.73e-01 (3.64e-01)	Acc@1  81.25 ( 83.60)
+Epoch: [30][100/243]	Time  0.215 ( 0.732)	Data  0.000 ( 0.455)	Loss 4.15e-01 (3.48e-01)	Acc@1  81.25 ( 84.16)
+Epoch: [30][150/243]	Time  0.230 ( 0.545)	Data  0.003 ( 0.312)	Loss 1.94e-01 (3.61e-01)	Acc@1 100.00 ( 83.90)
+Epoch: [30][150/243]	Time  0.225 ( 0.567)	Data  0.010 ( 0.304)	Loss 3.23e-01 (3.52e-01)	Acc@1  87.50 ( 84.06)
+Epoch: [30][200/243]	Time  0.222 ( 0.467)	Data  0.000 ( 0.234)	Loss 2.50e-01 (3.65e-01)	Acc@1  87.50 ( 83.68)
+Epoch: [30][200/243]	Time  0.221 ( 0.484)	Data  0.001 ( 0.229)	Loss 3.65e-01 (3.50e-01)	Acc@1  87.50 ( 84.11)
+Epoch: [30][242/243]	Time  0.201 ( 0.423)	Data  0.000 ( 0.194)	Loss 1.78e-01 (3.62e-01)	Acc@1 100.00 ( 83.98)
+Epoch: [30][242/243]	Time  0.198 ( 0.437)	Data  0.000 ( 0.189)	Loss 3.30e-01 (3.50e-01)	Acc@1  87.50 ( 84.23)
+accuracy 0.938
+roc_auc_score 0.999
+confusion_matrix
+[[11407   756]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.11        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.96     12212
+
+VAL * Acc@1 93.809
+1 0.99999666 0 0
+accuracy 0.937
+roc_auc_score 0.999
+confusion_matrix
+[[11395   768]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.11        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.96     12212
+
+VAL * Acc@1 93.711
+1 0.99999654 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [31][  0/243]	Time 46.525 (46.525)	Data 46.015 (46.015)	Loss 2.26e-01 (2.26e-01)	Acc@1 100.00 (100.00)
+Epoch: [31][  0/243]	Time 46.818 (46.818)	Data 45.710 (45.710)	Loss 3.72e-01 (3.72e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [31][ 50/243]	Time  0.274 ( 1.167)	Data  0.010 ( 0.897)	Loss 3.76e-01 (3.36e-01)	Acc@1  75.00 ( 85.29)
+Epoch: [31][ 50/243]	Time  0.285 ( 1.161)	Data  0.000 ( 0.904)	Loss 3.42e-01 (3.76e-01)	Acc@1  81.25 ( 82.97)
+Epoch: [31][100/243]	Time  0.216 ( 0.703)	Data  0.000 ( 0.454)	Loss 5.74e-01 (3.51e-01)	Acc@1  75.00 ( 83.91)
+Epoch: [31][100/243]	Time  0.221 ( 0.700)	Data  0.000 ( 0.457)	Loss 4.17e-01 (3.68e-01)	Acc@1  75.00 ( 83.04)
+Epoch: [31][150/243]	Time  0.205 ( 0.546)	Data  0.000 ( 0.304)	Loss 3.39e-01 (3.50e-01)	Acc@1  87.50 ( 83.90)
+Epoch: [31][150/243]	Time  0.205 ( 0.544)	Data  0.000 ( 0.306)	Loss 2.85e-01 (3.65e-01)	Acc@1  87.50 ( 83.11)
+Epoch: [31][200/243]	Time  0.248 ( 0.466)	Data  0.000 ( 0.229)	Loss 2.47e-01 (3.54e-01)	Acc@1  93.75 ( 83.64)
+Epoch: [31][200/243]	Time  0.256 ( 0.464)	Data  0.002 ( 0.230)	Loss 3.57e-01 (3.60e-01)	Acc@1  87.50 ( 83.49)
+Epoch: [31][242/243]	Time  0.196 ( 0.421)	Data  0.000 ( 0.189)	Loss 2.25e-01 (3.58e-01)	Acc@1  87.50 ( 83.36)
+Epoch: [31][242/243]	Time  0.195 ( 0.420)	Data  0.000 ( 0.190)	Loss 2.30e-01 (3.55e-01)	Acc@1  87.50 ( 83.77)
+accuracy 0.951
+roc_auc_score 0.999
+confusion_matrix
+[[11570   593]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.144
+1 0.99999833 0 0
+accuracy 0.953
+roc_auc_score 0.999
+confusion_matrix
+[[11584   579]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.259
+1 0.9999901 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [32][  0/243]	Time 47.146 (47.146)	Data 45.978 (45.978)	Loss 3.33e-01 (3.33e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [32][  0/243]	Time 47.439 (47.439)	Data 47.038 (47.038)	Loss 2.26e-01 (2.26e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [32][ 50/243]	Time  0.218 ( 1.168)	Data  0.000 ( 0.903)	Loss 1.82e-01 (3.43e-01)	Acc@1  93.75 ( 83.70)
+Epoch: [32][ 50/243]	Time  0.225 ( 1.174)	Data  0.002 ( 0.924)	Loss 3.52e-01 (3.20e-01)	Acc@1  87.50 ( 86.03)
+Epoch: [32][100/243]	Time  0.257 ( 0.706)	Data  0.000 ( 0.467)	Loss 2.56e-01 (3.34e-01)	Acc@1  87.50 ( 84.90)
+Epoch: [32][100/243]	Time  0.263 ( 0.704)	Data  0.004 ( 0.456)	Loss 1.36e-01 (3.51e-01)	Acc@1 100.00 ( 83.66)
+Epoch: [32][150/243]	Time  0.209 ( 0.546)	Data  0.000 ( 0.305)	Loss 3.25e-01 (3.49e-01)	Acc@1  75.00 ( 83.98)
+Epoch: [32][150/243]	Time  0.213 ( 0.548)	Data  0.008 ( 0.313)	Loss 2.24e-01 (3.29e-01)	Acc@1 100.00 ( 86.13)
+Epoch: [32][200/243]	Time  0.232 ( 0.468)	Data  0.000 ( 0.230)	Loss 4.69e-01 (3.49e-01)	Acc@1  81.25 ( 83.77)
+Epoch: [32][200/243]	Time  0.231 ( 0.469)	Data  0.000 ( 0.235)	Loss 4.14e-01 (3.28e-01)	Acc@1  87.50 ( 85.82)
+Epoch: [32][242/243]	Time  0.196 ( 0.423)	Data  0.000 ( 0.195)	Loss 2.22e-01 (3.26e-01)	Acc@1  93.75 ( 86.01)
+Epoch: [32][242/243]	Time  0.196 ( 0.422)	Data  0.000 ( 0.190)	Loss 3.46e-01 (3.48e-01)	Acc@1  87.50 ( 83.80)
+accuracy 0.948
+roc_auc_score 0.998
+confusion_matrix
+[[11524   639]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.96      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.759
+1 0.99999833 0 0
+accuracy 0.948
+roc_auc_score 0.999
+confusion_matrix
+[[11528   635]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.800
+1 0.99999905 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [33][  0/243]	Time 49.007 (49.007)	Data 45.327 (45.327)	Loss 4.19e-01 (4.19e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [33][  0/243]	Time 46.792 (46.792)	Data 46.543 (46.543)	Loss 5.62e-01 (5.62e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [33][ 50/243]	Time  0.205 ( 1.153)	Data  0.000 ( 0.914)	Loss 2.32e-01 (3.67e-01)	Acc@1  87.50 ( 84.19)
+Epoch: [33][ 50/243]	Time  0.214 ( 1.197)	Data  0.000 ( 0.890)	Loss 3.65e-01 (3.47e-01)	Acc@1  87.50 ( 85.05)
+Epoch: [33][100/243]	Time  0.216 ( 0.698)	Data  0.001 ( 0.462)	Loss 4.09e-01 (3.39e-01)	Acc@1  81.25 ( 85.58)
+Epoch: [33][100/243]	Time  0.225 ( 0.721)	Data  0.003 ( 0.450)	Loss 1.79e-01 (3.43e-01)	Acc@1 100.00 ( 84.84)
+Epoch: [33][150/243]	Time  0.243 ( 0.557)	Data  0.003 ( 0.301)	Loss 3.56e-01 (3.41e-01)	Acc@1  87.50 ( 84.98)
+Epoch: [33][150/243]	Time  0.248 ( 0.542)	Data  0.004 ( 0.309)	Loss 4.16e-01 (3.36e-01)	Acc@1  81.25 ( 85.35)
+Epoch: [33][200/243]	Time  0.207 ( 0.464)	Data  0.000 ( 0.233)	Loss 5.20e-01 (3.36e-01)	Acc@1  75.00 ( 85.04)
+Epoch: [33][200/243]	Time  0.205 ( 0.475)	Data  0.003 ( 0.226)	Loss 1.81e-01 (3.46e-01)	Acc@1  93.75 ( 84.51)
+Epoch: [33][242/243]	Time  0.195 ( 0.420)	Data  0.000 ( 0.192)	Loss 1.44e-01 (3.40e-01)	Acc@1 100.00 ( 84.85)
+Epoch: [33][242/243]	Time  0.195 ( 0.429)	Data  0.000 ( 0.187)	Loss 4.49e-01 (3.41e-01)	Acc@1  81.25 ( 84.85)
+accuracy 0.933
+roc_auc_score 0.999
+confusion_matrix
+[[11350   813]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.93      0.97     12163
+           1       0.06      1.00      0.11        49
+
+    accuracy                           0.93     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.93      0.96     12212
+
+VAL * Acc@1 93.343
+1 0.9999993 0 0
+accuracy 0.934
+roc_auc_score 0.999
+confusion_matrix
+[[11353   810]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.93      0.97     12163
+           1       0.06      1.00      0.11        49
+
+    accuracy                           0.93     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.93      0.96     12212
+
+VAL * Acc@1 93.367
+1 0.99999964 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [34][  0/243]	Time 48.422 (48.422)	Data 45.228 (45.228)	Loss 5.20e-01 (5.20e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [34][  0/243]	Time 47.426 (47.426)	Data 47.168 (47.168)	Loss 2.31e-01 (2.31e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [34][ 50/243]	Time  0.211 ( 1.159)	Data  0.002 ( 0.927)	Loss 3.11e-01 (3.43e-01)	Acc@1  87.50 ( 84.07)
+Epoch: [34][ 50/243]	Time  0.213 ( 1.179)	Data  0.001 ( 0.888)	Loss 2.55e-01 (3.76e-01)	Acc@1  87.50 ( 82.60)
+Epoch: [34][100/243]	Time  0.209 ( 0.696)	Data  0.000 ( 0.469)	Loss 2.88e-01 (3.22e-01)	Acc@1  93.75 ( 86.01)
+Epoch: [34][100/243]	Time  0.212 ( 0.706)	Data  0.000 ( 0.449)	Loss 3.93e-01 (3.66e-01)	Acc@1  81.25 ( 83.29)
+Epoch: [34][150/243]	Time  0.258 ( 0.549)	Data  0.000 ( 0.300)	Loss 2.06e-01 (3.59e-01)	Acc@1  93.75 ( 83.49)
+Epoch: [34][150/243]	Time  0.265 ( 0.542)	Data  0.001 ( 0.314)	Loss 4.19e-01 (3.28e-01)	Acc@1  68.75 ( 85.64)
+Epoch: [34][200/243]	Time  0.222 ( 0.463)	Data  0.000 ( 0.236)	Loss 2.33e-01 (3.24e-01)	Acc@1  87.50 ( 86.01)
+Epoch: [34][200/243]	Time  0.226 ( 0.468)	Data  0.001 ( 0.226)	Loss 2.57e-01 (3.54e-01)	Acc@1  87.50 ( 83.55)
+Epoch: [34][242/243]	Time  0.200 ( 0.419)	Data  0.000 ( 0.195)	Loss 4.33e-01 (3.26e-01)	Acc@1  81.25 ( 86.06)
+Epoch: [34][242/243]	Time  0.200 ( 0.423)	Data  0.000 ( 0.187)	Loss 4.90e-01 (3.51e-01)	Acc@1  87.50 ( 83.87)
+accuracy 0.937
+roc_auc_score 0.998
+confusion_matrix
+[[11400   763]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      0.98      0.11        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.96      0.54     12212
+weighted avg       1.00      0.94      0.96     12212
+
+VAL * Acc@1 93.744
+1 0.9999982 0 0
+accuracy 0.940
+roc_auc_score 0.999
+confusion_matrix
+[[11436   727]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.047
+1 0.9999951 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [35][  0/243]	Time 46.299 (46.299)	Data 45.650 (45.650)	Loss 2.35e-01 (2.35e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [35][  0/243]	Time 46.619 (46.619)	Data 46.151 (46.151)	Loss 2.09e-01 (2.09e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [35][ 50/243]	Time  0.245 ( 1.163)	Data  0.000 ( 0.912)	Loss 2.91e-01 (3.19e-01)	Acc@1  93.75 ( 86.76)
+Epoch: [35][ 50/243]	Time  0.250 ( 1.157)	Data  0.004 ( 0.896)	Loss 2.45e-01 (3.55e-01)	Acc@1  93.75 ( 84.68)
+Epoch: [35][100/243]	Time  0.297 ( 0.698)	Data  0.006 ( 0.453)	Loss 3.89e-01 (3.53e-01)	Acc@1  75.00 ( 84.72)
+Epoch: [35][100/243]	Time  0.290 ( 0.701)	Data  0.003 ( 0.461)	Loss 3.35e-01 (3.31e-01)	Acc@1  81.25 ( 85.46)
+Epoch: [35][150/243]	Time  0.217 ( 0.542)	Data  0.000 ( 0.303)	Loss 3.25e-01 (3.48e-01)	Acc@1  87.50 ( 84.93)
+Epoch: [35][150/243]	Time  0.216 ( 0.544)	Data  0.000 ( 0.309)	Loss 3.06e-01 (3.36e-01)	Acc@1  81.25 ( 85.76)
+Epoch: [35][200/243]	Time  0.213 ( 0.464)	Data  0.000 ( 0.232)	Loss 4.07e-01 (3.39e-01)	Acc@1  81.25 ( 85.57)
+Epoch: [35][200/243]	Time  0.216 ( 0.463)	Data  0.001 ( 0.228)	Loss 1.75e-01 (3.41e-01)	Acc@1  93.75 ( 85.11)
+Epoch: [35][242/243]	Time  0.198 ( 0.419)	Data  0.000 ( 0.189)	Loss 1.18e-01 (3.47e-01)	Acc@1 100.00 ( 84.52)
+Epoch: [35][242/243]	Time  0.198 ( 0.420)	Data  0.000 ( 0.192)	Loss 4.81e-01 (3.35e-01)	Acc@1  68.75 ( 85.70)
+accuracy 0.937
+roc_auc_score 0.999
+confusion_matrix
+[[11389   774]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.11        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.96     12212
+
+VAL * Acc@1 93.662
+1 0.9999976 0 0
+accuracy 0.940
+roc_auc_score 0.999
+confusion_matrix
+[[11432   731]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.014
+1 0.99999845 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [36][  0/243]	Time 49.111 (49.111)	Data 44.703 (44.703)	Loss 2.81e-01 (2.81e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [36][  0/243]	Time 46.791 (46.791)	Data 46.532 (46.532)	Loss 2.06e-01 (2.06e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [36][ 50/243]	Time  0.225 ( 1.145)	Data  0.003 ( 0.913)	Loss 5.33e-01 (3.12e-01)	Acc@1  75.00 ( 86.15)
+Epoch: [36][ 50/243]	Time  0.226 ( 1.190)	Data  0.000 ( 0.877)	Loss 1.51e-01 (3.24e-01)	Acc@1 100.00 ( 86.15)
+Epoch: [36][100/243]	Time  0.246 ( 0.689)	Data  0.000 ( 0.462)	Loss 3.02e-01 (3.20e-01)	Acc@1  81.25 ( 86.08)
+Epoch: [36][100/243]	Time  0.246 ( 0.712)	Data  0.000 ( 0.443)	Loss 2.46e-01 (3.32e-01)	Acc@1  81.25 ( 85.33)
+Epoch: [36][150/243]	Time  0.198 ( 0.536)	Data  0.000 ( 0.309)	Loss 3.14e-01 (3.22e-01)	Acc@1  81.25 ( 86.05)
+Epoch: [36][150/243]	Time  0.201 ( 0.551)	Data  0.000 ( 0.297)	Loss 6.27e-01 (3.34e-01)	Acc@1  75.00 ( 85.02)
+Epoch: [36][200/243]	Time  0.255 ( 0.459)	Data  0.001 ( 0.232)	Loss 2.36e-01 (3.22e-01)	Acc@1  87.50 ( 86.04)
+Epoch: [36][200/243]	Time  0.259 ( 0.470)	Data  0.000 ( 0.223)	Loss 3.78e-01 (3.37e-01)	Acc@1  87.50 ( 85.17)
+Epoch: [36][242/243]	Time  0.198 ( 0.415)	Data  0.000 ( 0.192)	Loss 2.61e-01 (3.31e-01)	Acc@1  81.25 ( 85.55)
+Epoch: [36][242/243]	Time  0.198 ( 0.425)	Data  0.000 ( 0.185)	Loss 4.89e-01 (3.32e-01)	Acc@1  81.25 ( 85.24)
+accuracy 0.948
+roc_auc_score 0.998
+confusion_matrix
+[[11529   634]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.96      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.800
+1 0.99998724 0 0
+accuracy 0.950
+roc_auc_score 0.998
+confusion_matrix
+[[11554   609]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.96      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.005
+1 0.9999827 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [37][  0/243]	Time 46.788 (46.788)	Data 46.514 (46.514)	Loss 3.03e-01 (3.03e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [37][  0/243]	Time 48.884 (48.884)	Data 45.224 (45.224)	Loss 3.84e-01 (3.84e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [37][ 50/243]	Time  0.210 ( 1.145)	Data  0.000 ( 0.913)	Loss 2.62e-01 (3.25e-01)	Acc@1  87.50 ( 85.78)
+Epoch: [37][ 50/243]	Time  0.216 ( 1.186)	Data  0.000 ( 0.887)	Loss 3.45e-01 (3.21e-01)	Acc@1  87.50 ( 87.13)
+Epoch: [37][100/243]	Time  0.201 ( 0.710)	Data  0.000 ( 0.448)	Loss 3.61e-01 (3.35e-01)	Acc@1  81.25 ( 85.83)
+Epoch: [37][100/243]	Time  0.205 ( 0.690)	Data  0.003 ( 0.461)	Loss 3.06e-01 (3.45e-01)	Acc@1  87.50 ( 83.91)
+Epoch: [37][150/243]	Time  0.253 ( 0.538)	Data  0.000 ( 0.309)	Loss 3.97e-01 (3.36e-01)	Acc@1  81.25 ( 84.60)
+Epoch: [37][150/243]	Time  0.241 ( 0.552)	Data  0.000 ( 0.300)	Loss 2.05e-01 (3.28e-01)	Acc@1 100.00 ( 86.26)
+Epoch: [37][200/243]	Time  0.257 ( 0.460)	Data  0.000 ( 0.232)	Loss 6.11e-01 (3.42e-01)	Acc@1  62.50 ( 84.27)
+Epoch: [37][200/243]	Time  0.257 ( 0.470)	Data  0.000 ( 0.226)	Loss 3.77e-01 (3.31e-01)	Acc@1  75.00 ( 85.51)
+Epoch: [37][242/243]	Time  0.202 ( 0.416)	Data  0.000 ( 0.192)	Loss 3.18e-01 (3.39e-01)	Acc@1  75.00 ( 84.67)
+Epoch: [37][242/243]	Time  0.202 ( 0.425)	Data  0.000 ( 0.187)	Loss 2.34e-01 (3.35e-01)	Acc@1  93.75 ( 85.31)
+accuracy 0.956
+roc_auc_score 0.999
+confusion_matrix
+[[11620   543]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.554
+1 0.9999944 0 0
+accuracy 0.955
+roc_auc_score 0.999
+confusion_matrix
+[[11615   548]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.513
+1 0.9999871 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [38][  0/243]	Time 48.199 (48.199)	Data 45.870 (45.870)	Loss 1.94e-01 (1.94e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [38][  0/243]	Time 47.218 (47.218)	Data 46.860 (46.860)	Loss 2.73e-01 (2.73e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [38][ 50/243]	Time  0.281 ( 1.160)	Data  0.000 ( 0.920)	Loss 3.96e-01 (3.22e-01)	Acc@1  87.50 ( 86.03)
+Epoch: [38][ 50/243]	Time  0.284 ( 1.179)	Data  0.004 ( 0.901)	Loss 1.74e-01 (3.11e-01)	Acc@1  93.75 ( 87.38)
+Epoch: [38][100/243]	Time  0.208 ( 0.706)	Data  0.000 ( 0.455)	Loss 2.47e-01 (3.23e-01)	Acc@1  87.50 ( 86.45)
+Epoch: [38][100/243]	Time  0.215 ( 0.697)	Data  0.000 ( 0.465)	Loss 2.77e-01 (3.32e-01)	Acc@1  87.50 ( 86.01)
+Epoch: [38][150/243]	Time  0.283 ( 0.543)	Data  0.000 ( 0.311)	Loss 5.08e-01 (3.38e-01)	Acc@1  62.50 ( 85.43)
+Epoch: [38][150/243]	Time  0.282 ( 0.549)	Data  0.000 ( 0.305)	Loss 1.84e-01 (3.30e-01)	Acc@1  93.75 ( 85.80)
+Epoch: [38][200/243]	Time  0.210 ( 0.469)	Data  0.000 ( 0.229)	Loss 2.39e-01 (3.23e-01)	Acc@1  93.75 ( 86.23)
+Epoch: [38][200/243]	Time  0.219 ( 0.464)	Data  0.000 ( 0.234)	Loss 3.83e-01 (3.36e-01)	Acc@1  81.25 ( 85.63)
+Epoch: [38][242/243]	Time  0.192 ( 0.419)	Data  0.000 ( 0.194)	Loss 2.35e-01 (3.30e-01)	Acc@1  93.75 ( 85.75)
+Epoch: [38][242/243]	Time  0.192 ( 0.423)	Data  0.000 ( 0.190)	Loss 2.92e-01 (3.20e-01)	Acc@1  93.75 ( 86.42)
+accuracy 0.939
+roc_auc_score 0.999
+confusion_matrix
+[[11419   744]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 93.908
+1 0.9999951 0 0
+accuracy 0.939
+roc_auc_score 0.999
+confusion_matrix
+[[11421   742]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 93.924
+1 0.9999988 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [39][  0/243]	Time 48.325 (48.325)	Data 44.982 (44.982)	Loss 4.16e-01 (4.16e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [39][  0/243]	Time 47.142 (47.142)	Data 46.860 (46.860)	Loss 1.84e-01 (1.84e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [39][ 50/243]	Time  0.199 ( 1.173)	Data  0.000 ( 0.883)	Loss 3.92e-01 (3.49e-01)	Acc@1  81.25 ( 83.95)
+Epoch: [39][ 50/243]	Time  0.216 ( 1.150)	Data  0.000 ( 0.920)	Loss 3.41e-01 (3.35e-01)	Acc@1  81.25 ( 83.95)
+Epoch: [39][100/243]	Time  0.238 ( 0.695)	Data  0.000 ( 0.465)	Loss 2.26e-01 (3.32e-01)	Acc@1  87.50 ( 84.96)
+Epoch: [39][100/243]	Time  0.237 ( 0.706)	Data  0.000 ( 0.446)	Loss 2.69e-01 (3.36e-01)	Acc@1  81.25 ( 85.33)
+Epoch: [39][150/243]	Time  0.218 ( 0.548)	Data  0.000 ( 0.299)	Loss 1.87e-01 (3.30e-01)	Acc@1  93.75 ( 85.80)
+Epoch: [39][150/243]	Time  0.212 ( 0.540)	Data  0.000 ( 0.311)	Loss 2.95e-01 (3.29e-01)	Acc@1  87.50 ( 85.26)
+Epoch: [39][200/243]	Time  0.204 ( 0.466)	Data  0.001 ( 0.225)	Loss 1.97e-01 (3.27e-01)	Acc@1  93.75 ( 86.16)
+Epoch: [39][200/243]	Time  0.204 ( 0.460)	Data  0.000 ( 0.234)	Loss 4.26e-01 (3.31e-01)	Acc@1  81.25 ( 85.01)
+Epoch: [39][242/243]	Time  0.191 ( 0.420)	Data  0.000 ( 0.186)	Loss 3.24e-01 (3.28e-01)	Acc@1  87.50 ( 85.96)
+Epoch: [39][242/243]	Time  0.194 ( 0.415)	Data  0.000 ( 0.194)	Loss 3.46e-01 (3.30e-01)	Acc@1  87.50 ( 85.24)
+accuracy 0.953
+roc_auc_score 0.998
+confusion_matrix
+[[11593   570]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.324
+1 0.99999917 0 0
+accuracy 0.956
+roc_auc_score 0.998
+confusion_matrix
+[[11625   538]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      0.98      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.586
+1 0.9999958 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [40][  0/243]	Time 48.424 (48.424)	Data 44.776 (44.776)	Loss 1.89e-01 (1.89e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [40][  0/243]	Time 46.871 (46.871)	Data 46.610 (46.610)	Loss 3.63e-01 (3.63e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [40][ 50/243]	Time  0.268 ( 1.182)	Data  0.006 ( 0.879)	Loss 1.05e-01 (3.05e-01)	Acc@1 100.00 ( 86.89)
+Epoch: [40][ 50/243]	Time  0.285 ( 1.152)	Data  0.000 ( 0.916)	Loss 3.97e-01 (3.30e-01)	Acc@1  81.25 ( 84.44)
+Epoch: [40][100/243]	Time  0.249 ( 0.695)	Data  0.002 ( 0.463)	Loss 2.87e-01 (3.44e-01)	Acc@1  81.25 ( 84.78)
+Epoch: [40][100/243]	Time  0.253 ( 0.710)	Data  0.002 ( 0.445)	Loss 1.48e-01 (3.09e-01)	Acc@1  93.75 ( 86.39)
+Epoch: [40][150/243]	Time  0.205 ( 0.541)	Data  0.000 ( 0.310)	Loss 4.72e-01 (3.34e-01)	Acc@1  75.00 ( 85.60)
+Epoch: [40][150/243]	Time  0.209 ( 0.551)	Data  0.000 ( 0.298)	Loss 3.80e-01 (3.15e-01)	Acc@1  87.50 ( 86.13)
+Epoch: [40][200/243]	Time  0.207 ( 0.462)	Data  0.004 ( 0.233)	Loss 4.24e-01 (3.40e-01)	Acc@1  81.25 ( 84.67)
+Epoch: [40][200/243]	Time  0.211 ( 0.470)	Data  0.002 ( 0.224)	Loss 2.95e-01 (3.29e-01)	Acc@1  87.50 ( 85.70)
+Epoch: [40][242/243]	Time  0.191 ( 0.424)	Data  0.000 ( 0.185)	Loss 2.56e-01 (3.33e-01)	Acc@1  87.50 ( 85.26)
+Epoch: [40][242/243]	Time  0.191 ( 0.417)	Data  0.000 ( 0.193)	Loss 2.30e-01 (3.42e-01)	Acc@1  87.50 ( 84.59)
+accuracy 0.940
+roc_auc_score 0.999
+confusion_matrix
+[[11434   729]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.030
+1 0.9999962 0 0
+accuracy 0.940
+roc_auc_score 1.000
+confusion_matrix
+[[11434   729]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.030
+1 0.9999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [41][  0/243]	Time 47.541 (47.541)	Data 45.596 (45.596)	Loss 2.10e-01 (2.10e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [41][  0/243]	Time 46.402 (46.402)	Data 46.003 (46.003)	Loss 3.28e-01 (3.28e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [41][ 50/243]	Time  0.237 ( 1.152)	Data  0.000 ( 0.912)	Loss 3.56e-01 (3.32e-01)	Acc@1  68.75 ( 84.07)
+Epoch: [41][ 50/243]	Time  0.245 ( 1.174)	Data  0.000 ( 0.895)	Loss 4.88e-01 (3.37e-01)	Acc@1  81.25 ( 85.17)
+Epoch: [41][100/243]	Time  0.280 ( 0.706)	Data  0.001 ( 0.453)	Loss 2.01e-01 (3.61e-01)	Acc@1 100.00 ( 84.41)
+Epoch: [41][100/243]	Time  0.283 ( 0.695)	Data  0.000 ( 0.461)	Loss 2.38e-01 (3.39e-01)	Acc@1  93.75 ( 84.28)
+Epoch: [41][150/243]	Time  0.198 ( 0.541)	Data  0.000 ( 0.308)	Loss 5.38e-01 (3.36e-01)	Acc@1  87.50 ( 84.89)
+Epoch: [41][150/243]	Time  0.198 ( 0.549)	Data  0.001 ( 0.303)	Loss 2.68e-01 (3.47e-01)	Acc@1  81.25 ( 84.89)
+Epoch: [41][200/243]	Time  0.207 ( 0.464)	Data  0.000 ( 0.232)	Loss 1.47e-01 (3.33e-01)	Acc@1 100.00 ( 85.23)
+Epoch: [41][200/243]	Time  0.206 ( 0.469)	Data  0.009 ( 0.228)	Loss 2.13e-01 (3.38e-01)	Acc@1  93.75 ( 85.32)
+Epoch: [41][242/243]	Time  0.194 ( 0.424)	Data  0.000 ( 0.189)	Loss 1.83e-01 (3.31e-01)	Acc@1  93.75 ( 85.62)
+Epoch: [41][242/243]	Time  0.192 ( 0.419)	Data  0.000 ( 0.192)	Loss 2.88e-01 (3.31e-01)	Acc@1  81.25 ( 85.31)
+accuracy 0.945
+roc_auc_score 0.998
+confusion_matrix
+[[11498   665]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.96      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.546
+1 0.9999988 0 0
+accuracy 0.946
+roc_auc_score 0.997
+confusion_matrix
+[[11503   660]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.96      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.587
+1 0.99999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [42][  0/243]	Time 45.481 (45.481)	Data 45.100 (45.100)	Loss 3.73e-01 (3.73e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [42][  0/243]	Time 45.525 (45.525)	Data 45.156 (45.156)	Loss 5.39e-01 (5.39e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [42][ 50/243]	Time  0.196 ( 1.150)	Data  0.000 ( 0.885)	Loss 1.86e-01 (3.09e-01)	Acc@1  93.75 ( 86.40)
+Epoch: [42][ 50/243]	Time  0.201 ( 1.151)	Data  0.003 ( 0.906)	Loss 4.53e-01 (3.63e-01)	Acc@1  87.50 ( 84.07)
+Epoch: [42][100/243]	Time  0.204 ( 0.692)	Data  0.000 ( 0.448)	Loss 2.10e-01 (3.09e-01)	Acc@1  93.75 ( 86.20)
+Epoch: [42][100/243]	Time  0.202 ( 0.692)	Data  0.002 ( 0.458)	Loss 3.37e-01 (3.45e-01)	Acc@1  87.50 ( 85.33)
+Epoch: [42][150/243]	Time  0.223 ( 0.540)	Data  0.000 ( 0.307)	Loss 3.34e-01 (3.33e-01)	Acc@1  87.50 ( 85.97)
+Epoch: [42][150/243]	Time  0.223 ( 0.540)	Data  0.000 ( 0.300)	Loss 1.90e-01 (3.14e-01)	Acc@1  93.75 ( 86.30)
+Epoch: [42][200/243]	Time  0.213 ( 0.461)	Data  0.000 ( 0.225)	Loss 1.32e-01 (3.18e-01)	Acc@1 100.00 ( 85.95)
+Epoch: [42][200/243]	Time  0.216 ( 0.462)	Data  0.000 ( 0.231)	Loss 2.81e-01 (3.40e-01)	Acc@1  87.50 ( 85.51)
+Epoch: [42][242/243]	Time  0.200 ( 0.418)	Data  0.000 ( 0.187)	Loss 2.00e-01 (3.22e-01)	Acc@1  87.50 ( 85.70)
+Epoch: [42][242/243]	Time  0.201 ( 0.418)	Data  0.000 ( 0.191)	Loss 2.94e-01 (3.38e-01)	Acc@1  87.50 ( 85.47)
+accuracy 0.952
+roc_auc_score 0.999
+confusion_matrix
+[[11573   590]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.169
+1 0.99999905 0 0
+accuracy 0.951
+roc_auc_score 0.999
+confusion_matrix
+[[11562   601]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.08      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.079
+1 0.99999905 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [43][  0/243]	Time 48.604 (48.604)	Data 44.823 (44.823)	Loss 1.90e-01 (1.90e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [43][  0/243]	Time 46.561 (46.561)	Data 46.281 (46.281)	Loss 2.80e-01 (2.80e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [43][ 50/243]	Time  0.244 ( 1.141)	Data  0.000 ( 0.908)	Loss 2.73e-01 (3.28e-01)	Acc@1  87.50 ( 85.42)
+Epoch: [43][ 50/243]	Time  0.257 ( 1.182)	Data  0.002 ( 0.880)	Loss 3.17e-01 (3.15e-01)	Acc@1  75.00 ( 86.64)
+Epoch: [43][100/243]	Time  0.196 ( 0.710)	Data  0.000 ( 0.445)	Loss 2.16e-01 (3.26e-01)	Acc@1  93.75 ( 86.20)
+Epoch: [43][100/243]	Time  0.196 ( 0.690)	Data  0.000 ( 0.459)	Loss 4.93e-01 (3.34e-01)	Acc@1  81.25 ( 84.84)
+Epoch: [43][150/243]	Time  0.249 ( 0.538)	Data  0.000 ( 0.307)	Loss 6.08e-01 (3.37e-01)	Acc@1  68.75 ( 84.73)
+Epoch: [43][150/243]	Time  0.243 ( 0.551)	Data  0.000 ( 0.298)	Loss 1.73e-01 (3.20e-01)	Acc@1 100.00 ( 86.67)
+Epoch: [43][200/243]	Time  0.263 ( 0.460)	Data  0.000 ( 0.231)	Loss 2.14e-01 (3.42e-01)	Acc@1  87.50 ( 84.67)
+Epoch: [43][200/243]	Time  0.267 ( 0.470)	Data  0.001 ( 0.224)	Loss 2.21e-01 (3.23e-01)	Acc@1  93.75 ( 86.35)
+Epoch: [43][242/243]	Time  0.207 ( 0.424)	Data  0.000 ( 0.185)	Loss 2.63e-01 (3.27e-01)	Acc@1  93.75 ( 86.16)
+Epoch: [43][242/243]	Time  0.208 ( 0.416)	Data  0.000 ( 0.191)	Loss 2.49e-01 (3.47e-01)	Acc@1  81.25 ( 84.34)
+accuracy 0.954
+roc_auc_score 0.999
+confusion_matrix
+[[11596   567]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.357
+1 0.9999993 0 0
+accuracy 0.956
+roc_auc_score 0.998
+confusion_matrix
+[[11630   533]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      0.98      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.627
+1 0.99999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [44][  0/243]	Time 47.897 (47.897)	Data 44.663 (44.663)	Loss 2.64e-01 (2.64e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [44][  0/243]	Time 46.835 (46.835)	Data 46.604 (46.604)	Loss 2.72e-01 (2.72e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [44][ 50/243]	Time  0.201 ( 1.146)	Data  0.000 ( 0.914)	Loss 4.47e-01 (3.35e-01)	Acc@1  75.00 ( 86.15)
+Epoch: [44][ 50/243]	Time  0.196 ( 1.167)	Data  0.000 ( 0.877)	Loss 3.30e-01 (3.60e-01)	Acc@1  81.25 ( 83.82)
+Epoch: [44][100/243]	Time  0.212 ( 0.692)	Data  0.000 ( 0.462)	Loss 3.13e-01 (3.19e-01)	Acc@1  81.25 ( 86.08)
+Epoch: [44][100/243]	Time  0.229 ( 0.703)	Data  0.001 ( 0.443)	Loss 1.22e-01 (3.43e-01)	Acc@1 100.00 ( 85.27)
+Epoch: [44][150/243]	Time  0.216 ( 0.539)	Data  0.003 ( 0.310)	Loss 3.27e-01 (3.31e-01)	Acc@1  81.25 ( 85.51)
+Epoch: [44][150/243]	Time  0.222 ( 0.546)	Data  0.002 ( 0.297)	Loss 2.99e-01 (3.37e-01)	Acc@1  87.50 ( 85.47)
+Epoch: [44][200/243]	Time  0.227 ( 0.466)	Data  0.000 ( 0.223)	Loss 1.96e-01 (3.31e-01)	Acc@1 100.00 ( 85.91)
+Epoch: [44][200/243]	Time  0.233 ( 0.461)	Data  0.001 ( 0.233)	Loss 2.71e-01 (3.36e-01)	Acc@1  93.75 ( 85.45)
+Epoch: [44][242/243]	Time  0.199 ( 0.417)	Data  0.000 ( 0.193)	Loss 1.96e-01 (3.34e-01)	Acc@1  93.75 ( 85.62)
+Epoch: [44][242/243]	Time  0.199 ( 0.421)	Data  0.000 ( 0.185)	Loss 3.24e-01 (3.30e-01)	Acc@1  87.50 ( 85.91)
+accuracy 0.958
+roc_auc_score 0.999
+confusion_matrix
+[[11653   510]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      0.98      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.97      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 95.816
+1 0.9999999 0 0
+accuracy 0.957
+roc_auc_score 0.999
+confusion_matrix
+[[11635   528]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.676
+1 0.9999993 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [45][  0/243]	Time 46.442 (46.442)	Data 45.890 (45.890)	Loss 3.46e-01 (3.46e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [45][  0/243]	Time 46.286 (46.286)	Data 45.944 (45.944)	Loss 5.43e-01 (5.43e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [45][ 50/243]	Time  0.224 ( 1.146)	Data  0.000 ( 0.901)	Loss 3.10e-01 (3.26e-01)	Acc@1  87.50 ( 84.19)
+Epoch: [45][ 50/243]	Time  0.229 ( 1.143)	Data  0.000 ( 0.902)	Loss 1.88e-01 (3.80e-01)	Acc@1  93.75 ( 83.46)
+Epoch: [45][100/243]	Time  0.256 ( 0.690)	Data  0.000 ( 0.455)	Loss 2.50e-01 (3.31e-01)	Acc@1  87.50 ( 85.09)
+Epoch: [45][100/243]	Time  0.246 ( 0.688)	Data  0.003 ( 0.456)	Loss 3.23e-01 (3.37e-01)	Acc@1  87.50 ( 85.33)
+Epoch: [45][150/243]	Time  0.267 ( 0.537)	Data  0.001 ( 0.305)	Loss 4.04e-01 (3.43e-01)	Acc@1  75.00 ( 84.60)
+Epoch: [45][150/243]	Time  0.273 ( 0.536)	Data  0.002 ( 0.305)	Loss 3.23e-01 (3.35e-01)	Acc@1  93.75 ( 85.51)
+Epoch: [45][200/243]	Time  0.233 ( 0.459)	Data  0.002 ( 0.229)	Loss 2.91e-01 (3.39e-01)	Acc@1  81.25 ( 84.92)
+Epoch: [45][200/243]	Time  0.251 ( 0.458)	Data  0.000 ( 0.230)	Loss 1.60e-01 (3.31e-01)	Acc@1  93.75 ( 85.63)
+Epoch: [45][242/243]	Time  0.201 ( 0.415)	Data  0.000 ( 0.190)	Loss 3.69e-01 (3.38e-01)	Acc@1  81.25 ( 85.03)
+Epoch: [45][242/243]	Time  0.201 ( 0.416)	Data  0.000 ( 0.190)	Loss 3.86e-01 (3.36e-01)	Acc@1  81.25 ( 85.11)
+accuracy 0.943
+roc_auc_score 0.998
+confusion_matrix
+[[11468   695]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      0.98      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.96      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.301
+1 0.9999974 0 0
+accuracy 0.944
+roc_auc_score 0.998
+confusion_matrix
+[[11481   682]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.07      0.98      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.96      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.407
+1 0.999998 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [46][  0/243]	Time 49.296 (49.296)	Data 45.251 (45.251)	Loss 3.57e-01 (3.57e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [46][  0/243]	Time 46.000 (46.000)	Data 45.704 (45.704)	Loss 4.89e-01 (4.89e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [46][ 50/243]	Time  0.237 ( 1.199)	Data  0.001 ( 0.888)	Loss 1.76e-01 (3.33e-01)	Acc@1 100.00 ( 85.91)
+Epoch: [46][ 50/243]	Time  0.235 ( 1.134)	Data  0.000 ( 0.897)	Loss 3.84e-01 (3.42e-01)	Acc@1  81.25 ( 85.91)
+Epoch: [46][100/243]	Time  0.240 ( 0.683)	Data  0.003 ( 0.453)	Loss 2.89e-01 (3.29e-01)	Acc@1  87.50 ( 86.39)
+Epoch: [46][100/243]	Time  0.231 ( 0.716)	Data  0.000 ( 0.449)	Loss 3.66e-01 (3.44e-01)	Acc@1  81.25 ( 84.84)
+Epoch: [46][150/243]	Time  0.202 ( 0.553)	Data  0.000 ( 0.300)	Loss 2.16e-01 (3.28e-01)	Acc@1  93.75 ( 85.55)
+Epoch: [46][150/243]	Time  0.200 ( 0.531)	Data  0.000 ( 0.304)	Loss 1.92e-01 (3.31e-01)	Acc@1 100.00 ( 85.84)
+Epoch: [46][200/243]	Time  0.234 ( 0.472)	Data  0.002 ( 0.226)	Loss 5.69e-01 (3.23e-01)	Acc@1  68.75 ( 85.88)
+Epoch: [46][200/243]	Time  0.227 ( 0.456)	Data  0.000 ( 0.228)	Loss 3.27e-01 (3.28e-01)	Acc@1  75.00 ( 85.82)
+Epoch: [46][242/243]	Time  0.193 ( 0.426)	Data  0.000 ( 0.187)	Loss 3.40e-01 (3.23e-01)	Acc@1  81.25 ( 85.80)
+Epoch: [46][242/243]	Time  0.192 ( 0.412)	Data  0.000 ( 0.189)	Loss 4.02e-01 (3.24e-01)	Acc@1  87.50 ( 85.91)
+accuracy 0.951
+roc_auc_score 0.998
+confusion_matrix
+[[11567   596]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.111
+1 0.9999974 0 0
+accuracy 0.949
+roc_auc_score 0.998
+confusion_matrix
+[[11540   623]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.96      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.890
+1 0.9999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [47][  0/243]	Time 48.922 (48.922)	Data 44.773 (44.773)	Loss 2.91e-01 (2.91e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [47][  0/243]	Time 46.646 (46.646)	Data 46.366 (46.366)	Loss 2.24e-01 (2.24e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [47][ 50/243]	Time  0.209 ( 1.141)	Data  0.000 ( 0.910)	Loss 1.28e-01 (3.22e-01)	Acc@1  93.75 ( 86.89)
+Epoch: [47][ 50/243]	Time  0.204 ( 1.186)	Data  0.002 ( 0.879)	Loss 4.49e-01 (3.43e-01)	Acc@1  81.25 ( 84.31)
+Epoch: [47][100/243]	Time  0.226 ( 0.710)	Data  0.001 ( 0.444)	Loss 2.37e-01 (3.43e-01)	Acc@1  87.50 ( 84.34)
+Epoch: [47][100/243]	Time  0.228 ( 0.688)	Data  0.002 ( 0.460)	Loss 4.17e-01 (3.36e-01)	Acc@1  87.50 ( 86.20)
+Epoch: [47][150/243]	Time  0.222 ( 0.549)	Data  0.002 ( 0.298)	Loss 4.26e-01 (3.41e-01)	Acc@1  75.00 ( 84.77)
+Epoch: [47][150/243]	Time  0.220 ( 0.533)	Data  0.000 ( 0.308)	Loss 1.37e-01 (3.29e-01)	Acc@1  93.75 ( 85.93)
+Epoch: [47][200/243]	Time  0.233 ( 0.457)	Data  0.007 ( 0.232)	Loss 3.58e-01 (3.29e-01)	Acc@1  87.50 ( 85.88)
+Epoch: [47][200/243]	Time  0.241 ( 0.469)	Data  0.000 ( 0.224)	Loss 1.37e-01 (3.33e-01)	Acc@1 100.00 ( 85.51)
+Epoch: [47][242/243]	Time  0.192 ( 0.423)	Data  0.000 ( 0.185)	Loss 3.00e-01 (3.29e-01)	Acc@1  87.50 ( 85.73)
+Epoch: [47][242/243]	Time  0.192 ( 0.413)	Data  0.000 ( 0.192)	Loss 1.92e-01 (3.29e-01)	Acc@1  93.75 ( 85.73)
+accuracy 0.942
+roc_auc_score 1.000
+confusion_matrix
+[[11455   708]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.202
+1 0.9999989 0 0
+accuracy 0.942
+roc_auc_score 0.999
+confusion_matrix
+[[11458   705]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.227
+1 0.99999905 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [48][  0/243]	Time 45.776 (45.776)	Data 45.372 (45.372)	Loss 3.66e-01 (3.66e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [48][  0/243]	Time 46.209 (46.209)	Data 45.580 (45.580)	Loss 4.35e-01 (4.35e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [48][ 50/243]	Time  0.226 ( 1.140)	Data  0.002 ( 0.891)	Loss 2.26e-01 (3.10e-01)	Acc@1  87.50 ( 86.64)
+Epoch: [48][ 50/243]	Time  0.234 ( 1.148)	Data  0.004 ( 0.895)	Loss 1.76e-01 (3.37e-01)	Acc@1 100.00 ( 85.66)
+Epoch: [48][100/243]	Time  0.198 ( 0.691)	Data  0.000 ( 0.452)	Loss 3.20e-01 (3.23e-01)	Acc@1  81.25 ( 86.14)
+Epoch: [48][100/243]	Time  0.201 ( 0.686)	Data  0.000 ( 0.450)	Loss 1.85e-01 (3.25e-01)	Acc@1  93.75 ( 85.89)
+Epoch: [48][150/243]	Time  0.238 ( 0.538)	Data  0.000 ( 0.303)	Loss 4.81e-01 (3.26e-01)	Acc@1  81.25 ( 85.89)
+Epoch: [48][150/243]	Time  0.236 ( 0.535)	Data  0.000 ( 0.301)	Loss 3.26e-01 (3.29e-01)	Acc@1  93.75 ( 85.76)
+Epoch: [48][200/243]	Time  0.196 ( 0.461)	Data  0.000 ( 0.228)	Loss 3.10e-01 (3.27e-01)	Acc@1  87.50 ( 85.95)
+Epoch: [48][200/243]	Time  0.196 ( 0.459)	Data  0.000 ( 0.227)	Loss 3.29e-01 (3.28e-01)	Acc@1  81.25 ( 85.88)
+Epoch: [48][242/243]	Time  0.192 ( 0.417)	Data  0.000 ( 0.188)	Loss 4.59e-01 (3.31e-01)	Acc@1  75.00 ( 85.88)
+Epoch: [48][242/243]	Time  0.192 ( 0.415)	Data  0.000 ( 0.188)	Loss 4.24e-01 (3.31e-01)	Acc@1  68.75 ( 85.52)
+accuracy 0.946
+roc_auc_score 0.999
+confusion_matrix
+[[11504   659]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.604
+1 0.9999994 0 0
+accuracy 0.946
+roc_auc_score 1.000
+confusion_matrix
+[[11507   656]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.628
+1 0.99999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [49][  0/243]	Time 47.241 (47.241)	Data 44.068 (44.068)	Loss 3.12e-01 (3.12e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [49][  0/243]	Time 46.312 (46.312)	Data 46.013 (46.013)	Loss 4.25e-01 (4.25e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [49][ 50/243]	Time  0.220 ( 1.155)	Data  0.000 ( 0.865)	Loss 4.39e-01 (3.38e-01)	Acc@1  81.25 ( 84.80)
+Epoch: [49][ 50/243]	Time  0.223 ( 1.137)	Data  0.000 ( 0.903)	Loss 5.06e-01 (3.05e-01)	Acc@1  75.00 ( 86.52)
+Epoch: [49][100/243]	Time  0.216 ( 0.696)	Data  0.000 ( 0.437)	Loss 7.34e-01 (3.33e-01)	Acc@1  62.50 ( 85.15)
+Epoch: [49][100/243]	Time  0.221 ( 0.687)	Data  0.000 ( 0.457)	Loss 3.02e-01 (3.09e-01)	Acc@1  81.25 ( 86.57)
+Epoch: [49][150/243]	Time  0.212 ( 0.535)	Data  0.000 ( 0.306)	Loss 2.08e-01 (3.15e-01)	Acc@1 100.00 ( 86.26)
+Epoch: [49][150/243]	Time  0.212 ( 0.541)	Data  0.000 ( 0.293)	Loss 3.73e-01 (3.30e-01)	Acc@1  81.25 ( 85.26)
+Epoch: [49][200/243]	Time  0.234 ( 0.463)	Data  0.000 ( 0.220)	Loss 5.42e-01 (3.33e-01)	Acc@1  62.50 ( 85.11)
+Epoch: [49][200/243]	Time  0.234 ( 0.459)	Data  0.000 ( 0.230)	Loss 5.32e-01 (3.18e-01)	Acc@1  81.25 ( 86.04)
+Epoch: [49][242/243]	Time  0.204 ( 0.414)	Data  0.000 ( 0.190)	Loss 3.71e-01 (3.20e-01)	Acc@1  81.25 ( 86.01)
+Epoch: [49][242/243]	Time  0.202 ( 0.418)	Data  0.000 ( 0.182)	Loss 2.85e-01 (3.30e-01)	Acc@1  81.25 ( 85.37)
+accuracy 0.950
+roc_auc_score 0.999
+confusion_matrix
+[[11552   611]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.997
+1 0.99999833 0 0
+accuracy 0.950
+roc_auc_score 0.998
+confusion_matrix
+[[11559   604]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.96      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.046
+1 0.999998 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [50][  0/243]	Time 45.790 (45.790)	Data 45.534 (45.534)	Loss 3.76e-01 (3.76e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [50][  0/243]	Time 47.810 (47.810)	Data 43.940 (43.940)	Loss 3.09e-01 (3.09e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [50][ 50/243]	Time  0.235 ( 1.172)	Data  0.001 ( 0.863)	Loss 2.90e-01 (3.33e-01)	Acc@1  93.75 ( 86.52)
+Epoch: [50][ 50/243]	Time  0.247 ( 1.133)	Data  0.000 ( 0.898)	Loss 1.37e-01 (3.17e-01)	Acc@1 100.00 ( 86.40)
+Epoch: [50][100/243]	Time  0.220 ( 0.685)	Data  0.001 ( 0.454)	Loss 1.55e-01 (3.18e-01)	Acc@1  93.75 ( 86.70)
+Epoch: [50][100/243]	Time  0.222 ( 0.706)	Data  0.002 ( 0.436)	Loss 2.66e-01 (3.33e-01)	Acc@1  87.50 ( 85.46)
+Epoch: [50][150/243]	Time  0.263 ( 0.546)	Data  0.000 ( 0.292)	Loss 2.70e-01 (3.32e-01)	Acc@1  87.50 ( 85.80)
+Epoch: [50][150/243]	Time  0.261 ( 0.532)	Data  0.000 ( 0.304)	Loss 4.49e-01 (3.22e-01)	Acc@1  81.25 ( 86.01)
+Epoch: [50][200/243]	Time  0.269 ( 0.467)	Data  0.000 ( 0.220)	Loss 3.06e-01 (3.23e-01)	Acc@1  81.25 ( 86.13)
+Epoch: [50][200/243]	Time  0.277 ( 0.457)	Data  0.001 ( 0.229)	Loss 2.59e-01 (3.29e-01)	Acc@1  93.75 ( 85.70)
+Epoch: [50][242/243]	Time  0.192 ( 0.413)	Data  0.000 ( 0.189)	Loss 5.19e-01 (3.27e-01)	Acc@1  75.00 ( 85.78)
+Epoch: [50][242/243]	Time  0.193 ( 0.422)	Data  0.000 ( 0.182)	Loss 2.53e-01 (3.27e-01)	Acc@1  87.50 ( 85.57)
+accuracy 0.954
+roc_auc_score 0.999
+confusion_matrix
+[[11601   562]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.398
+1 0.9999995 0 0
+accuracy 0.952
+roc_auc_score 0.999
+confusion_matrix
+[[11574   589]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.177
+1 0.9999995 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [51][  0/243]	Time 47.506 (47.506)	Data 44.355 (44.355)	Loss 1.46e-01 (1.46e-01)	Acc@1 100.00 (100.00)
+Epoch: [51][  0/243]	Time 46.025 (46.025)	Data 45.730 (45.730)	Loss 2.13e-01 (2.13e-01)	Acc@1 100.00 (100.00)
+Epoch: [51][ 50/243]	Time  0.223 ( 1.135)	Data  0.000 ( 0.901)	Loss 2.89e-01 (3.22e-01)	Acc@1  93.75 ( 87.99)
+Epoch: [51][ 50/243]	Time  0.223 ( 1.164)	Data  0.000 ( 0.871)	Loss 5.95e-01 (3.34e-01)	Acc@1  75.00 ( 86.15)
+Epoch: [51][100/243]	Time  0.221 ( 0.703)	Data  0.001 ( 0.440)	Loss 3.93e-01 (3.22e-01)	Acc@1  93.75 ( 86.70)
+Epoch: [51][100/243]	Time  0.229 ( 0.688)	Data  0.000 ( 0.455)	Loss 5.52e-01 (3.35e-01)	Acc@1  81.25 ( 86.45)
+Epoch: [51][150/243]	Time  0.225 ( 0.535)	Data  0.000 ( 0.305)	Loss 1.34e-01 (3.33e-01)	Acc@1 100.00 ( 86.18)
+Epoch: [51][150/243]	Time  0.223 ( 0.545)	Data  0.002 ( 0.295)	Loss 3.59e-01 (3.14e-01)	Acc@1  87.50 ( 86.71)
+Epoch: [51][200/243]	Time  0.220 ( 0.467)	Data  0.000 ( 0.222)	Loss 3.77e-01 (3.25e-01)	Acc@1  81.25 ( 86.04)
+Epoch: [51][200/243]	Time  0.220 ( 0.459)	Data  0.000 ( 0.229)	Loss 2.11e-01 (3.28e-01)	Acc@1 100.00 ( 86.10)
+Epoch: [51][242/243]	Time  0.202 ( 0.416)	Data  0.000 ( 0.190)	Loss 5.30e-01 (3.30e-01)	Acc@1  75.00 ( 85.88)
+Epoch: [51][242/243]	Time  0.202 ( 0.422)	Data  0.000 ( 0.184)	Loss 2.34e-01 (3.23e-01)	Acc@1  87.50 ( 86.21)
+accuracy 0.940
+roc_auc_score 0.999
+confusion_matrix
+[[11435   728]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.039
+1 0.9999995 0 0
+accuracy 0.943
+roc_auc_score 0.998
+confusion_matrix
+[[11469   694]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      0.98      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.96      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.309
+1 0.99999917 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [52][  0/243]	Time 47.483 (47.483)	Data 44.341 (44.341)	Loss 1.92e-01 (1.92e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [52][  0/243]	Time 46.099 (46.099)	Data 45.830 (45.830)	Loss 2.26e-01 (2.26e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [52][ 50/243]	Time  0.215 ( 1.137)	Data  0.000 ( 0.900)	Loss 1.80e-01 (3.03e-01)	Acc@1 100.00 ( 86.52)
+Epoch: [52][ 50/243]	Time  0.219 ( 1.164)	Data  0.000 ( 0.870)	Loss 1.76e-01 (3.11e-01)	Acc@1  93.75 ( 85.78)
+Epoch: [52][100/243]	Time  0.197 ( 0.688)	Data  0.001 ( 0.455)	Loss 4.29e-01 (3.16e-01)	Acc@1  75.00 ( 86.45)
+Epoch: [52][100/243]	Time  0.201 ( 0.702)	Data  0.000 ( 0.440)	Loss 4.12e-01 (3.15e-01)	Acc@1  87.50 ( 86.26)
+Epoch: [52][150/243]	Time  0.249 ( 0.536)	Data  0.000 ( 0.304)	Loss 1.37e-01 (3.10e-01)	Acc@1 100.00 ( 87.29)
+Epoch: [52][150/243]	Time  0.250 ( 0.545)	Data  0.003 ( 0.295)	Loss 4.12e-01 (3.03e-01)	Acc@1  81.25 ( 86.88)
+Epoch: [52][200/243]	Time  0.251 ( 0.466)	Data  0.000 ( 0.222)	Loss 2.05e-01 (3.13e-01)	Acc@1  93.75 ( 86.38)
+Epoch: [52][200/243]	Time  0.236 ( 0.459)	Data  0.006 ( 0.229)	Loss 3.87e-01 (3.14e-01)	Acc@1  87.50 ( 87.13)
+Epoch: [52][242/243]	Time  0.197 ( 0.415)	Data  0.000 ( 0.190)	Loss 1.07e-01 (3.15e-01)	Acc@1  93.75 ( 87.11)
+Epoch: [52][242/243]	Time  0.198 ( 0.421)	Data  0.000 ( 0.183)	Loss 1.60e-01 (3.19e-01)	Acc@1  93.75 ( 86.27)
+accuracy 0.968
+roc_auc_score 0.998
+confusion_matrix
+[[11777   386]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.98     12163
+           1       0.11      0.98      0.20        49
+
+    accuracy                           0.97     12212
+   macro avg       0.56      0.97      0.59     12212
+weighted avg       1.00      0.97      0.98     12212
+
+VAL * Acc@1 96.831
+1 0.9999957 0 0
+accuracy 0.969
+roc_auc_score 1.000
+confusion_matrix
+[[11784   379]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.98     12163
+           1       0.11      1.00      0.21        49
+
+    accuracy                           0.97     12212
+   macro avg       0.56      0.98      0.59     12212
+weighted avg       1.00      0.97      0.98     12212
+
+VAL * Acc@1 96.896
+1 0.9999962 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [53][  0/243]	Time 45.795 (45.795)	Data 45.501 (45.501)	Loss 3.77e-01 (3.77e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [53][  0/243]	Time 46.744 (46.744)	Data 44.661 (44.661)	Loss 3.07e-01 (3.07e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [53][ 50/243]	Time  0.219 ( 1.134)	Data  0.000 ( 0.893)	Loss 2.10e-01 (3.30e-01)	Acc@1  93.75 ( 85.66)
+Epoch: [53][ 50/243]	Time  0.219 ( 1.152)	Data  0.003 ( 0.877)	Loss 2.57e-01 (3.22e-01)	Acc@1  81.25 ( 85.42)
+Epoch: [53][100/243]	Time  0.245 ( 0.687)	Data  0.000 ( 0.451)	Loss 2.41e-01 (3.22e-01)	Acc@1  93.75 ( 85.89)
+Epoch: [53][100/243]	Time  0.245 ( 0.696)	Data  0.001 ( 0.443)	Loss 1.61e-01 (3.25e-01)	Acc@1 100.00 ( 85.52)
+Epoch: [53][150/243]	Time  0.203 ( 0.540)	Data  0.000 ( 0.297)	Loss 2.92e-01 (3.35e-01)	Acc@1  87.50 ( 85.10)
+Epoch: [53][150/243]	Time  0.205 ( 0.534)	Data  0.000 ( 0.302)	Loss 2.48e-01 (3.32e-01)	Acc@1  87.50 ( 85.84)
+Epoch: [53][200/243]	Time  0.207 ( 0.461)	Data  0.000 ( 0.223)	Loss 3.39e-01 (3.31e-01)	Acc@1  87.50 ( 85.35)
+Epoch: [53][200/243]	Time  0.207 ( 0.457)	Data  0.000 ( 0.227)	Loss 3.01e-01 (3.34e-01)	Acc@1  87.50 ( 85.67)
+Epoch: [53][242/243]	Time  0.195 ( 0.414)	Data  0.000 ( 0.188)	Loss 2.15e-01 (3.27e-01)	Acc@1  87.50 ( 86.06)
+Epoch: [53][242/243]	Time  0.195 ( 0.418)	Data  0.000 ( 0.185)	Loss 2.28e-01 (3.26e-01)	Acc@1  93.75 ( 85.52)
+accuracy 0.942
+roc_auc_score 0.999
+confusion_matrix
+[[11453   710]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.186
+1 0.9999989 0 0
+accuracy 0.942
+roc_auc_score 0.999
+confusion_matrix
+[[11453   710]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.186
+1 0.9999994 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [54][  0/243]	Time 47.114 (47.114)	Data 44.151 (44.151)	Loss 3.29e-01 (3.29e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [54][  0/243]	Time 45.626 (45.626)	Data 45.359 (45.359)	Loss 2.13e-01 (2.13e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [54][ 50/243]	Time  0.231 ( 1.154)	Data  0.005 ( 0.867)	Loss 1.89e-01 (3.18e-01)	Acc@1 100.00 ( 86.03)
+Epoch: [54][ 50/243]	Time  0.231 ( 1.125)	Data  0.000 ( 0.890)	Loss 4.71e-01 (3.41e-01)	Acc@1  75.00 ( 84.56)
+Epoch: [54][100/243]	Time  0.244 ( 0.697)	Data  0.000 ( 0.438)	Loss 1.78e-01 (3.23e-01)	Acc@1  93.75 ( 85.95)
+Epoch: [54][100/243]	Time  0.246 ( 0.682)	Data  0.003 ( 0.450)	Loss 3.39e-01 (3.41e-01)	Acc@1  81.25 ( 84.65)
+Epoch: [54][150/243]	Time  0.249 ( 0.532)	Data  0.000 ( 0.301)	Loss 1.90e-01 (3.30e-01)	Acc@1  93.75 ( 85.39)
+Epoch: [54][150/243]	Time  0.256 ( 0.542)	Data  0.000 ( 0.293)	Loss 5.12e-01 (3.19e-01)	Acc@1  81.25 ( 86.13)
+Epoch: [54][200/243]	Time  0.201 ( 0.456)	Data  0.000 ( 0.226)	Loss 2.92e-01 (3.31e-01)	Acc@1  81.25 ( 85.32)
+Epoch: [54][200/243]	Time  0.201 ( 0.463)	Data  0.000 ( 0.221)	Loss 1.40e-01 (3.16e-01)	Acc@1 100.00 ( 86.13)
+Epoch: [54][242/243]	Time  0.198 ( 0.413)	Data  0.000 ( 0.187)	Loss 4.61e-01 (3.27e-01)	Acc@1  75.00 ( 85.52)
+Epoch: [54][242/243]	Time  0.202 ( 0.419)	Data  0.000 ( 0.182)	Loss 2.64e-01 (3.21e-01)	Acc@1  93.75 ( 85.93)
+accuracy 0.961
+roc_auc_score 0.999
+confusion_matrix
+[[11691   472]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.17        49
+
+    accuracy                           0.96     12212
+   macro avg       0.55      0.98      0.58     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 96.135
+1 0.9999968 0 0
+accuracy 0.960
+roc_auc_score 0.999
+confusion_matrix
+[[11678   485]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      0.98      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.97      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 96.020
+1 0.99999917 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [55][  0/243]	Time 46.172 (46.172)	Data 45.841 (45.841)	Loss 3.54e-01 (3.54e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [55][  0/243]	Time 46.083 (46.083)	Data 44.760 (44.760)	Loss 2.40e-01 (2.40e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [55][ 50/243]	Time  0.201 ( 1.142)	Data  0.000 ( 0.899)	Loss 4.75e-01 (3.23e-01)	Acc@1  81.25 ( 85.66)
+Epoch: [55][ 50/243]	Time  0.202 ( 1.140)	Data  0.000 ( 0.879)	Loss 1.99e-01 (3.26e-01)	Acc@1  93.75 ( 85.91)
+Epoch: [55][100/243]	Time  0.229 ( 0.689)	Data  0.000 ( 0.444)	Loss 4.45e-01 (3.19e-01)	Acc@1  75.00 ( 86.45)
+Epoch: [55][100/243]	Time  0.231 ( 0.690)	Data  0.002 ( 0.455)	Loss 1.17e-01 (3.23e-01)	Acc@1 100.00 ( 85.95)
+Epoch: [55][150/243]	Time  0.212 ( 0.536)	Data  0.001 ( 0.305)	Loss 3.78e-01 (3.28e-01)	Acc@1  81.25 ( 85.72)
+Epoch: [55][150/243]	Time  0.216 ( 0.536)	Data  0.001 ( 0.298)	Loss 3.85e-01 (3.19e-01)	Acc@1  87.50 ( 86.34)
+Epoch: [55][200/243]	Time  0.218 ( 0.460)	Data  0.000 ( 0.229)	Loss 5.91e-01 (3.21e-01)	Acc@1  68.75 ( 85.95)
+Epoch: [55][200/243]	Time  0.236 ( 0.459)	Data  0.000 ( 0.224)	Loss 3.31e-01 (3.28e-01)	Acc@1  81.25 ( 85.79)
+Epoch: [55][242/243]	Time  0.202 ( 0.415)	Data  0.000 ( 0.185)	Loss 3.58e-01 (3.25e-01)	Acc@1  81.25 ( 85.88)
+Epoch: [55][242/243]	Time  0.202 ( 0.416)	Data  0.000 ( 0.190)	Loss 4.44e-01 (3.25e-01)	Acc@1  68.75 ( 85.78)
+accuracy 0.941
+roc_auc_score 0.999
+confusion_matrix
+[[11439   724]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.071
+1 0.9999999 0 0
+accuracy 0.941
+roc_auc_score 1.000
+confusion_matrix
+[[11445   718]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.121
+1 0.9999995 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [56][  0/243]	Time 49.204 (49.204)	Data 44.643 (44.643)	Loss 2.33e-01 (2.33e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [56][  0/243]	Time 45.731 (45.731)	Data 45.477 (45.477)	Loss 2.78e-01 (2.78e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [56][ 50/243]	Time  0.198 ( 1.122)	Data  0.001 ( 0.893)	Loss 2.25e-01 (3.38e-01)	Acc@1  87.50 ( 85.17)
+Epoch: [56][ 50/243]	Time  0.203 ( 1.191)	Data  0.000 ( 0.876)	Loss 2.27e-01 (3.39e-01)	Acc@1  87.50 ( 84.93)
+Epoch: [56][100/243]	Time  0.250 ( 0.680)	Data  0.000 ( 0.452)	Loss 5.51e-01 (3.55e-01)	Acc@1  68.75 ( 83.91)
+Epoch: [56][100/243]	Time  0.251 ( 0.715)	Data  0.000 ( 0.443)	Loss 2.25e-01 (3.10e-01)	Acc@1  93.75 ( 85.83)
+Epoch: [56][150/243]	Time  0.232 ( 0.530)	Data  0.000 ( 0.302)	Loss 3.36e-01 (3.49e-01)	Acc@1  87.50 ( 84.44)
+Epoch: [56][150/243]	Time  0.225 ( 0.553)	Data  0.000 ( 0.296)	Loss 3.86e-01 (3.13e-01)	Acc@1  75.00 ( 85.72)
+Epoch: [56][200/243]	Time  0.236 ( 0.454)	Data  0.000 ( 0.227)	Loss 3.43e-01 (3.42e-01)	Acc@1  87.50 ( 84.70)
+Epoch: [56][200/243]	Time  0.235 ( 0.471)	Data  0.000 ( 0.223)	Loss 2.24e-01 (3.13e-01)	Acc@1  93.75 ( 86.29)
+Epoch: [56][242/243]	Time  0.197 ( 0.425)	Data  0.000 ( 0.184)	Loss 6.03e-01 (3.16e-01)	Acc@1  56.25 ( 86.11)
+Epoch: [56][242/243]	Time  0.196 ( 0.411)	Data  0.000 ( 0.188)	Loss 2.36e-01 (3.34e-01)	Acc@1  87.50 ( 85.19)
+accuracy 0.951
+roc_auc_score 0.998
+confusion_matrix
+[[11567   596]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.111
+1 0.9999981 0 0
+accuracy 0.949
+roc_auc_score 0.999
+confusion_matrix
+[[11537   626]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.874
+1 0.9999995 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [57][  0/243]	Time 46.066 (46.066)	Data 45.740 (45.740)	Loss 3.12e-01 (3.12e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [57][  0/243]	Time 46.828 (46.828)	Data 44.885 (44.885)	Loss 5.02e-01 (5.02e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [57][ 50/243]	Time  0.212 ( 1.134)	Data  0.000 ( 0.898)	Loss 4.33e-01 (3.23e-01)	Acc@1  81.25 ( 86.40)
+Epoch: [57][ 50/243]	Time  0.213 ( 1.149)	Data  0.000 ( 0.881)	Loss 3.48e-01 (3.31e-01)	Acc@1  87.50 ( 85.42)
+Epoch: [57][100/243]	Time  0.205 ( 0.692)	Data  0.001 ( 0.445)	Loss 1.44e-01 (3.20e-01)	Acc@1 100.00 ( 85.83)
+Epoch: [57][100/243]	Time  0.207 ( 0.684)	Data  0.000 ( 0.454)	Loss 4.35e-01 (3.18e-01)	Acc@1  75.00 ( 86.51)
+Epoch: [57][150/243]	Time  0.218 ( 0.539)	Data  0.000 ( 0.298)	Loss 4.07e-01 (3.18e-01)	Acc@1  75.00 ( 86.42)
+Epoch: [57][150/243]	Time  0.222 ( 0.534)	Data  0.001 ( 0.304)	Loss 3.80e-01 (3.23e-01)	Acc@1  87.50 ( 85.84)
+Epoch: [57][200/243]	Time  0.212 ( 0.460)	Data  0.000 ( 0.224)	Loss 1.95e-01 (3.09e-01)	Acc@1  81.25 ( 87.13)
+Epoch: [57][200/243]	Time  0.208 ( 0.456)	Data  0.001 ( 0.229)	Loss 2.21e-01 (3.17e-01)	Acc@1  87.50 ( 86.38)
+Epoch: [57][242/243]	Time  0.197 ( 0.416)	Data  0.000 ( 0.185)	Loss 5.23e-01 (3.08e-01)	Acc@1  68.75 ( 86.78)
+Epoch: [57][242/243]	Time  0.198 ( 0.413)	Data  0.000 ( 0.189)	Loss 2.40e-01 (3.13e-01)	Acc@1  93.75 ( 86.52)
+accuracy 0.935
+roc_auc_score 0.999
+confusion_matrix
+[[11375   788]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.11        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.96     12212
+
+VAL * Acc@1 93.547
+1 0.9999995 0 0
+accuracy 0.939
+roc_auc_score 1.000
+confusion_matrix
+[[11418   745]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.06      1.00      0.12        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.54     12212
+weighted avg       1.00      0.94      0.96     12212
+
+VAL * Acc@1 93.899
+1 0.99999905 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [58][  0/243]	Time 47.840 (47.840)	Data 44.174 (44.174)	Loss 5.49e-01 (5.49e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [58][  0/243]	Time 46.424 (46.424)	Data 46.161 (46.161)	Loss 1.05e-01 (1.05e-01)	Acc@1 100.00 (100.00)
+Epoch: [58][ 50/243]	Time  0.215 ( 1.170)	Data  0.000 ( 0.867)	Loss 3.00e-01 (3.09e-01)	Acc@1  87.50 ( 86.15)
+Epoch: [58][ 50/243]	Time  0.219 ( 1.142)	Data  0.000 ( 0.906)	Loss 3.28e-01 (3.53e-01)	Acc@1  93.75 ( 84.07)
+Epoch: [58][100/243]	Time  0.218 ( 0.689)	Data  0.000 ( 0.458)	Loss 1.64e-01 (3.35e-01)	Acc@1  93.75 ( 85.15)
+Epoch: [58][100/243]	Time  0.222 ( 0.703)	Data  0.001 ( 0.438)	Loss 1.33e-01 (3.22e-01)	Acc@1 100.00 ( 86.45)
+Epoch: [58][150/243]	Time  0.214 ( 0.546)	Data  0.002 ( 0.294)	Loss 2.90e-01 (3.20e-01)	Acc@1  93.75 ( 86.75)
+Epoch: [58][150/243]	Time  0.217 ( 0.537)	Data  0.001 ( 0.307)	Loss 4.69e-01 (3.28e-01)	Acc@1  87.50 ( 85.80)
+Epoch: [58][200/243]	Time  0.240 ( 0.467)	Data  0.000 ( 0.221)	Loss 1.52e-01 (3.20e-01)	Acc@1 100.00 ( 86.57)
+Epoch: [58][200/243]	Time  0.237 ( 0.460)	Data  0.000 ( 0.231)	Loss 2.38e-01 (3.28e-01)	Acc@1  87.50 ( 85.79)
+Epoch: [58][242/243]	Time  0.196 ( 0.421)	Data  0.000 ( 0.183)	Loss 4.09e-01 (3.20e-01)	Acc@1  68.75 ( 86.47)
+Epoch: [58][242/243]	Time  0.196 ( 0.415)	Data  0.000 ( 0.191)	Loss 1.92e-01 (3.27e-01)	Acc@1  93.75 ( 85.96)
+accuracy 0.954
+roc_auc_score 0.999
+confusion_matrix
+[[11597   566]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.365
+1 0.99999964 0 0
+accuracy 0.953
+roc_auc_score 0.999
+confusion_matrix
+[[11591   572]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.316
+1 0.9999999 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [59][  0/243]	Time 47.460 (47.460)	Data 44.105 (44.105)	Loss 2.43e-01 (2.43e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [59][  0/243]	Time 46.217 (46.217)	Data 45.925 (45.925)	Loss 5.15e-01 (5.15e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [59][ 50/243]	Time  0.270 ( 1.135)	Data  0.000 ( 0.902)	Loss 4.18e-01 (3.12e-01)	Acc@1  75.00 ( 86.27)
+Epoch: [59][ 50/243]	Time  0.286 ( 1.160)	Data  0.000 ( 0.866)	Loss 1.83e-01 (3.07e-01)	Acc@1  93.75 ( 87.13)
+Epoch: [59][100/243]	Time  0.228 ( 0.697)	Data  0.003 ( 0.438)	Loss 4.83e-01 (3.15e-01)	Acc@1  87.50 ( 87.00)
+Epoch: [59][100/243]	Time  0.227 ( 0.685)	Data  0.000 ( 0.456)	Loss 2.35e-01 (3.16e-01)	Acc@1  93.75 ( 85.95)
+Epoch: [59][150/243]	Time  0.213 ( 0.535)	Data  0.000 ( 0.305)	Loss 5.96e-01 (3.13e-01)	Acc@1  75.00 ( 86.18)
+Epoch: [59][150/243]	Time  0.215 ( 0.543)	Data  0.000 ( 0.293)	Loss 6.85e-01 (3.26e-01)	Acc@1  81.25 ( 85.84)
+Epoch: [59][200/243]	Time  0.199 ( 0.458)	Data  0.000 ( 0.229)	Loss 6.79e-01 (3.19e-01)	Acc@1  68.75 ( 86.04)
+Epoch: [59][200/243]	Time  0.204 ( 0.464)	Data  0.000 ( 0.220)	Loss 2.04e-01 (3.22e-01)	Acc@1  93.75 ( 86.07)
+Epoch: [59][242/243]	Time  0.195 ( 0.419)	Data  0.000 ( 0.182)	Loss 3.39e-01 (3.26e-01)	Acc@1  75.00 ( 85.83)
+Epoch: [59][242/243]	Time  0.209 ( 0.414)	Data  0.000 ( 0.190)	Loss 2.72e-01 (3.13e-01)	Acc@1  93.75 ( 86.57)
+accuracy 0.958
+roc_auc_score 0.999
+confusion_matrix
+[[11645   518]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.758
+1 0.9999993 0 0
+accuracy 0.956
+roc_auc_score 0.999
+confusion_matrix
+[[11625   538]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      0.98      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.586
+1 0.99999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [60][  0/243]	Time 47.410 (47.410)	Data 44.509 (44.509)	Loss 2.79e-01 (2.79e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [60][  0/243]	Time 46.284 (46.284)	Data 45.880 (45.880)	Loss 1.82e-01 (1.82e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [60][ 50/243]	Time  0.257 ( 1.139)	Data  0.000 ( 0.901)	Loss 3.98e-01 (3.04e-01)	Acc@1  68.75 ( 86.15)
+Epoch: [60][ 50/243]	Time  0.258 ( 1.162)	Data  0.000 ( 0.874)	Loss 2.50e-01 (2.89e-01)	Acc@1  81.25 ( 86.52)
+Epoch: [60][100/243]	Time  0.255 ( 0.699)	Data  0.000 ( 0.442)	Loss 5.14e-01 (2.90e-01)	Acc@1  75.00 ( 87.31)
+Epoch: [60][100/243]	Time  0.271 ( 0.688)	Data  0.000 ( 0.455)	Loss 1.07e-01 (3.19e-01)	Acc@1 100.00 ( 85.15)
+Epoch: [60][150/243]	Time  0.203 ( 0.543)	Data  0.000 ( 0.296)	Loss 2.69e-01 (2.97e-01)	Acc@1  87.50 ( 87.00)
+Epoch: [60][150/243]	Time  0.205 ( 0.535)	Data  0.000 ( 0.305)	Loss 3.42e-01 (3.21e-01)	Acc@1  81.25 ( 85.47)
+Epoch: [60][200/243]	Time  0.215 ( 0.464)	Data  0.000 ( 0.223)	Loss 2.90e-01 (3.05e-01)	Acc@1  87.50 ( 86.47)
+Epoch: [60][200/243]	Time  0.221 ( 0.458)	Data  0.000 ( 0.229)	Loss 2.19e-01 (3.15e-01)	Acc@1  93.75 ( 85.76)
+Epoch: [60][242/243]	Time  0.193 ( 0.415)	Data  0.000 ( 0.190)	Loss 1.47e-01 (3.13e-01)	Acc@1 100.00 ( 86.19)
+Epoch: [60][242/243]	Time  0.196 ( 0.419)	Data  0.000 ( 0.184)	Loss 3.71e-01 (3.01e-01)	Acc@1  75.00 ( 86.73)
+accuracy 0.952
+roc_auc_score 0.999
+confusion_matrix
+[[11577   586]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.201
+1 0.99999905 0 0
+accuracy 0.950
+roc_auc_score 0.999
+confusion_matrix
+[[11558   605]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.046
+1 0.99999964 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [61][  0/243]	Time 47.736 (47.736)	Data 43.913 (43.913)	Loss 3.51e-01 (3.51e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [61][  0/243]	Time 46.012 (46.012)	Data 45.701 (45.701)	Loss 1.86e-01 (1.86e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [61][ 50/243]	Time  0.254 ( 1.169)	Data  0.000 ( 0.863)	Loss 7.06e-01 (2.91e-01)	Acc@1  75.00 ( 87.13)
+Epoch: [61][ 50/243]	Time  0.255 ( 1.135)	Data  0.000 ( 0.897)	Loss 1.79e-01 (3.17e-01)	Acc@1  93.75 ( 85.91)
+Epoch: [61][100/243]	Time  0.249 ( 0.685)	Data  0.007 ( 0.453)	Loss 9.34e-02 (3.11e-01)	Acc@1 100.00 ( 86.82)
+Epoch: [61][100/243]	Time  0.253 ( 0.702)	Data  0.001 ( 0.436)	Loss 2.10e-01 (3.24e-01)	Acc@1  93.75 ( 85.52)
+Epoch: [61][150/243]	Time  0.211 ( 0.535)	Data  0.000 ( 0.304)	Loss 4.85e-01 (3.14e-01)	Acc@1  75.00 ( 86.42)
+Epoch: [61][150/243]	Time  0.229 ( 0.546)	Data  0.000 ( 0.292)	Loss 7.11e-01 (3.23e-01)	Acc@1  75.00 ( 85.60)
+Epoch: [61][200/243]	Time  0.246 ( 0.458)	Data  0.000 ( 0.228)	Loss 3.57e-01 (3.16e-01)	Acc@1  81.25 ( 86.16)
+Epoch: [61][200/243]	Time  0.241 ( 0.466)	Data  0.000 ( 0.220)	Loss 3.31e-01 (3.18e-01)	Acc@1  87.50 ( 86.01)
+Epoch: [61][242/243]	Time  0.206 ( 0.414)	Data  0.000 ( 0.189)	Loss 2.45e-01 (3.12e-01)	Acc@1  93.75 ( 86.32)
+Epoch: [61][242/243]	Time  0.204 ( 0.421)	Data  0.000 ( 0.182)	Loss 3.54e-01 (3.12e-01)	Acc@1  81.25 ( 86.34)
+accuracy 0.947
+roc_auc_score 0.998
+confusion_matrix
+[[11519   644]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.96      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.718
+1 0.99999976 0 0
+accuracy 0.951
+roc_auc_score 0.999
+confusion_matrix
+[[11562   601]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.070
+1 0.99999964 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [62][  0/243]	Time 48.088 (48.088)	Data 43.971 (43.971)	Loss 2.61e-01 (2.61e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [62][  0/243]	Time 46.363 (46.363)	Data 46.103 (46.103)	Loss 3.81e-01 (3.81e-01)	Acc@1  68.75 ( 68.75)
+Epoch: [62][ 50/243]	Time  0.283 ( 1.146)	Data  0.000 ( 0.907)	Loss 3.92e-01 (2.92e-01)	Acc@1  87.50 ( 88.24)
+Epoch: [62][ 50/243]	Time  0.288 ( 1.180)	Data  0.001 ( 0.863)	Loss 4.47e-01 (3.13e-01)	Acc@1  75.00 ( 86.15)
+Epoch: [62][100/243]	Time  0.198 ( 0.688)	Data  0.000 ( 0.458)	Loss 5.85e-01 (3.06e-01)	Acc@1  68.75 ( 87.31)
+Epoch: [62][100/243]	Time  0.201 ( 0.705)	Data  0.000 ( 0.437)	Loss 2.15e-01 (3.21e-01)	Acc@1  93.75 ( 85.89)
+Epoch: [62][150/243]	Time  0.225 ( 0.548)	Data  0.007 ( 0.292)	Loss 2.29e-01 (3.17e-01)	Acc@1  87.50 ( 85.84)
+Epoch: [62][150/243]	Time  0.228 ( 0.536)	Data  0.000 ( 0.307)	Loss 5.11e-01 (3.00e-01)	Acc@1  75.00 ( 87.50)
+Epoch: [62][200/243]	Time  0.205 ( 0.459)	Data  0.000 ( 0.231)	Loss 3.15e-01 (3.04e-01)	Acc@1  87.50 ( 87.06)
+Epoch: [62][200/243]	Time  0.208 ( 0.468)	Data  0.006 ( 0.220)	Loss 1.57e-01 (3.14e-01)	Acc@1  93.75 ( 85.88)
+Epoch: [62][242/243]	Time  0.195 ( 0.415)	Data  0.000 ( 0.191)	Loss 3.47e-01 (3.13e-01)	Acc@1  75.00 ( 86.39)
+Epoch: [62][242/243]	Time  0.195 ( 0.422)	Data  0.000 ( 0.182)	Loss 4.34e-01 (3.16e-01)	Acc@1  81.25 ( 85.73)
+accuracy 0.956
+roc_auc_score 0.999
+confusion_matrix
+[[11631   532]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      0.98      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.97      0.57     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.635
+1 0.9999999 0 0
+accuracy 0.956
+roc_auc_score 0.999
+confusion_matrix
+[[11630   533]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.635
+1 0.99999917 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [63][  0/243]	Time 47.470 (47.470)	Data 44.757 (44.757)	Loss 3.42e-01 (3.42e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [63][  0/243]	Time 46.161 (46.161)	Data 45.890 (45.890)	Loss 5.17e-01 (5.17e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [63][ 50/243]	Time  0.203 ( 1.159)	Data  0.000 ( 0.878)	Loss 3.11e-01 (3.25e-01)	Acc@1  87.50 ( 86.27)
+Epoch: [63][ 50/243]	Time  0.206 ( 1.134)	Data  0.000 ( 0.900)	Loss 3.72e-01 (3.27e-01)	Acc@1  75.00 ( 84.93)
+Epoch: [63][100/243]	Time  0.233 ( 0.684)	Data  0.001 ( 0.455)	Loss 2.63e-01 (3.31e-01)	Acc@1  87.50 ( 85.27)
+Epoch: [63][100/243]	Time  0.231 ( 0.697)	Data  0.000 ( 0.444)	Loss 2.06e-01 (3.12e-01)	Acc@1  93.75 ( 86.88)
+Epoch: [63][150/243]	Time  0.201 ( 0.541)	Data  0.000 ( 0.297)	Loss 2.97e-01 (3.21e-01)	Acc@1  81.25 ( 86.51)
+Epoch: [63][150/243]	Time  0.202 ( 0.532)	Data  0.000 ( 0.305)	Loss 4.97e-01 (3.23e-01)	Acc@1  68.75 ( 85.68)
+Epoch: [63][200/243]	Time  0.198 ( 0.463)	Data  0.000 ( 0.223)	Loss 1.82e-01 (3.24e-01)	Acc@1  93.75 ( 86.35)
+Epoch: [63][200/243]	Time  0.206 ( 0.456)	Data  0.000 ( 0.229)	Loss 3.68e-01 (3.22e-01)	Acc@1  81.25 ( 86.10)
+Epoch: [63][242/243]	Time  0.194 ( 0.418)	Data  0.000 ( 0.185)	Loss 3.13e-01 (3.17e-01)	Acc@1  87.50 ( 86.65)
+Epoch: [63][242/243]	Time  0.194 ( 0.413)	Data  0.000 ( 0.190)	Loss 5.48e-01 (3.16e-01)	Acc@1  81.25 ( 86.57)
+accuracy 0.950
+roc_auc_score 0.999
+confusion_matrix
+[[11556   607]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.029
+1 0.99999976 0 0
+accuracy 0.951
+roc_auc_score 0.999
+confusion_matrix
+[[11569   594]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.128
+1 0.99999857 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [64][  0/243]	Time 48.051 (48.051)	Data 43.759 (43.759)	Loss 1.35e-01 (1.35e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [64][  0/243]	Time 45.640 (45.640)	Data 45.389 (45.389)	Loss 1.75e-01 (1.75e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [64][ 50/243]	Time  0.244 ( 1.171)	Data  0.002 ( 0.859)	Loss 3.30e-01 (3.20e-01)	Acc@1  87.50 ( 86.89)
+Epoch: [64][ 50/243]	Time  0.247 ( 1.123)	Data  0.000 ( 0.892)	Loss 3.88e-01 (3.46e-01)	Acc@1  81.25 ( 84.56)
+Epoch: [64][100/243]	Time  0.236 ( 0.677)	Data  0.000 ( 0.451)	Loss 3.25e-01 (3.27e-01)	Acc@1  81.25 ( 85.21)
+Epoch: [64][100/243]	Time  0.220 ( 0.701)	Data  0.003 ( 0.434)	Loss 2.46e-01 (3.18e-01)	Acc@1  93.75 ( 87.00)
+Epoch: [64][150/243]	Time  0.219 ( 0.544)	Data  0.000 ( 0.291)	Loss 3.61e-01 (3.18e-01)	Acc@1  81.25 ( 86.67)
+Epoch: [64][150/243]	Time  0.217 ( 0.528)	Data  0.002 ( 0.302)	Loss 4.05e-01 (3.15e-01)	Acc@1  75.00 ( 86.13)
+Epoch: [64][200/243]	Time  0.257 ( 0.465)	Data  0.005 ( 0.219)	Loss 5.04e-01 (3.21e-01)	Acc@1  75.00 ( 86.23)
+Epoch: [64][200/243]	Time  0.253 ( 0.453)	Data  0.003 ( 0.227)	Loss 1.55e-01 (3.13e-01)	Acc@1  93.75 ( 86.19)
+Epoch: [64][242/243]	Time  0.196 ( 0.410)	Data  0.000 ( 0.188)	Loss 1.85e-01 (3.09e-01)	Acc@1  93.75 ( 86.19)
+Epoch: [64][242/243]	Time  0.196 ( 0.420)	Data  0.000 ( 0.181)	Loss 3.05e-01 (3.20e-01)	Acc@1  93.75 ( 86.42)
+accuracy 0.950
+roc_auc_score 0.999
+confusion_matrix
+[[11550   613]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.96      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.972
+1 0.9999968 0 0
+accuracy 0.949
+roc_auc_score 0.999
+confusion_matrix
+[[11545   618]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      0.98      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.96      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.931
+1 0.9999995 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [65][  0/243]	Time 45.772 (45.772)	Data 45.493 (45.493)	Loss 2.44e-01 (2.44e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [65][  0/243]	Time 47.063 (47.063)	Data 44.753 (44.753)	Loss 3.44e-01 (3.44e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [65][ 50/243]	Time  0.201 ( 1.157)	Data  0.000 ( 0.878)	Loss 1.89e-01 (3.19e-01)	Acc@1  87.50 ( 85.29)
+Epoch: [65][ 50/243]	Time  0.204 ( 1.132)	Data  0.000 ( 0.893)	Loss 2.76e-01 (2.75e-01)	Acc@1  93.75 ( 88.36)
+Epoch: [65][100/243]	Time  0.207 ( 0.695)	Data  0.000 ( 0.444)	Loss 2.78e-01 (3.15e-01)	Acc@1  87.50 ( 86.20)
+Epoch: [65][100/243]	Time  0.211 ( 0.682)	Data  0.001 ( 0.452)	Loss 5.58e-01 (2.95e-01)	Acc@1  68.75 ( 87.81)
+Epoch: [65][150/243]	Time  0.253 ( 0.533)	Data  0.000 ( 0.303)	Loss 5.34e-01 (3.13e-01)	Acc@1  81.25 ( 86.92)
+Epoch: [65][150/243]	Time  0.268 ( 0.541)	Data  0.000 ( 0.297)	Loss 2.69e-01 (3.16e-01)	Acc@1  87.50 ( 85.72)
+Epoch: [65][200/243]	Time  0.203 ( 0.457)	Data  0.001 ( 0.227)	Loss 1.08e-01 (3.19e-01)	Acc@1 100.00 ( 86.60)
+Epoch: [65][200/243]	Time  0.213 ( 0.463)	Data  0.005 ( 0.223)	Loss 3.11e-01 (3.15e-01)	Acc@1  81.25 ( 86.19)
+Epoch: [65][242/243]	Time  0.203 ( 0.419)	Data  0.000 ( 0.185)	Loss 5.73e-01 (3.20e-01)	Acc@1  68.75 ( 85.96)
+Epoch: [65][242/243]	Time  0.203 ( 0.414)	Data  0.000 ( 0.188)	Loss 3.76e-01 (3.18e-01)	Acc@1  87.50 ( 86.45)
+accuracy 0.948
+roc_auc_score 0.999
+confusion_matrix
+[[11522   641]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.751
+1 0.9999999 0 0
+accuracy 0.950
+roc_auc_score 0.999
+confusion_matrix
+[[11551   612]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.989
+1 0.9999987 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [66][  0/243]	Time 46.539 (46.539)	Data 43.847 (43.847)	Loss 4.88e-01 (4.88e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [66][  0/243]	Time 45.299 (45.299)	Data 45.030 (45.030)	Loss 3.62e-01 (3.62e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [66][ 50/243]	Time  0.221 ( 1.122)	Data  0.000 ( 0.884)	Loss 7.89e-01 (3.08e-01)	Acc@1  81.25 ( 87.38)
+Epoch: [66][ 50/243]	Time  0.228 ( 1.146)	Data  0.001 ( 0.861)	Loss 2.11e-01 (3.10e-01)	Acc@1  87.50 ( 86.76)
+Epoch: [66][100/243]	Time  0.231 ( 0.690)	Data  0.000 ( 0.435)	Loss 1.90e-01 (3.20e-01)	Acc@1  93.75 ( 86.82)
+Epoch: [66][100/243]	Time  0.228 ( 0.677)	Data  0.003 ( 0.447)	Loss 2.31e-01 (2.97e-01)	Acc@1  87.50 ( 87.56)
+Epoch: [66][150/243]	Time  0.208 ( 0.536)	Data  0.000 ( 0.291)	Loss 3.57e-01 (3.23e-01)	Acc@1  81.25 ( 85.93)
+Epoch: [66][150/243]	Time  0.201 ( 0.527)	Data  0.000 ( 0.299)	Loss 3.33e-01 (2.97e-01)	Acc@1  81.25 ( 87.17)
+Epoch: [66][200/243]	Time  0.235 ( 0.459)	Data  0.001 ( 0.219)	Loss 1.91e-01 (3.18e-01)	Acc@1  87.50 ( 86.19)
+Epoch: [66][200/243]	Time  0.221 ( 0.453)	Data  0.000 ( 0.225)	Loss 1.49e-01 (3.00e-01)	Acc@1 100.00 ( 87.28)
+Epoch: [66][242/243]	Time  0.196 ( 0.410)	Data  0.000 ( 0.186)	Loss 1.90e-01 (3.05e-01)	Acc@1  93.75 ( 86.86)
+Epoch: [66][242/243]	Time  0.196 ( 0.415)	Data  0.000 ( 0.181)	Loss 5.22e-01 (3.30e-01)	Acc@1  75.00 ( 85.37)
+accuracy 0.961
+roc_auc_score 0.999
+confusion_matrix
+[[11684   479]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.17        49
+
+    accuracy                           0.96     12212
+   macro avg       0.55      0.98      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 96.078
+1 0.99999964 0 0
+accuracy 0.960
+roc_auc_score 1.000
+confusion_matrix
+[[11673   490]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.17        49
+
+    accuracy                           0.96     12212
+   macro avg       0.55      0.98      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 95.988
+1 0.9999993 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [67][  0/243]	Time 46.717 (46.717)	Data 43.851 (43.851)	Loss 1.91e-01 (1.91e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [67][  0/243]	Time 45.394 (45.394)	Data 45.105 (45.105)	Loss 2.34e-01 (2.34e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [67][ 50/243]	Time  0.239 ( 1.122)	Data  0.000 ( 0.886)	Loss 2.37e-01 (2.95e-01)	Acc@1  93.75 ( 86.40)
+Epoch: [67][ 50/243]	Time  0.245 ( 1.148)	Data  0.000 ( 0.861)	Loss 4.00e-01 (3.47e-01)	Acc@1  81.25 ( 84.44)
+Epoch: [67][100/243]	Time  0.272 ( 0.679)	Data  0.000 ( 0.448)	Loss 1.49e-01 (2.98e-01)	Acc@1 100.00 ( 86.26)
+Epoch: [67][100/243]	Time  0.276 ( 0.692)	Data  0.000 ( 0.435)	Loss 4.01e-01 (3.35e-01)	Acc@1  75.00 ( 85.27)
+Epoch: [67][150/243]	Time  0.224 ( 0.536)	Data  0.002 ( 0.291)	Loss 2.29e-01 (3.25e-01)	Acc@1  87.50 ( 85.84)
+Epoch: [67][150/243]	Time  0.238 ( 0.528)	Data  0.000 ( 0.300)	Loss 2.18e-01 (3.03e-01)	Acc@1  87.50 ( 86.13)
+Epoch: [67][200/243]	Time  0.224 ( 0.453)	Data  0.004 ( 0.226)	Loss 3.29e-01 (3.10e-01)	Acc@1  87.50 ( 85.95)
+Epoch: [67][200/243]	Time  0.224 ( 0.460)	Data  0.002 ( 0.219)	Loss 2.54e-01 (3.21e-01)	Acc@1  93.75 ( 86.13)
+Epoch: [67][242/243]	Time  0.195 ( 0.416)	Data  0.000 ( 0.181)	Loss 2.17e-01 (3.18e-01)	Acc@1  93.75 ( 86.29)
+Epoch: [67][242/243]	Time  0.198 ( 0.410)	Data  0.000 ( 0.187)	Loss 2.35e-01 (3.15e-01)	Acc@1  93.75 ( 85.65)
+accuracy 0.954
+roc_auc_score 0.999
+confusion_matrix
+[[11603   560]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.414
+1 0.99999976 0 0
+accuracy 0.954
+roc_auc_score 1.000
+confusion_matrix
+[[11603   560]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.414
+1 0.99999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [68][  0/243]	Time 47.652 (47.652)	Data 43.209 (43.209)	Loss 2.69e-01 (2.69e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [68][  0/243]	Time 45.226 (45.226)	Data 44.977 (44.977)	Loss 6.07e-01 (6.07e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [68][ 50/243]	Time  0.214 ( 1.161)	Data  0.000 ( 0.848)	Loss 3.05e-01 (3.50e-01)	Acc@1  93.75 ( 85.78)
+Epoch: [68][ 50/243]	Time  0.219 ( 1.114)	Data  0.000 ( 0.883)	Loss 1.70e-01 (3.29e-01)	Acc@1  93.75 ( 86.89)
+Epoch: [68][100/243]	Time  0.207 ( 0.676)	Data  0.004 ( 0.446)	Loss 5.06e-01 (3.17e-01)	Acc@1  75.00 ( 86.51)
+Epoch: [68][100/243]	Time  0.221 ( 0.700)	Data  0.000 ( 0.429)	Loss 1.07e-01 (3.27e-01)	Acc@1 100.00 ( 86.20)
+Epoch: [68][150/243]	Time  0.245 ( 0.527)	Data  0.000 ( 0.299)	Loss 1.46e-01 (3.28e-01)	Acc@1  93.75 ( 86.22)
+Epoch: [68][150/243]	Time  0.231 ( 0.543)	Data  0.007 ( 0.287)	Loss 1.62e-01 (3.15e-01)	Acc@1 100.00 ( 86.84)
+Epoch: [68][200/243]	Time  0.218 ( 0.452)	Data  0.002 ( 0.225)	Loss 3.12e-01 (3.19e-01)	Acc@1  87.50 ( 86.41)
+Epoch: [68][200/243]	Time  0.223 ( 0.464)	Data  0.000 ( 0.216)	Loss 2.41e-01 (3.13e-01)	Acc@1  87.50 ( 86.85)
+Epoch: [68][242/243]	Time  0.196 ( 0.410)	Data  0.000 ( 0.186)	Loss 3.59e-01 (3.19e-01)	Acc@1  81.25 ( 86.37)
+Epoch: [68][242/243]	Time  0.196 ( 0.420)	Data  0.000 ( 0.179)	Loss 1.92e-01 (3.09e-01)	Acc@1  93.75 ( 87.06)
+accuracy 0.944
+roc_auc_score 0.999
+confusion_matrix
+[[11481   682]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.415
+1 0.9999999 0 0
+accuracy 0.947
+roc_auc_score 0.999
+confusion_matrix
+[[11515   648]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.694
+1 0.9999999 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [69][  0/243]	Time 46.034 (46.034)	Data 44.644 (44.644)	Loss 2.15e-01 (2.15e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [69][  0/243]	Time 44.997 (44.997)	Data 44.379 (44.379)	Loss 4.61e-01 (4.61e-01)	Acc@1  75.00 ( 75.00)
+Epoch: [69][ 50/243]	Time  0.249 ( 1.149)	Data  0.001 ( 0.876)	Loss 3.24e-01 (2.90e-01)	Acc@1  87.50 ( 88.36)
+Epoch: [69][ 50/243]	Time  0.253 ( 1.127)	Data  0.001 ( 0.872)	Loss 1.52e-01 (3.17e-01)	Acc@1 100.00 ( 86.15)
+Epoch: [69][100/243]	Time  0.231 ( 0.686)	Data  0.000 ( 0.440)	Loss 2.25e-01 (3.06e-01)	Acc@1  87.50 ( 86.88)
+Epoch: [69][100/243]	Time  0.231 ( 0.697)	Data  0.000 ( 0.443)	Loss 1.25e-01 (3.01e-01)	Acc@1 100.00 ( 87.81)
+Epoch: [69][150/243]	Time  0.248 ( 0.533)	Data  0.000 ( 0.295)	Loss 3.95e-01 (3.08e-01)	Acc@1  75.00 ( 86.55)
+Epoch: [69][150/243]	Time  0.254 ( 0.541)	Data  0.001 ( 0.297)	Loss 5.14e-01 (3.02e-01)	Acc@1  81.25 ( 87.54)
+Epoch: [69][200/243]	Time  0.244 ( 0.463)	Data  0.001 ( 0.223)	Loss 4.25e-01 (3.03e-01)	Acc@1  75.00 ( 87.53)
+Epoch: [69][200/243]	Time  0.255 ( 0.457)	Data  0.000 ( 0.222)	Loss 3.58e-01 (3.11e-01)	Acc@1  87.50 ( 86.38)
+Epoch: [69][242/243]	Time  0.200 ( 0.414)	Data  0.000 ( 0.184)	Loss 2.26e-01 (3.11e-01)	Acc@1  93.75 ( 86.50)
+Epoch: [69][242/243]	Time  0.195 ( 0.419)	Data  0.000 ( 0.185)	Loss 1.24e-01 (3.10e-01)	Acc@1 100.00 ( 87.01)
+accuracy 0.960
+roc_auc_score 0.998
+confusion_matrix
+[[11673   490]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      0.98      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.97      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 95.979
+1 0.99999976 0 0
+accuracy 0.956
+roc_auc_score 0.999
+confusion_matrix
+[[11631   532]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.644
+1 0.99999845 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [70][  0/243]	Time 47.415 (47.415)	Data 44.532 (44.532)	Loss 1.94e-01 (1.94e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [70][  0/243]	Time 46.159 (46.159)	Data 45.902 (45.902)	Loss 1.98e-01 (1.98e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [70][ 50/243]	Time  0.213 ( 1.135)	Data  0.000 ( 0.901)	Loss 3.88e-01 (3.49e-01)	Acc@1  81.25 ( 85.42)
+Epoch: [70][ 50/243]	Time  0.215 ( 1.160)	Data  0.000 ( 0.875)	Loss 1.97e-01 (3.28e-01)	Acc@1  87.50 ( 85.91)
+Epoch: [70][100/243]	Time  0.209 ( 0.700)	Data  0.000 ( 0.442)	Loss 3.82e-01 (3.28e-01)	Acc@1  81.25 ( 85.77)
+Epoch: [70][100/243]	Time  0.215 ( 0.688)	Data  0.000 ( 0.455)	Loss 1.48e-01 (3.25e-01)	Acc@1  93.75 ( 86.45)
+Epoch: [70][150/243]	Time  0.217 ( 0.544)	Data  0.000 ( 0.296)	Loss 5.42e-01 (3.27e-01)	Acc@1  75.00 ( 85.43)
+Epoch: [70][150/243]	Time  0.217 ( 0.536)	Data  0.002 ( 0.305)	Loss 2.69e-01 (3.13e-01)	Acc@1  87.50 ( 86.96)
+Epoch: [70][200/243]	Time  0.257 ( 0.459)	Data  0.001 ( 0.229)	Loss 2.14e-01 (3.14e-01)	Acc@1  87.50 ( 86.78)
+Epoch: [70][200/243]	Time  0.257 ( 0.466)	Data  0.001 ( 0.223)	Loss 2.07e-01 (3.22e-01)	Acc@1  87.50 ( 85.79)
+Epoch: [70][242/243]	Time  0.204 ( 0.422)	Data  0.000 ( 0.184)	Loss 3.79e-01 (3.18e-01)	Acc@1  81.25 ( 85.85)
+Epoch: [70][242/243]	Time  0.204 ( 0.417)	Data  0.000 ( 0.190)	Loss 2.43e-01 (3.17e-01)	Acc@1  93.75 ( 86.63)
+accuracy 0.945
+roc_auc_score 0.999
+confusion_matrix
+[[11494   669]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.522
+1 0.9999989 0 0
+accuracy 0.945
+roc_auc_score 0.999
+confusion_matrix
+[[11486   677]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.456
+1 0.99999976 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [71][  0/243]	Time 46.407 (46.407)	Data 43.907 (43.907)	Loss 2.44e-01 (2.44e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [71][  0/243]	Time 45.658 (45.658)	Data 45.364 (45.364)	Loss 2.26e-01 (2.26e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [71][ 50/243]	Time  0.214 ( 1.128)	Data  0.000 ( 0.890)	Loss 2.57e-01 (3.45e-01)	Acc@1  87.50 ( 84.93)
+Epoch: [71][ 50/243]	Time  0.212 ( 1.142)	Data  0.005 ( 0.862)	Loss 4.16e-01 (3.25e-01)	Acc@1  87.50 ( 86.27)
+Epoch: [71][100/243]	Time  0.204 ( 0.686)	Data  0.000 ( 0.450)	Loss 4.69e-01 (3.41e-01)	Acc@1  81.25 ( 85.15)
+Epoch: [71][100/243]	Time  0.209 ( 0.693)	Data  0.000 ( 0.436)	Loss 1.98e-01 (3.07e-01)	Acc@1  93.75 ( 86.94)
+Epoch: [71][150/243]	Time  0.216 ( 0.534)	Data  0.001 ( 0.302)	Loss 3.50e-01 (3.36e-01)	Acc@1  87.50 ( 85.22)
+Epoch: [71][150/243]	Time  0.202 ( 0.539)	Data  0.000 ( 0.292)	Loss 3.54e-01 (3.10e-01)	Acc@1  81.25 ( 86.26)
+Epoch: [71][200/243]	Time  0.222 ( 0.461)	Data  0.000 ( 0.219)	Loss 2.95e-01 (3.09e-01)	Acc@1  81.25 ( 86.44)
+Epoch: [71][200/243]	Time  0.220 ( 0.457)	Data  0.000 ( 0.227)	Loss 4.29e-01 (3.37e-01)	Acc@1  75.00 ( 85.01)
+Epoch: [71][242/243]	Time  0.202 ( 0.416)	Data  0.000 ( 0.182)	Loss 3.68e-01 (3.06e-01)	Acc@1  87.50 ( 86.75)
+Epoch: [71][242/243]	Time  0.202 ( 0.413)	Data  0.000 ( 0.188)	Loss 1.90e-01 (3.28e-01)	Acc@1 100.00 ( 85.65)
+accuracy 0.955
+roc_auc_score 0.999
+confusion_matrix
+[[11616   547]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.521
+1 0.9999956 0 0
+accuracy 0.958
+roc_auc_score 0.999
+confusion_matrix
+[[11652   511]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 95.816
+1 0.9999987 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [72][  0/243]	Time 46.768 (46.768)	Data 44.409 (44.409)	Loss 2.53e-01 (2.53e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [72][  0/243]	Time 45.883 (45.883)	Data 45.541 (45.541)	Loss 2.06e-01 (2.06e-01)	Acc@1 100.00 (100.00)
+Epoch: [72][ 50/243]	Time  0.220 ( 1.152)	Data  0.000 ( 0.872)	Loss 2.84e-01 (3.02e-01)	Acc@1  87.50 ( 87.01)
+Epoch: [72][ 50/243]	Time  0.216 ( 1.135)	Data  0.001 ( 0.895)	Loss 2.58e-01 (3.18e-01)	Acc@1  81.25 ( 86.27)
+Epoch: [72][100/243]	Time  0.204 ( 0.696)	Data  0.001 ( 0.441)	Loss 2.30e-01 (3.08e-01)	Acc@1  93.75 ( 86.94)
+Epoch: [72][100/243]	Time  0.209 ( 0.687)	Data  0.001 ( 0.452)	Loss 4.36e-01 (3.12e-01)	Acc@1  75.00 ( 85.83)
+Epoch: [72][150/243]	Time  0.209 ( 0.539)	Data  0.000 ( 0.295)	Loss 1.25e-01 (3.02e-01)	Acc@1 100.00 ( 87.13)
+Epoch: [72][150/243]	Time  0.207 ( 0.533)	Data  0.000 ( 0.303)	Loss 1.62e-01 (3.13e-01)	Acc@1  93.75 ( 86.26)
+Epoch: [72][200/243]	Time  0.258 ( 0.457)	Data  0.000 ( 0.228)	Loss 2.29e-01 (3.08e-01)	Acc@1  87.50 ( 86.66)
+Epoch: [72][200/243]	Time  0.261 ( 0.461)	Data  0.000 ( 0.222)	Loss 1.73e-01 (2.99e-01)	Acc@1 100.00 ( 87.22)
+Epoch: [72][242/243]	Time  0.201 ( 0.414)	Data  0.000 ( 0.188)	Loss 3.33e-01 (3.14e-01)	Acc@1  81.25 ( 86.50)
+Epoch: [72][242/243]	Time  0.201 ( 0.417)	Data  0.000 ( 0.184)	Loss 1.18e-01 (3.03e-01)	Acc@1 100.00 ( 87.09)
+accuracy 0.951
+roc_auc_score 0.999
+confusion_matrix
+[[11562   601]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.08      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.079
+1 0.99999905 0 0
+accuracy 0.950
+roc_auc_score 1.000
+confusion_matrix
+[[11554   609]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.013
+1 0.9999999 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [73][  0/243]	Time 45.566 (45.566)	Data 45.152 (45.152)	Loss 2.84e-01 (2.84e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [73][  0/243]	Time 46.515 (46.515)	Data 44.764 (44.764)	Loss 2.59e-01 (2.59e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [73][ 50/243]	Time  0.213 ( 1.128)	Data  0.000 ( 0.887)	Loss 1.62e-01 (2.96e-01)	Acc@1 100.00 ( 87.01)
+Epoch: [73][ 50/243]	Time  0.220 ( 1.146)	Data  0.000 ( 0.878)	Loss 2.70e-01 (3.07e-01)	Acc@1  87.50 ( 87.87)
+Epoch: [73][100/243]	Time  0.233 ( 0.690)	Data  0.000 ( 0.444)	Loss 1.16e-01 (3.01e-01)	Acc@1  93.75 ( 87.19)
+Epoch: [73][100/243]	Time  0.238 ( 0.681)	Data  0.001 ( 0.448)	Loss 1.60e-01 (3.05e-01)	Acc@1 100.00 ( 86.63)
+Epoch: [73][150/243]	Time  0.234 ( 0.530)	Data  0.000 ( 0.300)	Loss 2.04e-01 (3.04e-01)	Acc@1  93.75 ( 87.17)
+Epoch: [73][150/243]	Time  0.234 ( 0.537)	Data  0.000 ( 0.297)	Loss 3.81e-01 (3.27e-01)	Acc@1  81.25 ( 86.09)
+Epoch: [73][200/243]	Time  0.220 ( 0.459)	Data  0.000 ( 0.223)	Loss 3.43e-01 (3.22e-01)	Acc@1  87.50 ( 86.35)
+Epoch: [73][200/243]	Time  0.217 ( 0.455)	Data  0.002 ( 0.226)	Loss 3.10e-01 (3.14e-01)	Acc@1  81.25 ( 86.50)
+Epoch: [73][242/243]	Time  0.197 ( 0.412)	Data  0.000 ( 0.187)	Loss 8.08e-02 (3.11e-01)	Acc@1 100.00 ( 86.52)
+Epoch: [73][242/243]	Time  0.197 ( 0.416)	Data  0.000 ( 0.185)	Loss 2.75e-01 (3.19e-01)	Acc@1  87.50 ( 86.55)
+accuracy 0.959
+roc_auc_score 0.999
+confusion_matrix
+[[11658   505]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 95.865
+1 0.9999999 0 0
+accuracy 0.960
+roc_auc_score 0.999
+confusion_matrix
+[[11678   485]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.17        49
+
+    accuracy                           0.96     12212
+   macro avg       0.55      0.98      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 96.028
+1 0.9999999 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [74][  0/243]	Time 46.855 (46.855)	Data 43.983 (43.983)	Loss 4.26e-01 (4.26e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [74][  0/243]	Time 45.675 (45.675)	Data 45.244 (45.244)	Loss 1.32e-01 (1.32e-01)	Acc@1 100.00 (100.00)
+Epoch: [74][ 50/243]	Time  0.217 ( 1.124)	Data  0.000 ( 0.888)	Loss 2.47e-01 (3.30e-01)	Acc@1  93.75 ( 85.91)
+Epoch: [74][ 50/243]	Time  0.210 ( 1.147)	Data  0.000 ( 0.863)	Loss 3.84e-01 (3.04e-01)	Acc@1  81.25 ( 86.76)
+Epoch: [74][100/243]	Time  0.269 ( 0.691)	Data  0.000 ( 0.436)	Loss 1.92e-01 (3.03e-01)	Acc@1  93.75 ( 86.76)
+Epoch: [74][100/243]	Time  0.273 ( 0.679)	Data  0.000 ( 0.449)	Loss 3.94e-01 (3.46e-01)	Acc@1  81.25 ( 84.96)
+Epoch: [74][150/243]	Time  0.211 ( 0.532)	Data  0.000 ( 0.301)	Loss 2.90e-01 (3.29e-01)	Acc@1  81.25 ( 85.60)
+Epoch: [74][150/243]	Time  0.229 ( 0.540)	Data  0.000 ( 0.292)	Loss 1.34e-01 (3.13e-01)	Acc@1  93.75 ( 86.01)
+Epoch: [74][200/243]	Time  0.228 ( 0.455)	Data  0.000 ( 0.226)	Loss 2.85e-01 (3.28e-01)	Acc@1  87.50 ( 85.60)
+Epoch: [74][200/243]	Time  0.242 ( 0.461)	Data  0.000 ( 0.220)	Loss 4.57e-01 (3.13e-01)	Acc@1  81.25 ( 86.13)
+Epoch: [74][242/243]	Time  0.204 ( 0.413)	Data  0.000 ( 0.187)	Loss 3.20e-01 (3.29e-01)	Acc@1  87.50 ( 85.55)
+Epoch: [74][242/243]	Time  0.204 ( 0.418)	Data  0.000 ( 0.182)	Loss 5.54e-01 (3.17e-01)	Acc@1  75.00 ( 86.11)
+accuracy 0.958
+roc_auc_score 1.000
+confusion_matrix
+[[11645   518]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.758
+1 0.99999857 0 0
+accuracy 0.957
+roc_auc_score 0.999
+confusion_matrix
+[[11636   527]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.685
+1 0.9999999 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [75][  0/243]	Time 47.206 (47.206)	Data 44.460 (44.460)	Loss 1.81e-01 (1.81e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [75][  0/243]	Time 45.768 (45.768)	Data 45.507 (45.507)	Loss 2.99e-01 (2.99e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [75][ 50/243]	Time  0.226 ( 1.130)	Data  0.000 ( 0.900)	Loss 2.66e-01 (3.12e-01)	Acc@1  87.50 ( 86.03)
+Epoch: [75][ 50/243]	Time  0.231 ( 1.159)	Data  0.000 ( 0.873)	Loss 1.94e-01 (3.56e-01)	Acc@1  93.75 ( 84.07)
+Epoch: [75][100/243]	Time  0.198 ( 0.698)	Data  0.000 ( 0.441)	Loss 1.90e-01 (3.36e-01)	Acc@1  93.75 ( 85.46)
+Epoch: [75][100/243]	Time  0.199 ( 0.684)	Data  0.000 ( 0.455)	Loss 4.68e-01 (3.31e-01)	Acc@1  81.25 ( 85.21)
+Epoch: [75][150/243]	Time  0.202 ( 0.533)	Data  0.000 ( 0.305)	Loss 1.71e-01 (3.31e-01)	Acc@1 100.00 ( 85.06)
+Epoch: [75][150/243]	Time  0.205 ( 0.543)	Data  0.000 ( 0.295)	Loss 5.20e-01 (3.27e-01)	Acc@1  75.00 ( 85.68)
+Epoch: [75][200/243]	Time  0.215 ( 0.463)	Data  0.005 ( 0.222)	Loss 3.06e-01 (3.22e-01)	Acc@1  87.50 ( 85.82)
+Epoch: [75][200/243]	Time  0.210 ( 0.456)	Data  0.000 ( 0.229)	Loss 2.50e-01 (3.28e-01)	Acc@1  87.50 ( 85.39)
+Epoch: [75][242/243]	Time  0.195 ( 0.419)	Data  0.000 ( 0.184)	Loss 2.21e-01 (3.22e-01)	Acc@1  87.50 ( 85.67)
+Epoch: [75][242/243]	Time  0.197 ( 0.413)	Data  0.000 ( 0.189)	Loss 1.37e-01 (3.27e-01)	Acc@1 100.00 ( 85.55)
+accuracy 0.961
+roc_auc_score 0.999
+confusion_matrix
+[[11688   475]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.17        49
+
+    accuracy                           0.96     12212
+   macro avg       0.55      0.98      0.58     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 96.110
+1 0.9999982 0 0
+accuracy 0.959
+roc_auc_score 1.000
+confusion_matrix
+[[11665   498]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 95.922
+1 0.9999993 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [76][  0/243]	Time 48.186 (48.186)	Data 43.743 (43.743)	Loss 2.59e-01 (2.59e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [76][  0/243]	Time 46.322 (46.322)	Data 46.081 (46.081)	Loss 1.39e-01 (1.39e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [76][ 50/243]	Time  0.236 ( 1.167)	Data  0.000 ( 0.858)	Loss 3.26e-01 (3.08e-01)	Acc@1  87.50 ( 87.62)
+Epoch: [76][ 50/243]	Time  0.224 ( 1.131)	Data  0.000 ( 0.904)	Loss 1.15e-01 (3.07e-01)	Acc@1 100.00 ( 86.27)
+Epoch: [76][100/243]	Time  0.219 ( 0.699)	Data  0.000 ( 0.434)	Loss 1.67e-01 (3.16e-01)	Acc@1 100.00 ( 86.14)
+Epoch: [76][100/243]	Time  0.217 ( 0.681)	Data  0.000 ( 0.457)	Loss 3.14e-01 (3.27e-01)	Acc@1  87.50 ( 85.77)
+Epoch: [76][150/243]	Time  0.208 ( 0.531)	Data  0.000 ( 0.306)	Loss 2.92e-01 (3.27e-01)	Acc@1  87.50 ( 85.31)
+Epoch: [76][150/243]	Time  0.213 ( 0.543)	Data  0.001 ( 0.291)	Loss 3.97e-01 (3.18e-01)	Acc@1  81.25 ( 85.97)
+Epoch: [76][200/243]	Time  0.222 ( 0.454)	Data  0.000 ( 0.230)	Loss 2.99e-01 (3.15e-01)	Acc@1  87.50 ( 86.07)
+Epoch: [76][200/243]	Time  0.229 ( 0.463)	Data  0.000 ( 0.219)	Loss 1.23e-01 (3.11e-01)	Acc@1 100.00 ( 86.16)
+Epoch: [76][242/243]	Time  0.198 ( 0.411)	Data  0.000 ( 0.190)	Loss 3.91e-01 (3.12e-01)	Acc@1  75.00 ( 86.32)
+Epoch: [76][242/243]	Time  0.198 ( 0.419)	Data  0.000 ( 0.181)	Loss 1.02e-01 (3.10e-01)	Acc@1 100.00 ( 86.37)
+accuracy 0.955
+roc_auc_score 0.999
+confusion_matrix
+[[11617   546]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.529
+1 0.99999964 0 0
+accuracy 0.957
+roc_auc_score 0.999
+confusion_matrix
+[[11637   526]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      0.98      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.97      0.57     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.685
+1 0.9999999 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [77][  0/243]	Time 45.778 (45.778)	Data 45.424 (45.424)	Loss 2.45e-01 (2.45e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [77][  0/243]	Time 47.590 (47.590)	Data 44.006 (44.006)	Loss 1.41e-01 (1.41e-01)	Acc@1 100.00 (100.00)
+Epoch: [77][ 50/243]	Time  0.222 ( 1.127)	Data  0.000 ( 0.892)	Loss 1.56e-01 (2.94e-01)	Acc@1  93.75 ( 87.50)
+Epoch: [77][ 50/243]	Time  0.220 ( 1.163)	Data  0.001 ( 0.864)	Loss 4.75e-01 (3.62e-01)	Acc@1  81.25 ( 84.80)
+Epoch: [77][100/243]	Time  0.197 ( 0.695)	Data  0.000 ( 0.437)	Loss 5.77e-01 (3.45e-01)	Acc@1  81.25 ( 85.09)
+Epoch: [77][100/243]	Time  0.198 ( 0.677)	Data  0.000 ( 0.451)	Loss 2.63e-01 (2.98e-01)	Acc@1  93.75 ( 87.25)
+Epoch: [77][150/243]	Time  0.198 ( 0.528)	Data  0.000 ( 0.302)	Loss 3.81e-01 (3.08e-01)	Acc@1  81.25 ( 86.71)
+Epoch: [77][150/243]	Time  0.200 ( 0.540)	Data  0.001 ( 0.292)	Loss 3.99e-01 (3.34e-01)	Acc@1  81.25 ( 85.47)
+Epoch: [77][200/243]	Time  0.251 ( 0.461)	Data  0.000 ( 0.220)	Loss 8.26e-01 (3.27e-01)	Acc@1  68.75 ( 85.76)
+Epoch: [77][200/243]	Time  0.249 ( 0.452)	Data  0.000 ( 0.227)	Loss 3.32e-01 (3.10e-01)	Acc@1  87.50 ( 86.54)
+Epoch: [77][242/243]	Time  0.200 ( 0.410)	Data  0.000 ( 0.188)	Loss 3.11e-01 (3.14e-01)	Acc@1  81.25 ( 86.29)
+Epoch: [77][242/243]	Time  0.200 ( 0.417)	Data  0.000 ( 0.182)	Loss 2.92e-01 (3.26e-01)	Acc@1  87.50 ( 85.70)
+accuracy 0.955
+roc_auc_score 1.000
+confusion_matrix
+[[11617   546]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.96      0.97     12212
+
+VAL * Acc@1 95.529
+1 1.0 0 0
+accuracy 0.958
+roc_auc_score 0.999
+confusion_matrix
+[[11648   515]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.96      0.98     12163
+           1       0.09      1.00      0.16        49
+
+    accuracy                           0.96     12212
+   macro avg       0.54      0.98      0.57     12212
+weighted avg       1.00      0.96      0.98     12212
+
+VAL * Acc@1 95.783
+1 0.99999964 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [78][  0/243]	Time 45.334 (45.334)	Data 44.852 (44.852)	Loss 2.12e-01 (2.12e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [78][  0/243]	Time 45.672 (45.672)	Data 44.840 (44.840)	Loss 3.87e-01 (3.87e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [78][ 50/243]	Time  0.204 ( 1.144)	Data  0.001 ( 0.881)	Loss 4.10e-01 (3.26e-01)	Acc@1  68.75 ( 85.17)
+Epoch: [78][ 50/243]	Time  0.218 ( 1.138)	Data  0.000 ( 0.888)	Loss 6.63e-01 (3.04e-01)	Acc@1  68.75 ( 87.50)
+Epoch: [78][100/243]	Time  0.226 ( 0.686)	Data  0.000 ( 0.449)	Loss 2.42e-01 (3.04e-01)	Acc@1  93.75 ( 87.25)
+Epoch: [78][100/243]	Time  0.248 ( 0.689)	Data  0.002 ( 0.445)	Loss 2.38e-01 (3.20e-01)	Acc@1  87.50 ( 85.89)
+Epoch: [78][150/243]	Time  0.215 ( 0.536)	Data  0.000 ( 0.298)	Loss 1.35e-01 (3.15e-01)	Acc@1  93.75 ( 86.18)
+Epoch: [78][150/243]	Time  0.220 ( 0.534)	Data  0.000 ( 0.301)	Loss 2.36e-01 (2.96e-01)	Acc@1  93.75 ( 87.38)
+Epoch: [78][200/243]	Time  0.202 ( 0.456)	Data  0.000 ( 0.226)	Loss 3.12e-01 (3.00e-01)	Acc@1  87.50 ( 87.16)
+Epoch: [78][200/243]	Time  0.207 ( 0.458)	Data  0.006 ( 0.224)	Loss 4.64e-01 (3.16e-01)	Acc@1  87.50 ( 86.16)
+Epoch: [78][242/243]	Time  0.200 ( 0.412)	Data  0.000 ( 0.187)	Loss 3.59e-01 (3.01e-01)	Acc@1  81.25 ( 87.19)
+Epoch: [78][242/243]	Time  0.200 ( 0.413)	Data  0.000 ( 0.186)	Loss 4.60e-01 (3.13e-01)	Acc@1  81.25 ( 86.39)
+accuracy 0.955
+roc_auc_score 0.999
+confusion_matrix
+[[11609   554]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      1.00      0.15        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.463
+1 1.0 0 0
+accuracy 0.952
+roc_auc_score 0.998
+confusion_matrix
+[[11576   587]
+ [    1    48]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.98     12163
+           1       0.08      0.98      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.185
+1 0.9999994 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [79][  0/243]	Time 45.911 (45.911)	Data 45.339 (45.339)	Loss 1.55e-01 (1.55e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [79][  0/243]	Time 46.526 (46.526)	Data 44.584 (44.584)	Loss 1.18e-01 (1.18e-01)	Acc@1 100.00 (100.00)
+Epoch: [79][ 50/243]	Time  0.247 ( 1.136)	Data  0.001 ( 0.890)	Loss 1.33e-01 (3.02e-01)	Acc@1 100.00 ( 85.66)
+Epoch: [79][ 50/243]	Time  0.245 ( 1.148)	Data  0.002 ( 0.875)	Loss 2.28e-01 (2.75e-01)	Acc@1  93.75 ( 87.50)
+Epoch: [79][100/243]	Time  0.247 ( 0.684)	Data  0.000 ( 0.450)	Loss 3.08e-01 (3.07e-01)	Acc@1  87.50 ( 85.83)
+Epoch: [79][100/243]	Time  0.243 ( 0.690)	Data  0.003 ( 0.442)	Loss 3.23e-01 (2.83e-01)	Acc@1  81.25 ( 87.25)
+Epoch: [79][150/243]	Time  0.210 ( 0.534)	Data  0.000 ( 0.296)	Loss 3.20e-01 (2.96e-01)	Acc@1  93.75 ( 86.80)
+Epoch: [79][150/243]	Time  0.214 ( 0.530)	Data  0.006 ( 0.301)	Loss 2.00e-01 (3.01e-01)	Acc@1  93.75 ( 86.55)
+Epoch: [79][200/243]	Time  0.214 ( 0.458)	Data  0.000 ( 0.223)	Loss 1.75e-01 (2.92e-01)	Acc@1  93.75 ( 87.00)
+Epoch: [79][200/243]	Time  0.214 ( 0.455)	Data  0.003 ( 0.226)	Loss 2.26e-01 (3.05e-01)	Acc@1  93.75 ( 86.69)
+Epoch: [79][242/243]	Time  0.201 ( 0.413)	Data  0.000 ( 0.184)	Loss 3.16e-01 (2.95e-01)	Acc@1  87.50 ( 86.83)
+Epoch: [79][242/243]	Time  0.197 ( 0.411)	Data  0.000 ( 0.187)	Loss 1.99e-01 (3.02e-01)	Acc@1  93.75 ( 86.96)
+accuracy 0.946
+roc_auc_score 0.999
+confusion_matrix
+[[11504   659]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.604
+1 1.0 0 0
+accuracy 0.946
+roc_auc_score 0.999
+confusion_matrix
+[[11507   656]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.628
+1 0.9999994 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [80][  0/243]	Time 45.865 (45.865)	Data 45.506 (45.506)	Loss 2.74e-01 (2.74e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [80][  0/243]	Time 46.006 (46.006)	Data 44.788 (44.788)	Loss 2.44e-01 (2.44e-01)	Acc@1  93.75 ( 93.75)
+Epoch: [80][ 50/243]	Time  0.238 ( 1.141)	Data  0.002 ( 0.880)	Loss 1.62e-01 (3.19e-01)	Acc@1 100.00 ( 86.64)
+Epoch: [80][ 50/243]	Time  0.234 ( 1.138)	Data  0.002 ( 0.893)	Loss 4.24e-01 (2.95e-01)	Acc@1  68.75 ( 87.38)
+Epoch: [80][100/243]	Time  0.206 ( 0.684)	Data  0.000 ( 0.452)	Loss 4.73e-01 (3.11e-01)	Acc@1  81.25 ( 86.20)
+Epoch: [80][100/243]	Time  0.206 ( 0.685)	Data  0.000 ( 0.444)	Loss 3.53e-01 (3.05e-01)	Acc@1  87.50 ( 86.82)
+Epoch: [80][150/243]	Time  0.205 ( 0.531)	Data  0.000 ( 0.298)	Loss 4.59e-01 (3.09e-01)	Acc@1  75.00 ( 86.63)
+Epoch: [80][150/243]	Time  0.222 ( 0.531)	Data  0.000 ( 0.302)	Loss 2.94e-01 (3.10e-01)	Acc@1  87.50 ( 86.22)
+Epoch: [80][200/243]	Time  0.208 ( 0.455)	Data  0.000 ( 0.227)	Loss 4.67e-01 (3.11e-01)	Acc@1  81.25 ( 86.10)
+Epoch: [80][200/243]	Time  0.210 ( 0.456)	Data  0.000 ( 0.224)	Loss 5.34e-01 (3.12e-01)	Acc@1  75.00 ( 86.60)
+Epoch: [80][242/243]	Time  0.201 ( 0.412)	Data  0.000 ( 0.188)	Loss 4.24e-01 (3.10e-01)	Acc@1  87.50 ( 86.37)
+Epoch: [80][242/243]	Time  0.201 ( 0.413)	Data  0.000 ( 0.185)	Loss 5.65e-01 (3.18e-01)	Acc@1  75.00 ( 86.19)
+accuracy 0.949
+roc_auc_score 0.999
+confusion_matrix
+[[11544   619]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.97      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.931
+1 0.99999917 0 0
+accuracy 0.951
+roc_auc_score 0.999
+confusion_matrix
+[[11565   598]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.08      1.00      0.14        49
+
+    accuracy                           0.95     12212
+   macro avg       0.54      0.98      0.56     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 95.103
+1 0.9999988 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [81][  0/243]	Time 46.204 (46.204)	Data 44.985 (44.985)	Loss 3.56e-01 (3.56e-01)	Acc@1  87.50 ( 87.50)
+Epoch: [81][  0/243]	Time 45.621 (45.621)	Data 45.045 (45.045)	Loss 1.56e-01 (1.56e-01)	Acc@1 100.00 (100.00)
+Epoch: [81][ 50/243]	Time  0.279 ( 1.148)	Data  0.004 ( 0.883)	Loss 1.98e-01 (3.54e-01)	Acc@1  87.50 ( 83.58)
+Epoch: [81][ 50/243]	Time  0.283 ( 1.136)	Data  0.001 ( 0.884)	Loss 1.84e-01 (3.09e-01)	Acc@1  87.50 ( 85.54)
+Epoch: [81][100/243]	Time  0.204 ( 0.690)	Data  0.000 ( 0.446)	Loss 2.18e-01 (3.27e-01)	Acc@1  93.75 ( 85.71)
+Epoch: [81][100/243]	Time  0.202 ( 0.684)	Data  0.003 ( 0.447)	Loss 2.76e-01 (3.10e-01)	Acc@1  81.25 ( 85.46)
+Epoch: [81][150/243]	Time  0.211 ( 0.536)	Data  0.000 ( 0.299)	Loss 1.05e-01 (3.32e-01)	Acc@1 100.00 ( 84.77)
+Epoch: [81][150/243]	Time  0.215 ( 0.532)	Data  0.000 ( 0.299)	Loss 4.44e-01 (3.22e-01)	Acc@1  81.25 ( 84.98)
+Epoch: [81][200/243]	Time  0.204 ( 0.460)	Data  0.000 ( 0.225)	Loss 1.24e-01 (3.15e-01)	Acc@1 100.00 ( 85.91)
+Epoch: [81][200/243]	Time  0.216 ( 0.457)	Data  0.001 ( 0.225)	Loss 1.21e-01 (3.19e-01)	Acc@1 100.00 ( 85.20)
+Epoch: [81][242/243]	Time  0.201 ( 0.415)	Data  0.000 ( 0.186)	Loss 5.93e-01 (3.16e-01)	Acc@1  75.00 ( 85.98)
+Epoch: [81][242/243]	Time  0.201 ( 0.413)	Data  0.000 ( 0.186)	Loss 3.00e-01 (3.18e-01)	Acc@1  81.25 ( 85.49)
+accuracy 0.946
+roc_auc_score 1.000
+confusion_matrix
+[[11499   664]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.95     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.95      0.97     12212
+
+VAL * Acc@1 94.563
+1 0.9999994 0 0
+accuracy 0.944
+roc_auc_score 0.999
+confusion_matrix
+[[11484   679]
+ [    0    49]]
+classification_report
+              precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97     12163
+           1       0.07      1.00      0.13        49
+
+    accuracy                           0.94     12212
+   macro avg       0.53      0.97      0.55     12212
+weighted avg       1.00      0.94      0.97     12212
+
+VAL * Acc@1 94.440
+1 0.9999995 0 0
+len(train_dataset) 7800
+len(train_dataset) 7800
+Epoch: [82][  0/243]	Time 44.873 (44.873)	Data 44.228 (44.228)	Loss 3.33e-01 (3.33e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [82][  0/243]	Time 45.058 (45.058)	Data 44.657 (44.657)	Loss 4.06e-01 (4.06e-01)	Acc@1  81.25 ( 81.25)
+Epoch: [82][ 50/243]	Time  0.244 ( 1.132)	Data  0.002 ( 0.868)	Loss 3.15e-01 (3.05e-01)	Acc@1  87.50 ( 86.40)
+Epoch: [82][ 50/243]	Time  0.243 ( 1.135)	Data  0.014 ( 0.882)	Loss 2.42e-01 (3.07e-01)	Acc@1  93.75 ( 85.78)
+Epoch: [82][100/243]	Time  0.217 ( 0.685)	Data  0.000 ( 0.439)	Loss 1.68e-01 (3.22e-01)	Acc@1  93.75 ( 86.01)
+Epoch: [82][100/243]	Time  0.217 ( 0.687)	Data  0.000 ( 0.446)	Loss 4.13e-01 (3.02e-01)	Acc@1  81.25 ( 86.70)
+Epoch: [82][150/243]	Time  0.242 ( 0.532)	Data  0.000 ( 0.294)	Loss 1.62e-01 (3.19e-01)	Acc@1 100.00 ( 85.89)
+Epoch: [82][150/243]	Time  0.245 ( 0.533)	Data  0.003 ( 0.299)	Loss 1.75e-01 (3.07e-01)	Acc@1  93.75 ( 86.42)
+Epoch: [82][200/243]	Time  0.218 ( 0.456)	Data  0.001 ( 0.225)	Loss 4.96e-01 (3.13e-01)	Acc@1  75.00 ( 86.41)
+Epoch: [82][200/243]	Time  0.221 ( 0.455)	Data  0.002 ( 0.221)	Loss 2.94e-01 (3.16e-01)	Acc@1  87.50 ( 86.04)
+Epoch: [82][242/243]	Time  0.201 ( 0.411)	Data  0.000 ( 0.183)	Loss 5.53e-01 (3.12e-01)	Acc@1  75.00 ( 86.16)
+Epoch: [82][242/243]	Time  0.201 ( 0.412)	Data  0.000 ( 0.186)	Loss 1.86e-01 (3.17e-01)	Acc@1  93.75 ( 85.98)
