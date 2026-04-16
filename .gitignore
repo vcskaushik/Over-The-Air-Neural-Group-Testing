@@ -1,0 +1,20 @@
+# Claude Code
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+
+# Training outputs
+Trained_Models/
+Log_files/
+*.tar
+*.pth
+*.pth.tar
+
+# Data
+data/
