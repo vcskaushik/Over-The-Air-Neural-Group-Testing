@@ -334,57 +334,49 @@ class ResNet_GT(nn.Module):
 
         return nn.Sequential(*layers)
 
-    def _forward_impl(self, x, noise_std=None, gpu=None):
-        # See note [TorchScript super()]
-
-        ##################################
-        # Add shape capturing 
+    def encode(self, x):
+        """Encoder pass: takes (B, K, C, H, W), returns pre-channel features (B, K, C', H', W')."""
         B, K, C, H, W = x.shape
-        x = x.view(B*K, C, H, W) 
-        # End Shape capturing
-        ##################################
-
+        x = x.view(B * K, C, H, W)
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
         x = self.maxpool(x)
         x = self.layer1(x)
         x = self.layer2(x)
+        _, C2, H2, W2 = x.shape
+        x = x.view(B, K, C2, H2, W2)
+        return x
 
-
-        ##################################
-        # Reshape to recover K super-imposing images 
-        _, C2, H2, W2 =  x.shape 
-        x = x.view(B, K, C2, H2, W2) 
-        
-        
-        ##################################
-        # Simultataneous Transmission of K images from K users over noisy/noise less channel
-        #Before Phase operation
-        mean_x = torch.mean(x.detach()) # Channel means the K images
-        power_x = torch.mean(x.detach()**2) # Channel power of the K images
-
-        
-        x = torch.sum(x, dim=1, keepdim=False) # Channel sums the K images 
-        if noise_std != None :
-            noise = torch.normal(mean=0.0,std=noise_std,size = x.size()).detach().cuda(gpu, non_blocking=True)
-            x = (x + noise)/K
+    def channel(self, pre_channel, noise_std=None, gpu=None):
+        """Channel: sums K, optionally adds AWGN, divides by K. Returns (post-channel, mean, power)."""
+        B, K, C, H, W = pre_channel.shape
+        mean_x = torch.mean(pre_channel.detach())
+        power_x = torch.mean(pre_channel.detach() ** 2)
+        x = torch.sum(pre_channel, dim=1, keepdim=False)
+        if noise_std is not None:
+            noise = torch.normal(mean=0.0, std=noise_std, size=x.size()).detach()
+            if gpu is not None:
+                noise = noise.cuda(gpu, non_blocking=True)
+            x = (x + noise) / K
         else:
-            x = x/K
-            
-        # x is the received noisy signal 
-        ##################################
+            x = x / K
+        return x, mean_x, power_x
 
-
-        x = self.layer3(x)
+    def decode(self, post_channel):
+        """Decoder pass: takes (B, C', H', W'), returns class logits."""
+        x = self.layer3(post_channel)
         x = self.layer4(x)
-
-
         x = self.avgpool(x)
         x = torch.flatten(x, 1)
         x = self.fc(x)
+        return x
 
-        return x, mean_x, power_x
+    def _forward_impl(self, x, noise_std=None, gpu=None):
+        pre = self.encode(x)
+        post, mean_x, power_x = self.channel(pre, noise_std, gpu)
+        logits = self.decode(post)
+        return logits, mean_x, power_x
 
     def forward(self, x,noise_std=None,gpu=None):
         return self._forward_impl(x,noise_std,gpu)
@@ -467,70 +459,55 @@ class ResNet_GT_phase(nn.Module):
 
         return nn.Sequential(*layers)
 
-    def _forward_impl(self, x, noise_std=None, gpu=None):
-        # See note [TorchScript super()]
-
-        ##################################
-        # Add shape capturing 
+    def encode(self, x):
+        """Encoder pass: takes (B, K, C, H, W), returns pre-channel features (B, K, C', H', W')."""
         B, K, C, H, W = x.shape
-        x = x.view(B*K, C, H, W) 
-        # End Shape capturing
-        ##################################
-
+        x = x.view(B * K, C, H, W)
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
         x = self.maxpool(x)
         x = self.layer1(x)
         x = self.layer2(x)
+        _, C2, H2, W2 = x.shape
+        x = x.view(B, K, C2, H2, W2)
+        return x
 
-
-        ##################################
-        # Reshape to recover K super-imposing images 
-        _, C2, H2, W2 =  x.shape 
-        x = x.view(B, K, C2, H2, W2) 
-        
-         ##################################
-        # Phase operation (in range [-pi, pi]) on K images
-        # Reshape feature map to k vectors
-        x = x.view(B, K, C2 * H2 * W2)
-    
-        ##################################
-        # Simultataneous Transmission of K images from K users over noisy/noise less channel
-        #Before Phase operation
-        mean_x = torch.mean(x.detach()) # Channel means the K images
-        power_x = torch.mean(x.detach()**2) # Channel power of the K images
-
-        #Implement Phase and take care of summing K images
+    def channel(self, pre_channel, noise_std=None, gpu=None):
+        """Channel with random phase shift applied per-batch before summation."""
+        B, K, C, H, W = pre_channel.shape
+        # Flatten spatial dims to get (B, K, C*H*W) as the original _forward_impl does
+        x = pre_channel.view(B, K, C * H * W)
+        mean_x = torch.mean(x.detach())
+        power_x = torch.mean(x.detach() ** 2)
+        # Apply random phase; Alternating_batch_phase_operation sums K internally
+        # and returns (B, C*H*W)
         x = Alternating_batch_phase_operation(x)
-
-        # Reshape back to feature map 
-        # x = x.view(B, C2, H2, W2).detach().cuda(gpu, non_blocking=True)
-        x = x.view(B, C2, H2, W2)
-
-
-        ##################################
-        # Simultataneous Transmission of K images from K users over noisy/noise less channel
-
-        if noise_std != None :
-            noise = torch.normal(mean=0.0,std=noise_std,size = x.size()).detach().cuda(gpu, non_blocking=True)
-            x = (x + noise)/K
+        # Reshape back to feature map (B, C, H, W)
+        x = x.view(B, C, H, W)
+        if noise_std is not None:
+            noise = torch.normal(mean=0.0, std=noise_std, size=x.size()).detach()
+            if gpu is not None:
+                noise = noise.cuda(gpu, non_blocking=True)
+            x = (x + noise) / K
         else:
-            x = x/K
-            
-        # x is the received noisy signal 
-        ##################################
+            x = x / K
+        return x, mean_x, power_x
 
-
-        x = self.layer3(x)
+    def decode(self, post_channel):
+        """Decoder pass: takes (B, C', H', W'), returns class logits."""
+        x = self.layer3(post_channel)
         x = self.layer4(x)
-
-
         x = self.avgpool(x)
         x = torch.flatten(x, 1)
         x = self.fc(x)
+        return x
 
-        return x, mean_x, power_x
+    def _forward_impl(self, x, noise_std=None, gpu=None):
+        pre = self.encode(x)
+        post, mean_x, power_x = self.channel(pre, noise_std, gpu)
+        logits = self.decode(post)
+        return logits, mean_x, power_x
 
     def forward(self, x,noise_std=None,gpu=None):
         return self._forward_impl(x,noise_std,gpu)
