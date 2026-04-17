@@ -189,10 +189,16 @@ def test_stage_b_step_does_not_update_receiver_bn_running_stats(tiny_setup):
 
 
 def test_stage_b_step_does_not_update_adversary_in_outer_step(tiny_setup):
-    """With k_adv=0 (no inner loop), adversary params must be completely unchanged after the step."""
+    """Encoder outer step must NOT accumulate gradient into adversary parameters.
+
+    With k_adv=0, the adversary inner loop is skipped entirely. Any gradient that
+    appears on adversary params after the step must have come from the encoder's
+    outer-step backward — which the I3 fix prevents via requires_grad=False toggle.
+    """
     adversary = tiny_setup["adversary"]
-    # Snapshot all adversary parameters before the step.
-    params_before = [p.clone() for p in adversary.parameters()]
+    # Clear adversary grads BEFORE the step so we only see what this step accumulates.
+    for p in adversary.parameters():
+        p.grad = None
 
     stage_b_step(
         backbone=tiny_setup["backbone"],
@@ -204,13 +210,16 @@ def test_stage_b_step_does_not_update_adversary_in_outer_step(tiny_setup):
         imagenet_target_per_image=tiny_setup["imagenet_target_per_image"],
         priv_loss_name="entropy",
         lam=1.0,
-        k_adv=0,  # skip inner loop entirely — only the encoder outer step runs
+        k_adv=0,
         device=torch.device("cpu"),
         gt_alg=1,
         background_K=1,
         snr_noise_std=None,
     )
 
-    for i, (p_before, p_after) in enumerate(zip(params_before, adversary.parameters())):
-        assert torch.equal(p_before, p_after), \
-            f"adversary parameter [{i}] changed during the outer encoder step — grad leak!"
+    for i, p in enumerate(adversary.parameters()):
+        leaked = (p.grad is not None) and (p.grad.abs().sum().item() > 0)
+        assert not leaked, (
+            f"adversary parameter [{i}] (shape {tuple(p.shape)}) accumulated gradient "
+            f"during the encoder outer step — I3 grad leak!"
+        )
