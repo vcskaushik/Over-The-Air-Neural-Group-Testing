@@ -127,6 +127,61 @@ CUDA_VISIBLE_DEVICES=0,1 python -u main.py \
 
 ---
 
+## Privacy-Preserving Training (Stage A → B → C)
+
+The `privacy/` package adds a privacy-preserving variant in which the encoder is fine-tuned so that its post-channel features remain useful for binary firearm detection but reveal little about the input image's fine-grained ImageNet class.
+
+### Stage A — utility pretrain (existing)
+
+Use `main.py` exactly as in the examples above to produce a Stage A checkpoint. Both supported algorithms are ITIT (`--GT-alg 1`) and GTGT-FM (`--GT-alg 2`).
+
+### Stage B — privacy fine-tune (frozen receiver)
+
+```bash
+.venv/bin/python -u -m privacy.train_privacy \
+    --stage-a-ckpt Trained_Models/StageA/checkpoint.pth.tar \
+    --data data/GroupTestingDataset --task-num 2 --background-K 0 \
+    --GT-alg 1 -a resnext101_32x8d \
+    --priv-loss entropy --lambda 1.0 --k-adv 5 \
+    --stage-b-epochs 30 --recovery-epochs 2 \
+    --batch-size 32 -j 8 -valj 4 \
+    --output_dir Trained_Models/Privacy/lambda_1.0_entropy
+```
+
+Key flags:
+- `--priv-loss {ce,entropy}` — privacy term form. `entropy` (negative entropy of adversary's softmax) is the principled default; `ce` (negated CE) is the DANN-style ablation.
+- `--lambda` — weight of the privacy term. Sweep `{0, 0.1, 0.3, 1.0, 3.0, 10.0}` per run.
+- `--k-adv` — adversary inner-loop steps per encoder step (TTUR).
+- `--stage-b-epochs` / `--recovery-epochs` — Stage B and the post-Stage-B utility recovery, respectively.
+
+For GTGT-FM, set `--GT-alg 2 --background-K 7` (group size 8), and the adversary automatically becomes multilabel (1000-way sigmoid + BCE on the K-hot label vector).
+
+### Stage C — honest leakage eval
+
+```bash
+.venv/bin/python -u -m privacy.eval_privacy \
+    --stage-b-ckpt Trained_Models/Privacy/lambda_1.0_entropy/stage_b_final.pth.tar \
+    --data data/GroupTestingDataset --task-num 2 --background-K 0 \
+    --GT-alg 1 -a resnext101_32x8d \
+    --stage-c-epochs 60 --batch-size 32 -j 8 -valj 4 \
+    --output_dir Trained_Models/Privacy/lambda_1.0_entropy/EvalC
+```
+
+Reports leakage in `leakage.json`:
+- ITIT: `{"top1_imagenet_acc": ...}`
+- GTGT-FM: `{"mean_auc": ..., "mean_ap": ..., "num_classes_evaluated": ...}`
+
+### Tests
+
+```bash
+.venv/bin/pytest tests/ -v -m "not slow"     # unit tests (~seconds)
+.venv/bin/pytest tests/ -v -m "slow and gpu" # smoke tests (~minutes; needs dataset + GPU)
+```
+
+See `docs/superpowers/specs/2026-04-17-privacy-preserving-ota-ngt-design.md` for the full design rationale.
+
+---
+
 ## Dataset Preparation
 
 See `data_scripts/` for scripts to prepare the GroupTestingDataset from ImageNet (ILSVRC2012):
