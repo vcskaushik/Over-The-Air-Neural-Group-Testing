@@ -26,6 +26,7 @@ import torchvision.datasets as datasets
 import resnet_design2 as models
 from privacy.adversary import AdversaryHead
 from privacy.dataset import PrivacyTaskCoalitionDataset
+from privacy._snr import snr_to_noise_std
 
 
 def get_parser():
@@ -50,12 +51,6 @@ def get_parser():
     p.add_argument("--print-freq", type=int, default=50)
     p.add_argument("--seed", type=int, default=None)
     return p
-
-
-def snr_to_noise_std(snr_db, signal_power=1.0):
-    if snr_db is None:
-        return None
-    return float((signal_power / (10 ** (snr_db / 10))) ** 0.5)
 
 
 def build_datasets(args):
@@ -83,17 +78,18 @@ def load_backbone(args, device):
     ctor = getattr(models, args.arch)
     backbone = ctor(pretrained=False, gt=True, phase=args.phase)
     ckpt = torch.load(args.stage_b_ckpt, map_location="cpu", weights_only=False)
+    coded_pwr = float(ckpt.get("coded_pwr", 1.0))
     state = ckpt["state_dict_backbone"] if "state_dict_backbone" in ckpt else ckpt["state_dict"]
     state = {k.replace("module.", "", 1): v for k, v in state.items()}
     backbone.load_state_dict(state)
     backbone = backbone.to(device).eval()
     for p in backbone.parameters():
         p.requires_grad = False
-    return backbone
+    return backbone, coded_pwr
 
 
-def train_fresh_adversary(backbone, adversary, train_dataset, args, device, log):
-    snr_noise = snr_to_noise_std(args.SNR)
+def train_fresh_adversary(backbone, adversary, train_dataset, args, device, log, coded_pwr=1.0):
+    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr)
     optim = torch.optim.SGD(adversary.parameters(), lr=args.adv_lr, momentum=args.momentum,
                             weight_decay=args.weight_decay)
     for epoch in range(args.stage_c_epochs):
@@ -129,9 +125,9 @@ def train_fresh_adversary(backbone, adversary, train_dataset, args, device, log)
         print(line); log.write(line + "\n"); log.flush()
 
 
-def evaluate_leakage(backbone, adversary, val_dataset, args, device):
+def evaluate_leakage(backbone, adversary, val_dataset, args, device, coded_pwr=1.0):
     """Returns dict with leakage metrics on val set."""
-    snr_noise = snr_to_noise_std(args.SNR)
+    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr)
     loader = torch.utils.data.DataLoader(
         val_dataset, batch_size=args.batch_size, shuffle=False,
         num_workers=args.val_workers, pin_memory=True, drop_last=False,
@@ -187,16 +183,23 @@ def main():
     log.write(f"args: {json.dumps(vars(args), indent=2)}\n"); log.flush()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    backbone = load_backbone(args, device)
+    backbone, coded_pwr = load_backbone(args, device)
     train_list, val_list = build_datasets(args)
-    train_dataset = PrivacyTaskCoalitionDataset(train_list, args, split="train")
-    val_dataset = PrivacyTaskCoalitionDataset(val_list, args, split="val")
+
+    # Build a unified wnid mapping from both train and val to avoid label-space divergence (I2).
+    all_wnids = sorted(set().union(*(ds.class_to_idx.keys() for ds in train_list + val_list)))
+    wnid_to_imagenet_idx = {w: i for i, w in enumerate(all_wnids)}
+
+    train_dataset = PrivacyTaskCoalitionDataset(train_list, args, split="train",
+                                                wnid_to_imagenet_idx=wnid_to_imagenet_idx)
+    val_dataset = PrivacyTaskCoalitionDataset(val_list, args, split="val",
+                                              wnid_to_imagenet_idx=wnid_to_imagenet_idx)
 
     adversary = AdversaryHead(arch_name=args.arch, num_classes=train_dataset.num_imagenet_classes).to(device)
 
-    train_fresh_adversary(backbone, adversary, train_dataset, args, device, log)
+    train_fresh_adversary(backbone, adversary, train_dataset, args, device, log, coded_pwr=coded_pwr)
 
-    metrics = evaluate_leakage(backbone, adversary, val_dataset, args, device)
+    metrics = evaluate_leakage(backbone, adversary, val_dataset, args, device, coded_pwr=coded_pwr)
     print("Leakage metrics:", json.dumps(metrics, indent=2))
     log.write("leakage: " + json.dumps(metrics) + "\n"); log.flush()
     with open(os.path.join(args.output_dir, "leakage.json"), "w") as f:

@@ -32,7 +32,7 @@ def test_train_privacy_smoke(tmp_path):
 
     out_dir = tmp_path / "PrivacySmoke"
     cmd = [
-        str(REPO_ROOT / ".venv" / "bin" / "python"), "-u", "-m", "privacy.train_privacy",
+        sys.executable, "-u", "-m", "privacy.train_privacy",
         "--stage-a-ckpt", str(STAGE_A_CKPT),
         "--data", str(DATA_ROOT), "--task-num", "2", "--background-K", "0",
         "--GT-alg", "1", "-a", "resnet18", "--priv-loss", "entropy",

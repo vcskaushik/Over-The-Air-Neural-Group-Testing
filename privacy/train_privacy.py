@@ -25,6 +25,7 @@ import resnet_design2 as models
 from privacy.adversary import AdversaryHead
 from privacy.dataset import PrivacyTaskCoalitionDataset
 from privacy.trainer import stage_b_step
+from privacy._snr import snr_to_noise_std
 
 
 def get_parser():
@@ -63,13 +64,6 @@ def get_parser():
     return p
 
 
-def snr_to_noise_std(snr_db, signal_power=1.0):
-    """Same convention as main.snr_update_function (linear power)."""
-    if snr_db is None:
-        return None
-    return float((signal_power / (10 ** (snr_db / 10))) ** 0.5)
-
-
 def build_datasets(args):
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     train_t = transforms.Compose([
@@ -95,18 +89,19 @@ def build_datasets(args):
 
 
 def load_stage_a(args, device):
-    """Build a fresh `ResNet_GT` (matching args), load Stage-A weights, return it."""
+    """Build a fresh `ResNet_GT` (matching args), load Stage-A weights, return it and coded_pwr."""
     ctor = getattr(models, args.arch)
     model = ctor(pretrained=False, gt=True, phase=args.phase)
     ckpt = torch.load(args.stage_a_ckpt, map_location="cpu", weights_only=False)
+    coded_pwr = float(ckpt.get("coded_pwr", 1.0))
     state = ckpt["state_dict"]
     # Strip "module." prefix if Stage A used DataParallel.
     state = {k.replace("module.", "", 1): v for k, v in state.items()}
     model.load_state_dict(state)
-    return model.to(device)
+    return model.to(device), coded_pwr
 
 
-def validate_utility(backbone, val_dataset, args, device):
+def validate_utility(backbone, val_dataset, args, device, coded_pwr=1.0):
     """Quick utility validation: firearm Acc@1 on a single-pass val loader."""
     backbone.eval()
     loader = torch.utils.data.DataLoader(
@@ -119,7 +114,8 @@ def validate_utility(backbone, val_dataset, args, device):
             images = images.to(device)
             firearm_target = firearm_target.to(device)
             pre = backbone.encode(images)
-            post, _, _ = backbone.channel(pre, noise_std=snr_to_noise_std(args.SNR),
+            post, _, _ = backbone.channel(pre,
+                                          noise_std=snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr),
                                           gpu=device.index if device.type == "cuda" else None)
             logits = backbone.decode(post)
             pred = logits.argmax(dim=-1)
@@ -128,7 +124,7 @@ def validate_utility(backbone, val_dataset, args, device):
     return correct / max(total, 1)
 
 
-def stage_b_loop(backbone, adversary, train_dataset, val_dataset, args, device, log):
+def stage_b_loop(backbone, adversary, train_dataset, val_dataset, args, device, log, coded_pwr=1.0):
     enc_params = list(backbone.conv1.parameters()) + list(backbone.bn1.parameters()) \
         + list(backbone.layer1.parameters()) + list(backbone.layer2.parameters())
     enc_optim = torch.optim.SGD(enc_params, lr=args.enc_lr, momentum=args.momentum,
@@ -136,7 +132,7 @@ def stage_b_loop(backbone, adversary, train_dataset, val_dataset, args, device, 
     adv_optim = torch.optim.SGD(adversary.parameters(), lr=args.adv_lr, momentum=args.momentum,
                                 weight_decay=args.weight_decay)
 
-    snr_noise = snr_to_noise_std(args.SNR)
+    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr)
 
     for epoch in range(args.stage_b_epochs):
         loader = torch.utils.data.DataLoader(
@@ -159,19 +155,19 @@ def stage_b_loop(backbone, adversary, train_dataset, val_dataset, args, device, 
                         f"util={metrics['loss_util']:.4f} priv={metrics['loss_priv']:.4f} "
                         f"adv={metrics['loss_adv']:.4f} total={metrics['loss_total']:.4f}")
                 print(line); log.write(line + "\n"); log.flush()
-        acc = validate_utility(backbone, val_dataset, args, device)
+        acc = validate_utility(backbone, val_dataset, args, device, coded_pwr=coded_pwr)
         line = f"[StageB][ep {epoch}] val_firearm_acc={acc:.4f} time={time.time()-t0:.1f}s"
         print(line); log.write(line + "\n"); log.flush()
 
 
-def stage_a_recovery_loop(backbone, train_dataset, val_dataset, args, device, log):
+def stage_a_recovery_loop(backbone, train_dataset, val_dataset, args, device, log, coded_pwr=1.0):
     """Brief unfreeze-and-train-on-utility-only pass to recover utility regression from Stage B."""
     for p in backbone.parameters():
         p.requires_grad = True
     backbone.train()
     optim = torch.optim.SGD(backbone.parameters(), lr=args.enc_lr, momentum=args.momentum,
                             weight_decay=args.weight_decay)
-    snr_noise = snr_to_noise_std(args.SNR)
+    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr)
     for epoch in range(args.recovery_epochs):
         loader = torch.utils.data.DataLoader(
             train_dataset, batch_size=args.batch_size, shuffle=True,
@@ -192,16 +188,17 @@ def stage_a_recovery_loop(backbone, train_dataset, val_dataset, args, device, lo
             if it % args.print_freq == 0:
                 line = f"[Recovery][ep {epoch}][it {it:5d}] util={loss.item():.4f}"
                 print(line); log.write(line + "\n"); log.flush()
-        acc = validate_utility(backbone, val_dataset, args, device)
+        acc = validate_utility(backbone, val_dataset, args, device, coded_pwr=coded_pwr)
         line = f"[Recovery][ep {epoch}] val_firearm_acc={acc:.4f} time={time.time()-t0:.1f}s"
         print(line); log.write(line + "\n"); log.flush()
 
 
-def save_ckpt(backbone, adversary, args, path):
+def save_ckpt(backbone, adversary, args, path, coded_pwr=1.0):
     torch.save({
         "state_dict_backbone": backbone.state_dict(),
         "state_dict_adversary": adversary.state_dict(),
         "args": vars(args),
+        "coded_pwr": coded_pwr,
     }, path)
 
 
@@ -218,20 +215,29 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
 
-    backbone = load_stage_a(args, device)
+    backbone, coded_pwr = load_stage_a(args, device)
     train_list, val_list = build_datasets(args)
-    train_dataset = PrivacyTaskCoalitionDataset(train_list, args, split="train")
-    val_dataset = PrivacyTaskCoalitionDataset(val_list, args, split="val")
+
+    # Build a unified wnid mapping from both train and val to avoid label-space divergence (I2).
+    all_wnids = sorted(set().union(*(ds.class_to_idx.keys() for ds in train_list + val_list)))
+    wnid_to_imagenet_idx = {w: i for i, w in enumerate(all_wnids)}
+
+    train_dataset = PrivacyTaskCoalitionDataset(train_list, args, split="train",
+                                                wnid_to_imagenet_idx=wnid_to_imagenet_idx)
+    val_dataset = PrivacyTaskCoalitionDataset(val_list, args, split="val",
+                                              wnid_to_imagenet_idx=wnid_to_imagenet_idx)
 
     adversary = AdversaryHead(arch_name=args.arch, num_classes=train_dataset.num_imagenet_classes).to(device)
     print(f"Adversary num_classes={train_dataset.num_imagenet_classes}")
 
-    stage_b_loop(backbone, adversary, train_dataset, val_dataset, args, device, log)
-    save_ckpt(backbone, adversary, args, os.path.join(args.output_dir, "stage_b_final.pth.tar"))
+    stage_b_loop(backbone, adversary, train_dataset, val_dataset, args, device, log, coded_pwr=coded_pwr)
+    save_ckpt(backbone, adversary, args, os.path.join(args.output_dir, "stage_b_final.pth.tar"),
+              coded_pwr=coded_pwr)
 
     if args.recovery_epochs > 0:
-        stage_a_recovery_loop(backbone, train_dataset, val_dataset, args, device, log)
-        save_ckpt(backbone, adversary, args, os.path.join(args.output_dir, "stage_b_recovered.pth.tar"))
+        stage_a_recovery_loop(backbone, train_dataset, val_dataset, args, device, log, coded_pwr=coded_pwr)
+        save_ckpt(backbone, adversary, args, os.path.join(args.output_dir, "stage_b_recovered.pth.tar"),
+                  coded_pwr=coded_pwr)
 
     log.close()
 

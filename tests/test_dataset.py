@@ -89,3 +89,21 @@ def test_firearm_target_remains_binary(synthetic_dataset):
     ds = PrivacyTaskCoalitionDataset(dl, args, split="train")
     targets = {ds[i][1] for i in range(len(ds))}
     assert targets <= {0, 1}
+
+
+def test_dataset_uses_provided_wnid_mapping(synthetic_dataset):
+    """When a pre-built wnid_to_imagenet_idx is supplied, the dataset must use it directly."""
+    args = _build_args(synthetic_dataset, background_K=0)
+    dl = _build_dataset_list(synthetic_dataset)
+
+    # Collect all wnids that exist in the dataset list.
+    all_wnids = sorted({wnid for ds in dl for wnid in ds.class_to_idx.keys()})
+    # Build a shifted mapping so indices start at 100 instead of 0.
+    shifted_mapping = {wnid: i + 100 for i, wnid in enumerate(all_wnids)}
+
+    ds = PrivacyTaskCoalitionDataset(dl, args, split="train",
+                                     wnid_to_imagenet_idx=shifted_mapping)
+    assert ds.num_imagenet_classes == len(shifted_mapping)
+    # Every item's imagenet label must fall in the shifted range.
+    _, _, imagenet_targets = ds[0]
+    assert imagenet_targets[0].item() >= 100
