@@ -17,6 +17,7 @@ def _freeze_receiver(backbone):
     for m in (backbone.layer3, backbone.layer4, backbone.fc):
         for p in m.parameters():
             p.requires_grad = False
+        m.eval()  # freeze BN running_mean/running_var/num_batches_tracked
 
 
 def _flatten_imagenet_target(target_per_image: torch.Tensor) -> torch.Tensor:
@@ -91,6 +92,7 @@ def stage_b_step(
         adv_input = post_channel  # (B, C', H', W')
         adv_target_khot = _to_khot(imagenet_target_per_image, num_classes=adversary.fc.out_features)
 
+    loss_adv = torch.tensor(0.0, device=device)
     for _ in range(k_adv):
         adv_logits = adversary(adv_input)
         if gt_alg == 1:
@@ -103,10 +105,19 @@ def stage_b_step(
 
     # --- Encoder outer step (1 step, fresh forward through trainable encoder, frozen receiver) ---
     backbone.train()
+    # Re-assert eval on receiver layers to undo what backbone.train() just flipped.
+    backbone.layer3.eval()
+    backbone.layer4.eval()
+    backbone.fc.eval()
     # Re-enable grads only on encoder layers.
     for m in (backbone.conv1, backbone.bn1, backbone.layer1, backbone.layer2):
         for p in m.parameters():
             p.requires_grad = True
+
+    # Disable adversary grads: encoder outer step never updates adversary params,
+    # so avoid accumulating useless gradients in them during total.backward().
+    for p in adversary.parameters():
+        p.requires_grad = False
 
     pre = backbone.encode(images)
     post_channel, _, _ = backbone.channel(pre, noise_std=snr_noise_std,
@@ -137,6 +148,10 @@ def stage_b_step(
     enc_optimizer.zero_grad(set_to_none=True)
     total.backward()
     enc_optimizer.step()
+
+    # Restore adversary params for the next stage_b_step invocation's inner loop.
+    for p in adversary.parameters():
+        p.requires_grad = True
 
     return {
         "loss_util": loss_util.detach().item(),

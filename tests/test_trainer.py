@@ -155,3 +155,62 @@ def test_stage_b_step_gtgt_fm_branch_runs(tiny_setup):
         snr_noise_std=None,
     )
     assert torch.isfinite(torch.tensor(out["loss_util"]))
+
+
+def test_stage_b_step_does_not_update_receiver_bn_running_stats(tiny_setup):
+    """Receiver BN running_mean/running_var must not change during a stage_b_step (frozen by design)."""
+    backbone = tiny_setup["backbone"]
+    # Snapshot the first BN in the first block of layer3 before the step.
+    bn = backbone.layer3[0].bn1
+    mean_before = bn.running_mean.clone()
+    var_before = bn.running_var.clone()
+
+    stage_b_step(
+        backbone=backbone,
+        adversary=tiny_setup["adversary"],
+        enc_optimizer=tiny_setup["enc_optim"],
+        adv_optimizer=tiny_setup["adv_optim"],
+        images=tiny_setup["images"],
+        firearm_target=tiny_setup["firearm_target"],
+        imagenet_target_per_image=tiny_setup["imagenet_target_per_image"],
+        priv_loss_name="entropy",
+        lam=1.0,
+        k_adv=1,
+        device=torch.device("cpu"),
+        gt_alg=1,
+        background_K=1,
+        snr_noise_std=None,
+    )
+
+    assert torch.equal(bn.running_mean, mean_before), \
+        "layer3[0].bn1.running_mean was mutated — receiver BN running stats leak!"
+    assert torch.equal(bn.running_var, var_before), \
+        "layer3[0].bn1.running_var was mutated — receiver BN running stats leak!"
+
+
+def test_stage_b_step_does_not_update_adversary_in_outer_step(tiny_setup):
+    """With k_adv=0 (no inner loop), adversary params must be completely unchanged after the step."""
+    adversary = tiny_setup["adversary"]
+    # Snapshot all adversary parameters before the step.
+    params_before = [p.clone() for p in adversary.parameters()]
+
+    stage_b_step(
+        backbone=tiny_setup["backbone"],
+        adversary=adversary,
+        enc_optimizer=tiny_setup["enc_optim"],
+        adv_optimizer=tiny_setup["adv_optim"],
+        images=tiny_setup["images"],
+        firearm_target=tiny_setup["firearm_target"],
+        imagenet_target_per_image=tiny_setup["imagenet_target_per_image"],
+        priv_loss_name="entropy",
+        lam=1.0,
+        k_adv=0,  # skip inner loop entirely — only the encoder outer step runs
+        device=torch.device("cpu"),
+        gt_alg=1,
+        background_K=1,
+        snr_noise_std=None,
+    )
+
+    for i, (p_before, p_after) in enumerate(zip(params_before, adversary.parameters())):
+        assert torch.equal(p_before, p_after), \
+            f"adversary parameter [{i}] changed during the outer encoder step — grad leak!"
