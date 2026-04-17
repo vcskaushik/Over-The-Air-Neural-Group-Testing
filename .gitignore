@@ -6,6 +6,11 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Virtual environments
+.venv/
+venv/
+env/
+
 # OS
 .DS_Store
 
@@ -15,6 +20,14 @@ Log_files/
 *.tar
 *.pth
 *.pth.tar
+*.pkl
+*.npy
+
+# Logs
+*.log
+
+# Tensorboard
+runs/
 
 # Data
 data/
