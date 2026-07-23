@@ -3,8 +3,10 @@ import os
 import shutil
 from argparse import Namespace
 from pathlib import Path
+import types
 
 import pytest
+import numpy as np
 import torch
 from PIL import Image
 import torchvision.transforms as transforms
@@ -107,3 +109,34 @@ def test_dataset_uses_provided_wnid_mapping(synthetic_dataset):
     # Every item's imagenet label must fall in the shifted range.
     _, _, imagenet_targets = ds[0]
     assert imagenet_targets[0].item() >= 100
+
+
+def _stub_task(samples, class_to_idx):
+    """Minimal ImageFolder stand-in: only the attributes __init__ touches."""
+    t = types.SimpleNamespace()
+    t.samples = samples
+    t.class_to_idx = class_to_idx
+    t.loader = lambda p: None
+    t.transform = None
+    t.target_transform = None
+    return t
+
+
+def _args(background_K=0):
+    return types.SimpleNamespace(background_K=background_K)
+
+
+def test_invariance_mode_keeps_full_background_pool():
+    np.random.seed(0)
+    # 2 firearm positives, 10 background negatives across 3 wnids.
+    pos = _stub_task([("/d/gun/a.jpg", 0), ("/d/gun/b.jpg", 0)], {"gun": 0})
+    neg = _stub_task([(f"/d/n0{i%3}/{i}.jpg", 0) for i in range(10)],
+                     {"n00": 0, "n01": 1, "n02": 2})
+
+    default_ds = PrivacyTaskCoalitionDataset([pos, neg], _args(), split="train")
+    inv_ds = PrivacyTaskCoalitionDataset([pos, neg], _args(), split="train", invariance_mode=True)
+
+    # Default truncates negatives to len(positives)=2 -> total 4.
+    assert len(default_ds) == 4
+    # Invariance keeps all 10 negatives -> total 12.
+    assert len(inv_ds) == 12

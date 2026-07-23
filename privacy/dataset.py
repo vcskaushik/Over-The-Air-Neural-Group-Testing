@@ -24,7 +24,7 @@ class PrivacyTaskCoalitionDataset(torch.utils.data.Dataset):
     """
 
     def __init__(self, dataset_list: List[datasets.ImageFolder], args, split: str,
-                 wnid_to_imagenet_idx=None):
+                 wnid_to_imagenet_idx=None, invariance_mode: bool = False):
         assert split in ("train", "val")
 
         first = dataset_list[0]
@@ -49,7 +49,10 @@ class PrivacyTaskCoalitionDataset(torch.utils.data.Dataset):
             normal_data_list.extend(ds.samples)
         normal_data_list = np.random.permutation(normal_data_list)
 
-        negative_data_list = normal_data_list[: len(positive_data_list)]
+        if invariance_mode:
+            negative_data_list = normal_data_list  # full background pool (v1 HSIC path)
+        else:
+            negative_data_list = normal_data_list[: len(positive_data_list)]
 
         positive_target = 1
         positive_data_list = [[s[0], positive_target] for s in positive_data_list]
