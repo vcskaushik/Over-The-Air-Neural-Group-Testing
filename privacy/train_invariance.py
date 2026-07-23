@@ -11,11 +11,10 @@ import time
 
 import torch
 
-import resnet_design2 as models
 from privacy.train_privacy import build_datasets, load_stage_a, validate_utility
 from privacy.dataset import PrivacyTaskCoalitionDataset
 from privacy.sampler import PKBackgroundSampler
-from privacy.hsic import HSICPenalty, delta_label_kernel, rbf_kernel, median_bandwidth, hsic_biased
+from privacy.hsic import HSICPenalty
 from privacy.trainer import joint_step
 
 
@@ -66,6 +65,8 @@ def extractor_sanity(backbone, hsic_penalty, loader, device, snr_noise, num_batc
             if bi >= num_batches:
                 break
             images = images.to(device)
+            firearm_target = firearm_target.to(device)
+            imagenet_target = imagenet_target.to(device)
             pre = backbone.encode(images)
             post, _, _ = backbone.channel(pre, noise_std=snr_noise,
                                           gpu=device.index if device.type == "cuda" else None)
@@ -73,7 +74,7 @@ def extractor_sanity(backbone, hsic_penalty, loader, device, snr_noise, num_batc
             if int(bg.sum()) < 2:
                 continue
             feats = post[bg]
-            labels = imagenet_target[bg].reshape(-1).to(device)
+            labels = imagenet_target[bg].reshape(-1)
             true_vals.append(float(hsic_penalty(feats, labels)))
             perm = labels[torch.randperm(labels.numel(), device=device)]
             perm_vals.append(float(hsic_penalty(feats, perm)))
@@ -92,10 +93,6 @@ def joint_loop(backbone, hsic_penalty, train_dataset, val_dataset, args, device,
         momentum=args.momentum, weight_decay=args.weight_decay)
 
     snr_noise = None  # v1: sigma = 0 (asserted in main)
-
-    sampler = PKBackgroundSampler.from_dataset(
-        train_dataset, args.pk_classes, args.pk_per_class, args.pk_firearm,
-        seed=(args.seed or 0))
 
     # Startup diagnostic (M6): warn if the frozen extractor is inert on real features.
     diag_loader = torch.utils.data.DataLoader(
