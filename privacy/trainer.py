@@ -159,3 +159,43 @@ def stage_b_step(
         "loss_adv": loss_adv.detach().item(),
         "loss_total": total.detach().item(),
     }
+
+
+def joint_step(*, backbone, hsic_penalty, optimizer, images, firearm_target,
+               imagenet_target_per_image, hsic_lambda, device, snr_noise_std=None):
+    """One joint E+R step on L_task + hsic_lambda * HSIC (background-only). No adversary.
+
+    ITIT only: `images` is (B, 1, C, H, W); post-channel features are (B, C', H', W').
+    HSIC is computed on background rows only, masked BEFORE the penalty.
+    """
+    backbone = backbone.to(device).train()
+    hsic_penalty = hsic_penalty.to(device)
+    images = images.to(device)
+    firearm_target = firearm_target.to(device)
+    imagenet_target_per_image = imagenet_target_per_image.to(device)
+    for p in backbone.parameters():
+        p.requires_grad = True
+
+    pre = backbone.encode(images)
+    post, _, _ = backbone.channel(pre, noise_std=snr_noise_std,
+                                  gpu=device.index if device.type == "cuda" else None)
+    util_logits = backbone.decode(post)
+    loss_util = F.cross_entropy(util_logits, firearm_target)
+
+    bg_mask = firearm_target == 0
+    if int(bg_mask.sum().item()) >= 2:
+        bg_feats = post[bg_mask]
+        bg_labels = imagenet_target_per_image[bg_mask].reshape(-1)
+        loss_hsic = hsic_penalty(bg_feats, bg_labels)
+    else:
+        loss_hsic = torch.zeros((), device=device)
+
+    total = loss_util + hsic_lambda * loss_hsic
+    optimizer.zero_grad(set_to_none=True)
+    total.backward()
+    optimizer.step()
+    return {
+        "loss_util": loss_util.detach().item(),
+        "loss_hsic": float(loss_hsic.detach().item()),
+        "loss_total": total.detach().item(),
+    }

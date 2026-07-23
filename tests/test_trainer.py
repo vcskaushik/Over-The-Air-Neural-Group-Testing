@@ -223,3 +223,42 @@ def test_stage_b_step_does_not_update_adversary_in_outer_step(tiny_setup):
             f"adversary parameter [{i}] (shape {tuple(p.shape)}) accumulated gradient "
             f"during the encoder outer step — I3 grad leak!"
         )
+
+
+from privacy.hsic import HSICPenalty
+from privacy.trainer import joint_step
+
+
+def _make_joint_setup():
+    torch.manual_seed(0)
+    backbone = models.resnet18(pretrained=False, gt=True, phase=False)
+    hsic = HSICPenalty(arch_name="resnet18", extractor="random", num_random=1)
+    optim = torch.optim.SGD(backbone.parameters(), lr=0.01)
+    images = torch.randn(6, 1, 3, 16, 16)          # ITIT: K+1 = 1
+    firearm_target = torch.tensor([0, 0, 0, 0, 1, 1])
+    imagenet_target_per_image = torch.randint(0, 4, (6, 1))
+    return backbone, hsic, optim, images, firearm_target, imagenet_target_per_image
+
+
+def test_joint_step_runs_and_returns_finite_metrics():
+    backbone, hsic, optim, images, ft, it = _make_joint_setup()
+    out = joint_step(backbone=backbone, hsic_penalty=hsic, optimizer=optim,
+                     images=images, firearm_target=ft, imagenet_target_per_image=it,
+                     hsic_lambda=1.0, device=torch.device("cpu"), snr_noise_std=None)
+    assert set(out) >= {"loss_util", "loss_hsic", "loss_total"}
+    assert torch.isfinite(torch.tensor(out["loss_total"]))
+
+
+def test_joint_step_grads_reach_encoder_and_receiver_not_extractor():
+    backbone, hsic, optim, images, ft, it = _make_joint_setup()
+    for p in backbone.parameters():
+        p.grad = None
+    joint_step(backbone=backbone, hsic_penalty=hsic, optimizer=optim,
+               images=images, firearm_target=ft, imagenet_target_per_image=it,
+               hsic_lambda=1.0, device=torch.device("cpu"), snr_noise_std=None)
+    # Encoder AND receiver both get gradient (joint training, R not frozen).
+    assert _params_grad_norm(backbone.layer2) > 0
+    assert _params_grad_norm(backbone.layer3) > 0
+    # HSIC extractor is frozen.
+    for p in hsic.parameters():
+        assert p.grad is None or p.grad.abs().sum().item() == 0
