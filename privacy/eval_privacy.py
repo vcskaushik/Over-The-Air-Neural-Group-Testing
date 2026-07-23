@@ -39,6 +39,7 @@ def get_parser():
     p.add_argument("--phase", action="store_true")
     p.add_argument("--SNR", type=float, default=None)
     p.add_argument("--stage-b-ckpt", required=True)
+    p.add_argument("--adv-init", choices=["kaiming", "pretrained"], default="kaiming")
     p.add_argument("--stage-c-epochs", type=int, default=60)
     p.add_argument("--adv-lr", type=float, default=1e-3)
     p.add_argument("--momentum", type=float, default=0.9)
@@ -74,6 +75,21 @@ def build_datasets(args):
     return train_list, val_list
 
 
+def build_background_val_index(val_list, wnid_to_imagenet_idx):
+    """Flat (path, imagenet_idx) over ALL background (task>=1) val images.
+
+    The ~300-sample PrivacyTaskCoalitionDataset val undercounts leakage (M9);
+    Stage-C leakage is measured over the full background val set instead.
+    """
+    from pathlib import Path
+    index = []
+    for ds in val_list[1:]:  # task 0 = firearm (intended leak), excluded
+        for path, _ in ds.samples:
+            wnid = Path(path).parent.name
+            index.append((path, wnid_to_imagenet_idx[wnid]))
+    return index
+
+
 def load_backbone(args, device):
     ctor = getattr(models, args.arch)
     backbone = ctor(pretrained=False, gt=True, phase=args.phase)
@@ -106,10 +122,8 @@ def train_fresh_adversary(backbone, adversary, train_dataset, args, device, log,
                 post, _, _ = backbone.channel(pre, noise_std=snr_noise,
                                               gpu=device.index if device.type == "cuda" else None)
             if args.GT_alg == 1:
-                B, K, Cf, Hf, Wf = pre.shape
-                adv_in = pre.reshape(B * K, Cf, Hf, Wf)
                 adv_target = imagenet_target_per_image.reshape(-1)
-                logits = adversary(adv_in)
+                logits = adversary(post)
                 loss = F.cross_entropy(logits, adv_target)
             else:
                 num_classes = adversary.fc.out_features
@@ -142,10 +156,8 @@ def evaluate_leakage(backbone, adversary, val_dataset, args, device, coded_pwr=1
             post, _, _ = backbone.channel(pre, noise_std=snr_noise,
                                           gpu=device.index if device.type == "cuda" else None)
             if args.GT_alg == 1:
-                B, K, Cf, Hf, Wf = pre.shape
-                adv_in = pre.reshape(B * K, Cf, Hf, Wf)
                 adv_target = imagenet_target_per_image.reshape(-1)
-                logits = adversary(adv_in)
+                logits = adversary(post)
                 pred = logits.argmax(dim=-1)
                 correct += (pred == adv_target).sum().item()
                 total += adv_target.numel()
@@ -195,7 +207,9 @@ def main():
     val_dataset = PrivacyTaskCoalitionDataset(val_list, args, split="val",
                                               wnid_to_imagenet_idx=wnid_to_imagenet_idx)
 
-    adversary = AdversaryHead(arch_name=args.arch, num_classes=train_dataset.num_imagenet_classes).to(device)
+    adversary = AdversaryHead(arch_name=args.arch,
+                              num_classes=train_dataset.num_imagenet_classes,
+                              pretrained=(args.adv_init == "pretrained")).to(device)
 
     train_fresh_adversary(backbone, adversary, train_dataset, args, device, log, coded_pwr=coded_pwr)
 
