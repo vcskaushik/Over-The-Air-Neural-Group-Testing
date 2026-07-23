@@ -42,3 +42,19 @@ def test_adversary_head_parameters_are_trainable():
     """All AdversaryHead parameters require grad by default."""
     head = AdversaryHead(arch_name="resnet18", num_classes=1000)
     assert all(p.requires_grad for p in head.parameters())
+
+
+import inspect
+
+
+def test_adversaryhead_has_pretrained_kwarg_default_false():
+    sig = inspect.signature(AdversaryHead.__init__)
+    assert "pretrained" in sig.parameters, "AdversaryHead must accept a 'pretrained' kwarg"
+    assert sig.parameters["pretrained"].default is False, "pretrained must default to False (back-compat)"
+
+
+def test_adversaryhead_builds_with_pretrained_false():
+    # pretrained=False must not touch the network and must build the decoder stack.
+    head = AdversaryHead(arch_name="resnet18", num_classes=7, pretrained=False)
+    assert head.fc.out_features == 7
+    assert hasattr(head, "layer3") and hasattr(head, "layer4")

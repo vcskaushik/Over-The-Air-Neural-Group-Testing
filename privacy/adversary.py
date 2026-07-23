@@ -16,11 +16,11 @@ class AdversaryHead(nn.Module):
         num_classes: output dimension of the final fc head.
     """
 
-    def __init__(self, arch_name: str, num_classes: int = 1000):
+    def __init__(self, arch_name: str, num_classes: int = 1000, pretrained: bool = False):
         super().__init__()
         if not hasattr(models, arch_name):
             raise ValueError(f"Unknown arch_name {arch_name!r}; not found in resnet_design2")
-        backbone = getattr(models, arch_name)(pretrained=False, gt=True, phase=False)
+        backbone = getattr(models, arch_name)(pretrained=pretrained, gt=True, phase=False)
         # Borrow only the decoder slice. Drop encoder layers.
         self.layer3 = backbone.layer3
         self.layer4 = backbone.layer4
