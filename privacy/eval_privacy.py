@@ -90,6 +90,25 @@ def build_background_val_index(val_list, wnid_to_imagenet_idx):
     return index
 
 
+class BackgroundValDataset(torch.utils.data.Dataset):
+    """ITIT per-image val set over ALL background images (M9), yielding the same
+    item shape as PrivacyTaskCoalitionDataset so evaluate_leakage consumes it unchanged:
+      (images (1, C, H, W), firearm_target=0, imagenet_targets (1,))
+    """
+    def __init__(self, index, loader, transform):
+        self.index = index            # list of (path, imagenet_idx)
+        self.loader = loader
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.index)
+
+    def __getitem__(self, i):
+        path, idx = self.index[i]
+        img = self.transform(self.loader(path))
+        return img.unsqueeze(0), 0, torch.tensor([idx], dtype=torch.long)
+
+
 def load_backbone(args, device):
     ctor = getattr(models, args.arch)
     backbone = ctor(pretrained=False, gt=True, phase=args.phase)
@@ -187,6 +206,8 @@ def evaluate_leakage(backbone, adversary, val_dataset, args, device, coded_pwr=1
 
 def main():
     args = get_parser().parse_args()
+    assert not (args.GT_alg == 1 and args.background_K != 0), \
+        "ITIT (GT-alg 1) requires --background-K 0"
     if args.seed is not None:
         torch.manual_seed(args.seed)
 
@@ -213,7 +234,13 @@ def main():
 
     train_fresh_adversary(backbone, adversary, train_dataset, args, device, log, coded_pwr=coded_pwr)
 
-    metrics = evaluate_leakage(backbone, adversary, val_dataset, args, device, coded_pwr=coded_pwr)
+    if args.GT_alg == 1:
+        bg_index = build_background_val_index(val_list, wnid_to_imagenet_idx)
+        leakage_val = BackgroundValDataset(bg_index, val_list[1].loader, val_list[1].transform)
+    else:
+        leakage_val = val_dataset
+
+    metrics = evaluate_leakage(backbone, adversary, leakage_val, args, device, coded_pwr=coded_pwr)
     print("Leakage metrics:", json.dumps(metrics, indent=2))
     log.write("leakage: " + json.dumps(metrics) + "\n"); log.flush()
     with open(os.path.join(args.output_dir, "leakage.json"), "w") as f:

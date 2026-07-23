@@ -1,5 +1,8 @@
 import types
-from privacy.eval_privacy import build_background_val_index
+
+import torch
+
+from privacy.eval_privacy import BackgroundValDataset, build_background_val_index
 
 
 def _stub_task(paths):
@@ -21,3 +24,23 @@ def test_build_background_val_index_covers_all_background_and_maps_labels():
     assert ("/d/n01/x.jpg", 1) in index
     assert ("/d/n02/z.jpg", 2) in index
     assert all(not p.startswith("/d/gun") for p, _ in index)
+
+
+def test_background_val_dataset_shapes_and_labels():
+    index = [("/d/n01/x.jpg", 1), ("/d/n02/z.jpg", 2)]
+    loader = lambda p: torch.zeros(3, 8, 8)
+    transform = lambda x: x
+
+    ds = BackgroundValDataset(index, loader, transform)
+    assert len(ds) == 2
+
+    images, firearm_target, imagenet_targets = ds[0]
+    assert images.shape == (1, 3, 8, 8)
+    assert firearm_target == 0
+    assert imagenet_targets.shape == (1,)
+    assert imagenet_targets[0].item() == 1
+
+    images, firearm_target, imagenet_targets = ds[1]
+    assert images.shape == (1, 3, 8, 8)
+    assert firearm_target == 0
+    assert imagenet_targets[0].item() == 2
