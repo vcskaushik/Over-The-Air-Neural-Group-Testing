@@ -250,10 +250,14 @@ def main_worker(gpu, ngpus_per_node, args):
         back_bone_model = models.__dict__[args.arch](gt=True, phase=args.phase)
 
     ##################################
-    # Modificaiton Happens in the backbone model 
+    # Modificaiton Happens in the backbone model
     ##################################
-    model = back_bone_model 
-    
+    model = back_bone_model
+
+    # Arch-derived transmitted (layer2) feature width, used for the GTGT-FM code rate
+    # (128 for ResNet-18/34, 512 for Bottleneck archs). Captured before DataParallel wrapping.
+    args.feat_channels = back_bone_model.layer3[0].conv1.in_channels
+
 
     if args.distributed:
         # For multiprocessing distributed, DistributedDataParallel constructor
@@ -717,7 +721,8 @@ def snr_update_function(args, step_num = 1):
             noise_std = None
     else:
         if args.GT_alg == 2:
-            code_rate = (224*224*3)/(512*28*28)
+            feat_channels = getattr(args, "feat_channels", 512)
+            code_rate = (224*224*3)/(feat_channels*28*28)
         else:
             code_rate = 1
             

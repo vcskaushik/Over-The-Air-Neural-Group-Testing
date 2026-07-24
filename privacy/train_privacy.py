@@ -115,7 +115,8 @@ def validate_utility(backbone, val_dataset, args, device, coded_pwr=1.0):
             firearm_target = firearm_target.to(device)
             pre = backbone.encode(images)
             post, _, _ = backbone.channel(pre,
-                                          noise_std=snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr),
+                                          noise_std=snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr,
+                                                                     feat_channels=backbone.layer3[0].conv1.in_channels),
                                           gpu=device.index if device.type == "cuda" else None)
             logits = backbone.decode(post)
             pred = logits.argmax(dim=-1)
@@ -132,7 +133,8 @@ def stage_b_loop(backbone, adversary, train_dataset, val_dataset, args, device, 
     adv_optim = torch.optim.SGD(adversary.parameters(), lr=args.adv_lr, momentum=args.momentum,
                                 weight_decay=args.weight_decay)
 
-    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr)
+    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr,
+                                 feat_channels=backbone.layer3[0].conv1.in_channels)
 
     for epoch in range(args.stage_b_epochs):
         loader = torch.utils.data.DataLoader(
@@ -167,7 +169,8 @@ def stage_a_recovery_loop(backbone, train_dataset, val_dataset, args, device, lo
     backbone.train()
     optim = torch.optim.SGD(backbone.parameters(), lr=args.enc_lr, momentum=args.momentum,
                             weight_decay=args.weight_decay)
-    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr)
+    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr,
+                                 feat_channels=backbone.layer3[0].conv1.in_channels)
     for epoch in range(args.recovery_epochs):
         loader = torch.utils.data.DataLoader(
             train_dataset, batch_size=args.batch_size, shuffle=True,

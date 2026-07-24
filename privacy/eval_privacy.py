@@ -124,7 +124,8 @@ def load_backbone(args, device):
 
 
 def train_fresh_adversary(backbone, adversary, train_dataset, args, device, log, coded_pwr=1.0):
-    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr)
+    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr,
+                                 feat_channels=backbone.layer3[0].conv1.in_channels)
     optim = torch.optim.SGD(adversary.parameters(), lr=args.adv_lr, momentum=args.momentum,
                             weight_decay=args.weight_decay)
     for epoch in range(args.stage_c_epochs):
@@ -160,7 +161,8 @@ def train_fresh_adversary(backbone, adversary, train_dataset, args, device, log,
 
 def evaluate_leakage(backbone, adversary, val_dataset, args, device, coded_pwr=1.0):
     """Returns dict with leakage metrics on val set."""
-    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr)
+    snr_noise = snr_to_noise_std(args.SNR, args.GT_alg, coded_pwr,
+                                 feat_channels=backbone.layer3[0].conv1.in_channels)
     loader = torch.utils.data.DataLoader(
         val_dataset, batch_size=args.batch_size, shuffle=False,
         num_workers=args.val_workers, pin_memory=True, drop_last=False,
