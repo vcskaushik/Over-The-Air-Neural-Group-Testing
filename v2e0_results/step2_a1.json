@@ -1,0 +1,32 @@
+[
+  {
+    "snr": null,
+    "adapted": false,
+    "auc": 0.9998,
+    "recall_fpr2": 1.0
+  },
+  {
+    "snr": 0.0,
+    "adapted": true,
+    "auc": 0.999791393442623,
+    "auc_sd": 7.036142473309738e-05,
+    "recall_fpr2": 1.0,
+    "recall_sd": 0.0
+  },
+  {
+    "snr": -5.0,
+    "adapted": true,
+    "auc": 0.9994161202185792,
+    "auc_sd": 0.00020557009188424953,
+    "recall_fpr2": 1.0,
+    "recall_sd": 0.0
+  },
+  {
+    "snr": -10.0,
+    "adapted": true,
+    "auc": 0.9963550546448087,
+    "auc_sd": 0.0004502508002135696,
+    "recall_fpr2": 0.9333333333333332,
+    "recall_sd": 0.024944382578492918
+  }
+]

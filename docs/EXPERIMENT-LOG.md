@@ -65,6 +65,13 @@ A running, cross-cutting summary of **what we have run** and **what it tells us 
 
 ---
 
+## 4. Campaign D — V2-E0: does channel noise open an SNR window? (2026-07-26)
+
+- **Detail doc:** `docs/superpowers/results/2026-07-26-v2e0-snr-window-resnet18.md`
+- **What we ran (gated, on frozen V1 checkpoints — no VIB/new training):** a premise check for V2's "noise is a privacy lever independent of capacity" thesis. **Step 1** static margin/collapse gate; **Step 2** confirm on the baseline at {0,−5,−10} dB — firearm utility with the *receiver* adapted through noise (recall@FPR≤2%) and worst-case leakage with the *adversary retrained* through noise; **Step 3** matched-FPR frontier overlay + noise+HSIC combination.
+- **Result — NO window.** The static gate *looked* promising (class-ID collapses ~6 dB before firearm). But at **matched recall@FPR≤2%**, pure noise sits **on/outside** the σ=0 HSIC frontier: at 50/50 recall, HSIC λ=30 leaks **18.6%** vs noise −5 dB **20.0%** (HSIC marginally better); HSIC also wins at ~37/50. The knees **coincide at matched utility** — the V1 entanglement wall. (A Step-2 reading briefly looked like a window; it was an artifact of matching noise's recall@2%FPR against HSIC's *0.5-threshold* recall — the matched-FPR overlay dissolves it. One nuance: noise+HSIC *combined* is mildly complementary, unconfirmed.)
+- **What it told us:** raw channel noise is **not** an independent lever on this entangled code — it moves along the same wall as HSIC. Also surfaced two evaluator bugs (main.py input-space vs privacy feature-space ITIT noise; a latent `device.index=None` crash in `eval_privacy` at σ>0). → **V2 re-scoped capacity-first (E2/ResNeXt-101); drop the noise-alone E1 arm; VIB/noise only in E3 combination under a frozen-noise-floor.**
+
 ## What we know now (cumulative synthesis)
 
 1. **Mechanism matters: independence > obfuscation.** HSIC removes class-correlated structure; the adversarial predecessor merely hid it. Only HSIC survives a refresh at high λ. This is a real, defensible qualitative result.
@@ -78,7 +85,7 @@ A running, cross-cutting summary of **what we have run** and **what it tells us 
 ## Open questions → V2
 
 - **Does representational capacity bend the frontier?** A wider transmitted code (`resnext101_32x8d`: layer-2 = 512 ch vs ResNet-18's 128) may let class and task separate — buying a given worst-case-leakage reduction at less recall cost, and holding it under refresh. *(Primary V2 experiment — see `HANDOFF-v1-refine.md` → Next steps.)*
-- **Does channel noise (σ>0) / VIB help or just add a second knob on the same wall?**
+- ~~Does channel noise (σ>0) help?~~ **Answered (Campaign D): no — noise-alone does not beat the HSIC frontier at matched utility; it's on the same wall.** Only the noise+HSIC *combination* showed a mild (unconfirmed) hint → test in E3, not E1.
 - **Is the entanglement fundamental to firearm-vs-class,** or an artifact of the ITIT tap point / K=0? (Test K>0 coalitions, alternate tap layers.)
 
 *Index of detail docs: specs in `docs/superpowers/specs/`, plans in `docs/superpowers/plans/`, per-campaign results in `docs/superpowers/results/`.*
