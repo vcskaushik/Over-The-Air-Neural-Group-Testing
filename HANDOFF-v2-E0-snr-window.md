@@ -1,5 +1,8 @@
 # HANDOFF — V2-E0: Does an SNR window exist? (frozen-checkpoint premise check)
 
+> **STATUS: ✅ COMPLETE (2026-07-26, commit `b46b3bb`).** Results: `docs/superpowers/results/2026-07-26-v2e0-snr-window-resnet18.md`; log: `docs/EXPERIMENT-LOG.md` (Campaign D).
+> **Verdict: NO usable window.** At matched recall@FPR≤2%, raw channel noise sits on/outside the σ=0 HSIC frontier (50/50: HSIC λ=30 **18.6%** vs noise −5 dB **20.0%**); the firearm/class knees coincide = the V1 entanglement wall. The static gate's ~6 dB hint was an artifact of no-adaptation + not comparing to the frontier; a Step-2 read that looked like a window was a matched-FPR error (see gotcha memory). → **Re-scope V2 capacity-first: drop E1 (noise-alone); do E2 (ResNeXt-101); VIB/noise only in E3 combination under a frozen-noise-floor** (noise+HSIC showed only a mild, unconfirmed complementarity).
+
 > **This gates all of V2.** A **gated, cheap** measurement on **frozen V1 checkpoints** — **no VIB code, no new mechanism training.** It answers the one question the "channel-noise privacy lever" thesis presupposes, before we build VIB. **Structure: a nearly-free static GATE decides whether any expensive sweep runs at all.** Expected cost: hours (gate + a few confirm points), not a full grid.
 
 **To:** the next Claude instance on the GPU box (pod is alive with data + checkpoints).
@@ -105,10 +108,10 @@ A null is a real, decisive result — it kills the noise thesis on this arch and
 
 ## Done when
 
-- [ ] σ>0 utility evaluator validated (reproduces σ=0 48k at `noise_std=None`) — before any Step 2 number.
-- [ ] **Step 1 gate** run: firearm vs class collapse-SNRs + verdict (separated / coincident).
-- [ ] **Step 2 confirm:** ~3 baseline SNR points (R-only-adapted recall@matched-FPR + AUC + worst-case leakage, mean±sd over ≥3 draws), read against the σ=0 frontier.
-- [ ] **Step 3** run **only if** a window survived Steps 1–2.
-- [ ] Results doc with the window verdict + V2-scope implication, committed + pushed.
+- [x] σ>0 utility evaluator validated (reproduces σ=0 48k at `noise_std=None`: AUC 0.9998, recall 50/50).
+- [x] **Step 1 gate** run: class ≈ −4 dB vs firearm ≈ −10 dB half-signal (looked separated — but static, non-arbiter).
+- [x] **Step 2 confirm:** baseline {0,−5,−10} dB, R-adapted recall@2%FPR + worst-case leakage (adv retrained through noise), mean±sd.
+- [x] **Step 3** matched-FPR frontier overlay + noise+HSIC combination — the arbiter; overturned the Step-2 hint.
+- [x] Results doc with the (null) window verdict + V2-scope implication, committed + pushed (`b46b3bb`).
 
 **The one sentence that matters:** *Is there an SNR where the firearm detector still works but the worst-case class probe has gone blind — or do they die together?*
