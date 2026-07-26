@@ -156,3 +156,68 @@ All checkpoints/logs are gitignored under `Trained_Models/`.
 **Yes on privacy, with a real utility cost, and — crucially — it survives the refresh.** HSIC invariance at λ_H = 100 reduces honest worst-case (pretrained-adversary) leakage from the baseline's **27.80%** to **3.07%** (~9×, −24.7 pp), and this gain **does not rebound under a 2-epoch utility refresh** (Kaiming Stage-C leakage stays at ~0.07% post-refresh while firearm recall recovers to 49/50). That is the decisive contrast with the v1 predecessor (the 2026-04-18 adversarial approach), whose apparent privacy was obfuscation that a refreshed receiver fully undid back to baseline. The difference here is that HSIC drives the encoder to *remove* class-correlated structure rather than scramble it, so recalibrating utility does not resurrect the leak.
 
 The cost is not free: the privacy only appears once utility starts to break (there is **no free-lunch λ_H** — recall is a perfect 50/50 only while leakage sits at the entanglement floor; λ_H = 100 pays 12 missed firearms pre-refresh, recovering to 1 missed post-refresh but with a high false-positive count; λ_H = 1000 collapses the detector entirely). Under the honest worst-case attacker the reduction is a reduction, not destruction, of the class signal (baseline 27.80% → 3.07% unrefreshed → 5.89% after the refresh), and the refresh does leak a little back. But within the ResNet-18 / ITIT / σ=0 setting, HSIC invariance is a **qualitative improvement over the failed adversarial approach**: where the predecessor's privacy rebounded 100% to baseline after refresh, HSIC's holds ~89% of a −24.7 pp worst-case gain (still −21.9 pp after refresh) at a tunable utility price. Whether a bigger backbone or GTGT-FM can shift the utility/privacy frontier enough to get large leakage reduction *without* missing firearms is the v2 question.
+
+---
+
+## 9. V1 refinement — the full frontier (fine λ_H grid + whole-sweep worst-case)
+
+Two gaps in §1–§8 are closed here: (a) the coarse grid jumped the entire 10→100 knee, and (b) the honest worst-case (`--adv-init pretrained`) attacker had been run on only 3 checkpoints. This section adds a fine grid λ_H ∈ {20,30,50,70} and the pretrained-adversary Stage C for **every** point. **The pretrained-adv column is the metric to trust** (§5); Kaiming is retained only because it is the historical number and preserves the ordering. (All runs on the freshly rebuilt canonical ImageNet: train 1,281,167 imgs / 1000 classes, val 50,000 / 1000.)
+
+### 9.1 The full frontier
+
+| λ_H | Acc@1 | ROC-AUC | firearm recall | FP (count) | FPR | Kaiming leakage | **worst-case (pretrained-adv) leakage** |
+|---|---|---|---|---|---|---|---|
+| Stage A baseline | 97.84 | 1.000 | 50/50 | 1055 | 2.16% | 1.81% | **27.80%** |
+| 0 (control) | 99.30 | 1.000 | 50/50 | 341 | 0.70% | 1.70% | **28.38%** |
+| 1 | 99.45 | 1.000 | 50/50 | 270 | 0.55% | 2.06% | **28.04%** |
+| 10 | 99.34 | 1.000 | 50/50 | 322 | 0.66% | 1.94% | **26.92%** |
+| 20 | 98.67 | 0.999 | 49/50 | 649 | 1.33% | 1.24% | **22.01%** |
+| **30 (BEST)** | 98.56 | 0.999 | 48/50 | 700 | 1.43% | 0.93% | **18.56%** |
+| 50 | 98.12 | 0.997 | 47/50 | 917 | 1.88% | 0.56% | **14.18%** |
+| 70 | 97.36 | 0.981 | 46/50 | 1287 | 2.64% | 0.40% | **8.66%** |
+| 100 | 97.42 | 0.960 | 38/50 | 1248 | 2.56% | 0.06% | **3.07%** |
+| 1000 | 99.90 | 0.569 | 0/50 | 0 | 0.00% | 0.00% | **0.00%** |
+
+(FPR = FP/(FP+TN) over the 48,800-image background val set; recall over the 50 firearm val images.)
+
+### 9.2 Reading the frontier
+
+**It is a smooth monotonic trade-off, not a cliff.** With the knee filled in, worst-case leakage falls *continuously* with λ_H (27.8 → 26.9 → 22.0 → 18.6 → 14.2 → 8.7 → 3.1 → 0.0%) while firearm recall degrades *gradually* (50 → 50 → 49 → 48 → 47 → 46 → 38 → 0). There is no sharp knee where privacy suddenly appears; there is a continuous exchange rate of roughly **~3–5 pp of worst-case leakage per additional missed firearm** across the 20→100 regime.
+
+**The Kaiming column manufactures an illusion of a free lunch that the honest attacker dispels.** Judged by Kaiming leakage alone, λ_H = 20 looks near-perfect — 1.24% leakage at 49/50 recall — implying you can buy almost-complete privacy for one missed firearm. The pretrained-adversary reads **22.0%** off that *same* checkpoint: the class signal is overwhelmingly still there, just invisible to a weak from-scratch probe. The two attackers agree on **ordering** (both monotone in λ_H) but differ by up to ~18× in **magnitude**, and the gap is largest exactly in the low-λ region that looked most attractive.
+
+**The λ_H = 0 control** (joint E+R + PK sampler, no HSIC) sits at 28.38% worst-case — statistically indistinguishable from the 27.80% baseline — so every worst-case reduction at λ_H > 0 is attributable to HSIC, not to the sampler or joint training. (The control does tighten the *detector*: FPR 2.16% → 0.70%.)
+
+### 9.3 Utility vs worst-case-leakage (the Pareto view)
+
+Restricting to points that hold firearm recall ≥ ~48/50 (≤ 2 missed firearms, AUC ≥ 0.99):
+
+| recall held | best λ_H | worst-case leakage | reduction vs 27.80% |
+|---|---|---|---|
+| 49/50 | 20 | 22.01% | 1.26× (−5.8 pp) |
+| 48/50 | 30 | 18.56% | 1.50× (−9.2 pp) |
+
+**There is no point with both high recall and low worst-case leakage.** The largest reduction available without dropping below 48/50 is to **18.6%** (λ_H = 30) — still a 1.5× reduction, not the order-of-magnitude the Kaiming numbers implied. The order-of-magnitude cut (→3.07%, 9×) is only reachable at 38/50 recall, i.e. by *missing 12 of 50 firearms*. The frontier has negative slope **everywhere**; there is no elbow. This is the **entanglement wall**: on ResNet-18 / ITIT / σ=0, class identity and the firearm-vs-background decision live in the same small (layer-2, 128-ch) subspace, so you cannot remove one without eroding the other in proportion.
+
+### 9.4 Refresh durability at BEST (λ_H = 30)
+
+A 2-epoch utility-only refresh (E+R unfrozen, LR 1e-4, firearm CE) was applied to the λ_H = 30 checkpoint and the λ_H = 0 control, then Stage C re-run (Kaiming and pretrained-adv) on the refreshed encoder.
+
+| config | recall | Acc@1 | FP | FPR | Kaiming leak | **worst-case leak** |
+|---|---|---|---|---|---|---|
+| λ_H = 30, unrefreshed | 48/50 | 98.56 | 700 | 1.43% | 0.93% | **18.56%** |
+| λ_H = 30, after 2-ep refresh | **50/50** | 95.98 | 1962 | **4.02%** | 0.93% | **22.27%** |
+| λ_H = 0 control, after refresh | 50/50 | 98.06 | 950 | 1.95% | 1.95% | — |
+
+(Re-running the *unrefreshed* λ=30 pretrained-adv Stage C in the same batch gave 19.50% vs the frontier's 18.56% — a ~1 pp band that sets the run-to-run Stage-C noise floor; the refreshed 22.27% is a real move above it.)
+
+1. **The refresh restores utility, but by loosening the detector.** Recall recovers 48→50/50, but the false-positive rate nearly triples (1.43% → **4.02%**, FP 700 → 1962) and Acc@1 falls 98.56 → 95.98. The 2-epoch refresh buys back the 2 missed firearms mostly by predicting "firearm" more liberally, not by re-learning a cleaner boundary.
+2. **The worst-case privacy partially rebounds toward baseline.** Worst-case leak rises 18.56% → **22.27%** (+2.8 to +3.7 pp over the noise-floor baseline). At 22.27% the refreshed λ=30 encoder is only **~1.25× below the 27.80% baseline** — the refresh erodes most of the already-modest privacy margin. Contrast λ_H = 100 (§5), where the refresh moved worst-case 3.07% → 5.89% but stayed **~4.7× below baseline**: there the gain was large enough to survive with room to spare. **At the recall-preserving BEST point the gain is small enough that a routine utility refresh largely undoes it.** (The from-scratch Kaiming leak, by contrast, stays pinned at 0.93% before and after — another reminder that the weak attacker is blind to what the strong attacker recovers.)
+
+### 9.5 Revised bottom line — does the fine grid overturn or confirm "no free-lunch"?
+
+**Confirms it, and sharpens *why*.** The refined picture is not "privacy is a cliff you fall off at λ_H = 100" but "privacy and utility trade off smoothly and proportionally, with no free elbow." Against the honest worst-case attacker, the recall-preserving operating points (λ_H ≤ 30) deliver only a **1.3–1.5× leakage reduction**; the large reductions require sacrificing firearms roughly linearly. The first sweep's optimistic read was an artifact of leading with the weak Kaiming attacker, which compresses the low-λ frontier toward zero.
+
+The refresh test adds a second, independent reason for caution: **the recall-preserving privacy is not durable.** At λ_H = 30 a routine 2-epoch utility refresh both restores recall to 50/50 (at ~3× the false-positive rate) and rebounds worst-case leakage from 18.6% back to 22.3% — within ~1.25× of the unprotected baseline. So there is **no operating point that is simultaneously (a) recall-preserving, (b) meaningfully private against the worst case, and (c) durable under refresh.** Durable *and* large privacy exists only at λ_H = 100, where recall craters to 38/50. (This is still a qualitative improvement over the failed adversarial predecessor, whose gain rebounded **100%** to baseline — HSIC's does not fully rebound — but the honest headline is a proportional frontier, not free privacy.)
+
+**Implication for V2.** Because ResNet-18 + ITIT shows a hard entanglement wall — a proportional, elbow-free frontier whose recall-preserving end is also refresh-fragile — the lever that matters is **representational capacity**, not more noise. V2 should test whether a larger backbone / wider transmitted code (`resnext101_32x8d`: 86.7M params, layer2 code width 512 vs ResNet-18's 128 — a 4× wider bottleneck, already wired into `resnet_design2/my_resnet.py`) can *bend* this frontier: buy a given worst-case-leakage reduction at less recall cost, and hold it under refresh. If a capacity lever cannot bend it either, the honest conclusion is that firearm-detection and class-identity are not separable in this feature, and the privacy claim should be scoped accordingly.
