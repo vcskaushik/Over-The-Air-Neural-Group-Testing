@@ -48,10 +48,12 @@ Repeat the combo point **λ30 + −5 dB** (`v2e0_step3.py` path) with a **second
 Keep the **overall verdict unchanged**: no usable window; V2 capacity-first; standalone-noise E1 dropped. Commit + push the corrected doc + any new numbers (checkpoints/logs gitignored, auto-synced).
 
 ## Done when
-- [ ] −7, −8 dB: A1 (10-ep-adapted recall@2%FPR + AUC) and A2 (worst-case leakage), mean±sd over ≥3 draws.
-- [ ] λ20/50/70 matched-FPR recall re-measured.
-- [ ] Combo λ30+−5 dB repeated on a 2nd seed.
-- [ ] (optional) 60-epoch Stage-C at −5/−10 dB.
-- [ ] Results doc corrected (the 3 overreaches + E3 status), verdict unchanged, committed + pushed.
+- [x] −7, −8 dB: A1 (10-ep-adapted recall@2%FPR + AUC) and A2 (worst-case leakage), mean±sd over ≥3 draws. (−7: 0.993 @ 16.73%→**21.77% @60ep**; −8: 0.973 @ 14.96%.)
+- [x] λ20/50/70 matched-FPR recall re-measured. (0.98 / 0.94 / 0.90.)
+- [x] Combo λ30+−5 dB repeated on a 2nd seed. (seed0 9.66%, seed1 9.75% — seed-robust but 30-ep under-converged → not established.)
+- [x] 60-epoch Stage-C — ran at −5/−10 dB **and** the clinching HSIC λ30 / baseline −7 dB points. **Finding: BOTH arms under-converge at 30 ep (+3.5–5.4 pp).**
+- [x] Results doc corrected (§6): 3 overreaches + E3 status; verdict unchanged (no window; tie on same wall); committed + pushed.
+
+> **RESULT:** No usable window. At converged (60-ep) matched-FPR, HSIC λ=30 (22.14%) ≈ noise −7 dB (21.77%) — a tie on the same wall. The 30-ep "window/complementarity" hints were convergence artifacts. V2 stays capacity-first; E1 dropped.
 
 **The one sentence that matters:** *Does a recall-preserving (≥49/50) window with leakage < ~17% appear at −7/−8 dB — and does the noise+HSIC combo edge survive a second seed?* Either way, V2 stays capacity-first; this just makes the record honest and grounds E3.

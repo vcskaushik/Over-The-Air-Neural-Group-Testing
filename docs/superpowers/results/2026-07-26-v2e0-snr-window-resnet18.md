@@ -3,7 +3,9 @@
 **Date:** 2026-07-26 · **Branch:** `dev/invariance-privacy-hsic-v1` · **Gates:** `docs/superpowers/specs/2026-07-25-v2-capacity-noise-vib-design.md`
 **Premise checked:** is channel noise a privacy lever *independent* of representational capacity — is there an SNR where the firearm detector still works but the worst-case class probe has gone blind, that *beats* the σ=0 HSIC frontier?
 
-> **Headline: NO usable window — raw channel noise does NOT beat HSIC.** Measured at **matched recall @ FPR≤2%**, adding channel noise to the baseline encoder sits **on/just outside** the σ=0 HSIC frontier, not inside it. At the recall-preserving point (50/50 @ 2%FPR), **HSIC λ_H=30 leaks 18.6% while the best pure-noise point (−5 dB) leaks 20.0%** — noise is *marginally worse*. The two mechanisms' collapse knees effectively **coincide** — exactly the V1 entanglement-wall prediction. Channel noise is therefore **not** an independent lever here → **re-scope V2 capacity-first (E2/ResNeXt-101); attach VIB/noise only in E3 (combination), and drop the noise-alone E1 arm.** (One nuance: noise+HSIC *combined* shows a mild, unconfirmed complementarity — see §4.)
+> **Headline: NO usable window — channel noise lies on the *same* frontier as HSIC.** Measured at **matched recall @ FPR≤2%** with **converged (60-epoch) adversaries** (see §6), channel noise and HSIC sit within ~2 pp of each other across the recall-preserving band — a **tie on the same wall**, exactly the V1 entanglement-wall prediction. Channel noise is **not** an independent lever → **re-scope V2 capacity-first (E2/ResNeXt-101); drop the noise-alone E1 arm; E3 (combination) only under a frozen-noise-floor.**
+>
+> **⚠️ §3–§5 below record the initial 30-epoch analysis and are SUPERSEDED by §6 (verification).** The audit found (and §6 fixes) three overreaches: the "HSIC λ=30 18.6% vs noise 20.0% → HSIC wins" framing is a **tie within the cross-campaign band** once you note the ~1 pp Stage-C offset; the −7/−8 dB band (unprobed in §3–§5) was filled and *closes to a tie* at 60 ep; and both adversaries **under-converge at 30 ep** (+3.5–5.4 pp), so §3–§5's absolute leakages are lower bounds. The verdict is unchanged and now firmer. **Read §6 for the corrected numbers.**
 
 ## 1. Setup, threat model, evaluator validation
 
@@ -84,3 +86,47 @@ The Step-2 numbers must be read against the σ=0 HSIC frontier **at matched reca
 **Caveats.** Single seed; Stage-C adversary trained 30 epochs (may under-converge at low SNR → these leakages are lower bounds on the worst case; a 60-epoch check is advisable). Privacy here is under the single-transmission, equal-SNR threat model — repetition-averaging and a closer eavesdropper both erode noise privacy, unlike HSIC removal.
 
 *Artifacts: `v2e0_results/{gate,step2_a1,step2_a2,step3}.json`; scripts `v2e0_{gate_probe,step2_a1,step2_a2,step3,train_adv}.py`. Adversary weights: `Trained_Models/StageC_OnStageA_ResNet18_advpretrained/adversary.pth`.*
+
+## 6. Verification / corrections (2026-07-26, `HANDOFF-v2-E0-verify.md`)
+
+An independent audit accepted the **decision** (V2 capacity-first, drop standalone-noise E1) but flagged three places where §1–§5 outrun the data. Verification on frozen checkpoints addressed each. **Verdict unchanged — no usable window — but the honest framing is a *tie on the same wall*, not "HSIC marginally wins."**
+
+### The decisive finding: the worst-case adversary under-converges at 30 epochs — for BOTH arms
+Re-running Stage-C at 60 epochs (mean over 3 eval draws):
+
+| config | recall@2%FPR | leak @ 30 ep | leak @ 60 ep | Δ |
+|---|---|---|---|---|
+| HSIC λ=30 (σ=0) | 1.00 | 18.6% | **22.14%** | +3.5 pp |
+| noise −5 dB | 1.00 | 20.0% | **23.90%** | +3.9 pp |
+| noise −7 dB | 0.993 | 16.73% | **21.77%** | +5.0 pp |
+| noise −10 dB | 0.933 | 11.2% | **16.64%** | +5.4 pp |
+
+The pretrained adversary keeps learning past 30 epochs on *every* config (not just the through-noise ones), so **all 30-epoch leakages in §3–§5 understate the worst case by ~3.5–5.4 pp.** Crucially the effect is roughly symmetric, so the *relative* comparison is preserved once both sides are converged.
+
+### 1. The −7/−8 dB band (V1) — the "window candidate" closes to a tie
+At 30 ep, −7 dB (recall 0.993 @ 16.73%) and −8 dB (0.973 @ 14.96%) *looked* like a small recall-preserving window under HSIC λ=30's 18.6%. But at 60 ep −7 dB rises to **21.77%**, essentially equal to HSIC λ=30's converged **22.14%** (at recall 1.00). **No recall-preserving window survives convergence** — it was an artifact of comparing an under-converged noise adversary to an under-converged HSIC number that happened to sit higher at 30 ep.
+
+### 2. Matched-FPR on both sides (V2) — the frontier, corrected
+§4 had compared noise's matched-FPR recall against HSIC λ50's *argmax* recall. Re-measured HSIC recall@FPR≤2% (σ=0, no adaptation): **λ20 = 0.98, λ50 = 0.94, λ70 = 0.90** (worst-case leakage is threshold-independent). Converged both-sides-matched frontier (recall@2%FPR / worst-case leakage @ 60 ep where measured):
+
+| recall@2%FPR | HSIC (σ=0) | noise (baseline) |
+|---|---|---|
+| 1.00 | λ30 **22.14%** | −5 dB **23.90%** |
+| 0.99 | — | −7 dB **21.77%** |
+| 0.93 | (λ50 ≈ 0.94) | −10 dB **16.64%** |
+
+At matched recall the two arms sit within ~2 pp of each other across the recall-preserving band — **the collapse knees coincide (the V1 entanglement wall).**
+
+### 3. "HSIC marginally wins" → **tie on the same wall** (audit flag confirmed)
+At 60 ep and matched recall, HSIC λ=30 (22.14%) and noise −7 dB (21.77%) differ by **0.4 pp** — well inside the ~1 pp cross-campaign Stage-C band (E0's σ=0 rerun read 26.7% vs V1's 27.80%). The earlier "HSIC marginally worse/better than noise" claims are both wrong: **neither mechanism beats the other at matched utility.** Noise is not an independent lever; it moves along the *same* frontier HSIC does.
+
+### 4. Threshold-on-val caveat
+The FPR≤2% threshold is oracle-recalibrated per noise draw on the same val split it reports — identical for both arms so **verdict-neutral**, but a deployed receiver could not recalibrate its threshold per channel realization, so the reported noise recalls are optimistic in absolute terms.
+
+### 5. E3 "noise+HSIC complementarity" (V3) — not established
+Combo λ=30 + −5 dB is **seed-robust** (seed 0: 9.66%, seed 1: 9.75% worst-case leakage) but both at 30 ep — under-converged like every through-noise point (+~5 pp at 60 ep). Once converged it lands on the frontier with everything else; the apparent ~1.5 pp edge does not survive. **E3 should not lean on a noise+HSIC complementarity premise.**
+
+### Verdict (unchanged, firmer, honest)
+No usable SNR window on ResNet-18 / ITIT. With **converged** adversaries and **matched FPR on both sides**, channel noise and HSIC lie on the *same* recall-vs-leakage frontier (within ~2 pp) across the recall-preserving band — the firearm/class knees coincide, the V1 entanglement wall. Any residual sub-band difference is ≤ a couple pp, inside the cross-campaign band, and (for noise) threat-model-fragile — single-transmission only; repetition-averaging (~1/√n) and a closer eavesdropper both erode it, while HSIC removal is immune. **→ V2 stays capacity-first (E2/ResNeXt-101); standalone-noise E1 dropped; E3 only under a frozen-noise-floor and not on a complementarity premise.**
+
+*Verification artifacts: `v2e0_results/{verify,verify2}.json`; scripts `v2e0_{verify,verify2}.py`.*
